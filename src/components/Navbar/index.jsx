@@ -44,7 +44,7 @@ export default function Navbar() {
 const NavbarContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: 12rem;
+  height: 10rem;
   align-items: center;
   justify-content: center;
   margin: 0 11rem;
