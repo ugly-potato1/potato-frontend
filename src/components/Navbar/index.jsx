@@ -12,15 +12,9 @@ export default function Navbar() {
           <Farmely/>
         </Link>
         <LoginBox>
-          <TextBtn>
-            <NavLink to='/*'>
-              회원가입
-            </NavLink>
-            <div>|</div>
-            <NavLink to='/login'>
-              로그인
-            </NavLink>
-          </TextBtn>
+          <NavLink to='/login'>
+            로그인
+          </NavLink>
           <HiOutlineShoppingCart font-size='1.5rem'/>
         </LoginBox>
       </Header>
@@ -33,7 +27,7 @@ export default function Navbar() {
           마을의 펀딩
         </NavLink>
         <NavLink to='/popup'>
-          팝업
+          마을의 팝업
         </NavLink>
       </Menu>
 
@@ -48,12 +42,20 @@ const NavbarContainer = styled.div`
   align-items: center;
   justify-content: center;
   margin: 0 11rem;
-  gap: 3.5rem;
+  gap: 3.2rem;
 
+  a {
+    text-decoration: none;
+  }
 `
 
 const Header = styled.div`
   display: flex;
+
+  a{
+    font-weight: 500;
+    color: #686868;
+  }
 `
 
 
@@ -62,12 +64,10 @@ const LoginBox = styled.div`
   gap: 1.5rem;
   position: absolute;
   right: 11rem;
-`
-
-const TextBtn = styled.div`
-  display: flex;
-  gap: 0.75rem;
-  color: #686868;
+  align-items: center
+  a{
+    color: #686868;
+  }
 `
 
 const Menu = styled.nav`
@@ -77,10 +77,12 @@ const Menu = styled.nav`
   align-items: center;
   a{
     font-size: 1.25rem;
+    color: black;
+    font-weight: 500;
   }
 
   svg{
     position: absolute;
-    left:11rem;
+    left: 11rem;
   }
 `
