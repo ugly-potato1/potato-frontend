@@ -89,4 +89,5 @@ const SocialLogin = styled.img.attrs(props => ({
 }))`
   width: 25rem;
   height: 3.75rem;
+  
 `
