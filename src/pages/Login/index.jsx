@@ -72,6 +72,11 @@ const LoginWrapper = styled.div`
     margin-bottom: 0.8rem;
   }
 
+  
+  svg{
+    margin: 0 auto;
+  }
+
 `
 
 const LoginBtn = styled.div`
