@@ -72,6 +72,11 @@ const LoginWrapper = styled.div`
     margin-bottom: 0.8rem;
   }
 
+  
+  svg{
+    margin: 0 auto;
+  }
+
 `
 
 const LoginBtn = styled.div`
@@ -89,5 +94,4 @@ const SocialLogin = styled.img.attrs(props => ({
 }))`
   width: 25rem;
   height: 3.75rem;
-  
 `
