@@ -9,6 +9,7 @@ import Login from './pages/Login';
 import Intro from './pages/Intro';
 import Funding from './pages/Funding';
 import Popup from './pages/Popup';
+import InitMypage from './pages/MyPage/InitMypage/InitMypage';
 
 
 const router = createBrowserRouter([
@@ -21,6 +22,8 @@ const router = createBrowserRouter([
       {path: '/intro', element: <Intro/>},
       {path: '/funding', element: <Funding/>},
       {path: '/popup', element: <Popup/>},
+      {path: '/mypage', element: <InitMypage/>},
+
     ]
   }
 ])
