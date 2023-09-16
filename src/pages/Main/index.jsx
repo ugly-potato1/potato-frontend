@@ -1,5 +1,4 @@
 import React from 'react'
-import introCard1 from '../../components/introCard/introCard1'
 import "../../styles/Main/index.css"
 import Image01 from '../../assets/imgs/main_banner_1.png'
 import Image02 from '../../assets/imgs/login_bg.png'
