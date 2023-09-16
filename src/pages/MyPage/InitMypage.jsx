@@ -1,20 +1,21 @@
 import React from 'react'
 import {HiOutlineChevronRight} from 'react-icons/hi'
 
-import TruckIcon from '../../../assets/imgs/Mypage/InitMypageBtn/truck.png'
-import HeartIcon from '../../../assets/imgs/Mypage/InitMypageBtn/heart.png'
-import CartIcon from '../../../assets/imgs/Mypage/InitMypageBtn/cart.png'
-import FeedBackIcon from '../../../assets/imgs/Mypage/InitMypageBtn/feedback.png'
-import QuestionIcon from '../../../assets/imgs/Mypage/InitMypageBtn/question_circle.png'
-import ChatBubbleIcon from '../../../assets/imgs/Mypage/InitMypageBtn/chat_bubble.png'
+import TruckIcon from '../../assets/imgs/Mypage/InitMypageBtn/truck.png'
+import HeartIcon from '../../assets/imgs/Mypage/InitMypageBtn/heart.png'
+import CartIcon from '../../assets/imgs/Mypage/InitMypageBtn/cart.png'
+import FeedBackIcon from '../../assets/imgs/Mypage/InitMypageBtn/feedback.png'
+import QuestionIcon from '../../assets/imgs/Mypage/InitMypageBtn/question_circle.png'
+import ChatBubbleIcon from '../../assets/imgs/Mypage/InitMypageBtn/chat_bubble.png'
 
 
 import styled from 'styled-components'
+import { useNavigate } from 'react-router-dom'
 
 export default function InitMypage() {
 
   const MyCropBtn = [
-    {id:0, text: '주문 및 배송조회', icon: TruckIcon},
+    {id:0, text: '후원내역 조회', icon: TruckIcon},
     {id:1, text: '찜 목록', icon: HeartIcon},
     {id:2, text: '장바구니', icon: CartIcon},
     {id:3, text: '농작물 후기', icon: FeedBackIcon},
@@ -22,9 +23,16 @@ export default function InitMypage() {
   ]
 
   const CustomerCenterBtn = [
-    {id:0, text: 'FAQ', icon: QuestionIcon},
-    {id:1, text: '1:1 문의', icon: ChatBubbleIcon},
+    {id:4, text: 'FAQ', icon: QuestionIcon},
+    {id:5, text: '1:1 문의', icon: ChatBubbleIcon},
   ]
+  
+  const navigate = useNavigate();
+
+  const handleOnClick = (id, text) => {
+    console.log(id)
+    navigate('/mypage/detail',{state: {id: id, text: text}})
+  }
 
   return (
     <>
@@ -33,7 +41,7 @@ export default function InitMypage() {
         <p>나의 작물</p>
         <ButtonWrapper>
           { MyCropBtn.map(({id, text, icon}) => (
-            <ButtonItem key={id}>
+            <ButtonItem key={id} onClick={() => handleOnClick(id, text)}>
               <div>
                 <img key={id} src={icon} alt='mySvgImage' />
                 {text}
@@ -46,7 +54,7 @@ export default function InitMypage() {
         <p>고객센터</p>
         <ButtonWrapper>
           { CustomerCenterBtn.map(({id, text, icon}) => (
-            <ButtonItem key={id}>
+            <ButtonItem key={id} onClick={() => handleOnClick(id, text)}>
               <div>
                 <img key={id} src={icon} alt='mySvgImage' />
                 {text}
@@ -63,7 +71,7 @@ export default function InitMypage() {
 
 
 const ProfileBox = styled.div`
-  width: 100vw;
+  width: 100%;
   height: 18.4rem;
   background-color: #FFF5E9;
 
