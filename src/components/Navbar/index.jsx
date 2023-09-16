@@ -64,7 +64,7 @@ const LoginBox = styled.div`
   gap: 1.5rem;
   position: absolute;
   right: 11rem;
-  align-items: center
+  align-items: center;
   a{
     color: #686868;
   }
