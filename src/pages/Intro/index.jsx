@@ -22,7 +22,18 @@ import afford from '../../assets/imgs/Intro/afford.png'
 import envfriendly from '../../assets/imgs/Intro/envfriendly.png'
 import OneOnOneHelp from '../../components/OneOnOneHelp/OneOnOneHelp'
 import OneOnOnePosting from '../../components/OneOnOneHelp/OneOnOnePosting'
+import CustomSelect from '../../components/OneOnOneHelp/CustomSelect'
 
+const Category = [{key: "All", value: "전체"},
+                    {key: "Pay", value: "후원/결제 문의"},
+                    {key: "Shipping", value: "배송 문의"},
+                    {key: "Cancel", value: "취소/반품/환불 문의"},
+                    {key: "Other", value: "기타 문의"}];
+            
+
+const TitleOrContent = [{key: "Title", value: "제목"},
+                    {key: "Content", value: "내용"},
+                    {key: "TitleContent", value: "제목+내용"}];
 
 export default function Intro() {
   return (

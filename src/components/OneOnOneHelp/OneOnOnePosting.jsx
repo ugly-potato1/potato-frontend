@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { styled } from 'styled-components'
 import CustomSelect from './CustomSelect'
 import UploadPhoto from '../../assets/imgs/Group 64622.png'
@@ -10,20 +10,33 @@ export default function OneOnOnePosting() {
                     {key: "Cancel", value: "취소/반품/환불 문의"},
                     {key: "Other", value: "기타 문의"}];
 
+                    
+    const [option, setOption] = useState(false);
+
+    const clickWrapp = (event) => {
+        if(!event.target.classList.contains('sel')){
+            setOption(current => !current);
+        }
+      };
+
+    useEffect(() => {
+        document.addEventListener("click", clickWrapp);
+    }, []);  
+           
   return (
     <HelpContainer>
         <form>
         <CategoryContainer>
             카테고리
-            <div>
+            <div style={{display:'flex'}}>{/*
                 <Select name='category'>
                     <option value="All">전체</option>
                     <option value="Pay">후원/결제 문의</option>
                     <option value="Shipping">배송 문의</option>
                     <option value="Cancel">취소/반품/환불 문의</option>
                     <option value="Other">기타 문의</option>
-                </Select>
-                {/*<CustomSelect optionData = {Category}/>*/}
+  </Select>*/}
+                <CustomSelect optionData = {Category} show={option} width='24.7vw' />
                 <Select name='DetailCategory'>
                     <option value="Detail">상세유형</option>
                 </Select>

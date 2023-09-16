@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { styled } from 'styled-components'
 
-export default function CustomSelect({optionData}) {
+export default function CustomSelect({optionData, show, width}) {
     const [currentValue, setCurrentValue] = useState(optionData[0].value);
     const [showOptions, setShowOptions] = useState(false);
 
@@ -9,15 +9,20 @@ export default function CustomSelect({optionData}) {
       setCurrentValue(e.target.getAttribute("value"));
       console.log(e.target);
     };
+
+    useEffect(() => {
+      setShowOptions(false);
+    }, [show]);
   
   return (
-    <SelectBox onClick={() => setShowOptions((prev) => !prev)}>
+    <SelectBox className='sel' onClick={() => setShowOptions((prev) => !prev)} width={width}>
       <Label>{currentValue}</Label>
       <SelectOptions show={showOptions}>
         {optionData && optionData.map((data) => (
           <Option
             key={data.key}
             value={data.value}
+            selected={data.value === currentValue}
             onClick={handleOnChangeSelectValue}
           >
             {data.value}
@@ -30,11 +35,13 @@ export default function CustomSelect({optionData}) {
 
 const SelectBox = styled.div`
 position: relative;
-width: 160px;
+width: ${(props) => props.width};
+margin: 0.2rem;
 padding: 8px;
 border-radius: 12px;
 background-color: #ffffff;
 align-self: center;
+box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
 border: solid 1px #DFDFDF;
 cursor: pointer;
 &::before {
@@ -58,7 +65,7 @@ top: 0px;
 left: 0;
 width: 100%;
 overflow: hidden;
-height: 170px;
+height: auto;
 max-height: ${(props) => (props.show ? "none" : "0")};
 padding: 0;
 border-radius: 12px;
@@ -69,7 +76,8 @@ const Option = styled.li`
 font-size: 14px;
 padding: 10px 20px;
 transition: background-color 0.2s ease-in;
+background-color: ${(props) => props.selected ? "#FF9C2F" : "white"};
 &:hover {
-    background-color: #c9c9c9;
+    background-color:  ${(props) => props.selected ? "#FF9C2F" : "#dcdbdb"};
 }
 `;
