@@ -13,6 +13,7 @@ import InitMypage from './pages/MyPage/InitMypage';
 import DetailMypage from './pages/MyPage/DetailMypage';
 
 
+
 const router = createBrowserRouter([
   {
     path: '/',

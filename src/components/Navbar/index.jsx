@@ -86,3 +86,17 @@ const Menu = styled.nav`
     left: 11rem;
   }
 `
+
+const MypageBox = styled.nav`
+  display: flex;
+  gap: 1.5rem;
+  position: absolute;
+  left: 11rem;
+  align-items: center
+  a{
+    font-weight: 500;
+    color: #686868;
+  }
+  
+
+`
