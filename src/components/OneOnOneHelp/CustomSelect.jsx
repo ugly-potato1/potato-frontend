@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { styled } from 'styled-components'
 
-export default function CustomSelect({optionData, isShow, width}) {
+export default function CustomSelect({optionData, isShow, width }) {
     const [currentValue, setCurrentValue] = useState(optionData[0].value);
     const [showOptions, setShowOptions] = useState(0);
 
     const handleOnChangeSelectValue = (e) => {
       setCurrentValue(e.target.getAttribute("value"));
+      {/*sendValueFuction(currentValue);, sendValueFunction prop으로 받아서 currentValue 상위 컴포넌트로 올려보낼 예정*/}
       console.log(e.target);
     };
 
@@ -41,7 +42,7 @@ padding: 8px;
 border-radius: 12px;
 background-color: #ffffff;
 align-self: center;
-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 border: solid 1px #DFDFDF;
 cursor: pointer;
 &::before {
@@ -69,6 +70,7 @@ height: auto;
 max-height: ${(props) => (props.isshow ? "none" : "0")};
 padding: 0;
 border-radius: 12px;
+box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 background-color: white;
 color: black;
 `;

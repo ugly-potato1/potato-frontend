@@ -34,7 +34,7 @@ export default function OneOnOneHelp() {
                 
   return (
     <HelpContainer>
-        <h2>1:1 문의</h2>
+        <HelpText>1:1 문의</HelpText>
         <hr />
         <CategoryContainer>
             <form>
@@ -67,6 +67,13 @@ export default function OneOnOneHelp() {
     </HelpContainer>
   )
 }
+
+const HelpText = styled.h1`
+    margin: 3rem;
+    font-size: 1.5rem;
+    font-weight: 900;
+    text-align: center;
+`
 
 const HelpContainer = styled.div`
     text-align: center;

@@ -51,7 +51,10 @@ export default function OneOnOnePosting() {
         <InputContainer>
             내용
         <ContentBox>
-        <PostInput></PostInput>
+        <PostInput 
+        value=
+        '1.주문번호'
+        ></PostInput>
         <PhotoContainer>
             <img src={UploadPhoto} alt='UploadPhoto' style={{marginTop:5, maxWidth:100}} />
             <PhotoText>
