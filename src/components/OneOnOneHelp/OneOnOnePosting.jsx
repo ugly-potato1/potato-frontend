@@ -35,8 +35,8 @@ export default function OneOnOnePosting() {
                     <option value="Shipping">배송 문의</option>
                     <option value="Cancel">취소/반품/환불 문의</option>
                     <option value="Other">기타 문의</option>
-  </Select>*/}
-                <CustomSelect optionData = {Category} show={option} width='24.7vw' />
+                </Select>*/}
+                <CustomSelect optionData = {Category} isShow={option} width='24.7vw' />
                 <Select name='DetailCategory'>
                     <option value="Detail">상세유형</option>
                 </Select>

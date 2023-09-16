@@ -24,6 +24,7 @@ export default function OneOnOneHelp() {
     const clickWrapp = (event) => {
         if(!event.target.classList.contains('sel')){
             setOption(current => !current);
+            console.log(event);
         }
       };
 
@@ -50,8 +51,8 @@ export default function OneOnOneHelp() {
                     <option value="TitleContent">제목+내용</option>
                 </Select>*/}
                 <div style={{display:'flex'}}>
-                <CustomSelect optionData = {Category} show={option} width='160px' />
-                <CustomSelect optionData = {TitleOrContent} show={option} width='160px' />
+                <CustomSelect optionData = {Category} isShow={option} width='160px' />
+                <CustomSelect optionData = {TitleOrContent} isShow={option} width='160px' />
                 <SearchInput></SearchInput>
                 <SearchButton onClick={handleCategoryButton}>검색</SearchButton>
                 </div>

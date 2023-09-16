@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { styled } from 'styled-components'
 
-export default function CustomSelect({optionData, show, width}) {
+export default function CustomSelect({optionData, isShow, width}) {
     const [currentValue, setCurrentValue] = useState(optionData[0].value);
-    const [showOptions, setShowOptions] = useState(false);
+    const [showOptions, setShowOptions] = useState(0);
 
     const handleOnChangeSelectValue = (e) => {
       setCurrentValue(e.target.getAttribute("value"));
@@ -11,13 +11,13 @@ export default function CustomSelect({optionData, show, width}) {
     };
 
     useEffect(() => {
-      setShowOptions(false);
-    }, [show]);
+      setShowOptions(0);
+    }, [isShow]);
   
   return (
     <SelectBox className='sel' onClick={() => setShowOptions((prev) => !prev)} width={width}>
-      <Label>{currentValue}</Label>
-      <SelectOptions show={showOptions}>
+      <Label className='sel'>{currentValue}</Label>
+      <SelectOptions isshow={showOptions}>
         {optionData && optionData.map((data) => (
           <Option
             key={data.key}
@@ -47,7 +47,7 @@ cursor: pointer;
 &::before {
   content: "⌵";
   position: absolute;
-  top: 1px;
+  top: 3px;
   right: 8px;
   color: black;
   font-size: 20px;
@@ -66,7 +66,7 @@ left: 0;
 width: 100%;
 overflow: hidden;
 height: auto;
-max-height: ${(props) => (props.show ? "none" : "0")};
+max-height: ${(props) => (props.isshow ? "none" : "0")};
 padding: 0;
 border-radius: 12px;
 background-color: white;
