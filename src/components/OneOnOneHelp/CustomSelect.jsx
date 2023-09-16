@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import { styled } from 'styled-components'
 
-export default function CustomSelect(optionData) {
-    optionData = optionData.optionData;
+export default function CustomSelect({optionData}) {
     const [currentValue, setCurrentValue] = useState(optionData[0].value);
     const [showOptions, setShowOptions] = useState(false);
 
     const handleOnChangeSelectValue = (e) => {
       setCurrentValue(e.target.getAttribute("value"));
+      console.log(e.target);
     };
   
   return (
@@ -61,7 +61,7 @@ overflow: hidden;
 height: 170px;
 max-height: ${(props) => (props.show ? "none" : "0")};
 padding: 0;
-border-radius: 8px;
+border-radius: 12px;
 background-color: white;
 color: black;
 `;

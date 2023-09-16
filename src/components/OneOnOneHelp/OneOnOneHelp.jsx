@@ -15,6 +15,10 @@ export default function OneOnOneHelp() {
                     {key: "Cancel", value: "취소/반품/환불 문의"},
                     {key: "Other", value: "기타 문의"}];
 
+    const TitleOrContent = [{key: "Title", value: "제목"},
+                    {key: "Content", value: "내용"},
+                    {key: "TitleContent", value: "제목+내용"}];
+
   return (
     <HelpContainer>
         <h2>1:1 문의</h2>
@@ -34,6 +38,7 @@ export default function OneOnOneHelp() {
                     <option value="Content">내용</option>
                     <option value="TitleContent">제목+내용</option>
                 </Select>
+                {/*<CustomSelect optionData = {TitleOrContent} />*/}
                 <SearchInput></SearchInput>
                 <SearchButton onClick={handleCategoryButton}>검색</SearchButton>
             </form>
