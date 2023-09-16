@@ -11,6 +11,7 @@ import Funding from './pages/Funding';
 import Popup from './pages/Popup';
 
 
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -21,6 +22,7 @@ const router = createBrowserRouter([
       {path: '/intro', element: <Intro/>},
       {path: '/funding', element: <Funding/>},
       {path: '/popup', element: <Popup/>},
+      
     ]
   }
 ])
