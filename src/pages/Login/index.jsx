@@ -9,6 +9,16 @@ import NaverImg from "../../assets/imgs/naver_login.png";
 export default function Login() {
   const handleKakaoLogin = () => {
     // kakao login api 연결
+    const baseUrl = "https://kauth.kakao.com/oauth/authorize";
+    const config = {
+      client_id: "4a86c154b1d30cfa2344eec577e91453",
+      redirect_uri: "http://localhost:3000/oauth/kakao",
+      response_type: "code",
+    };
+    const params = new URLSearchParams(config).toString();
+    const finalUrl = `${baseUrl}?${params}`;
+
+    window.location.href = finalUrl;
   };
 
   const handleNaverLogin = () => {
