@@ -1,6 +1,7 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
+import { useEffect } from "react";
 
 const Loading = styled.div`
   display: flex;
@@ -36,7 +37,10 @@ const KakaoLogin = () => {
     */
   };
 
-  getKakaoToken();
+  useEffect(() => {
+    getKakaoToken();
+  });
+
   /*
   useEffect(() => {
     (async() => {
@@ -54,8 +58,9 @@ const KakaoLogin = () => {
   })
   */
   /*
-  이외에도 메인페이지에서 localstorage.get("token")의 값이 null이 아닌 경우 네비게이션바에 로그인 대신 로그아웃으로 설정 필요
+  이외에도 메인페이지에서 localstorage.getItem("token")의 값이 null이 아닌 경우 네비게이션바에 로그인 대신 로그아웃으로 설정 필요
   로그아웃 클릭시 localstorage.removeItem("token")으로 로그아웃
+  추가로 localstorage가 아닌 recoil을 사용해서 해당 atom에 저장하도록 구현하는 방법이 더 선호됨
  */
   return <Loading>Loading...</Loading>;
 };
