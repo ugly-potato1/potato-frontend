@@ -13,6 +13,21 @@ export default function OneOnOnePosting() {
                     
     const [option, setOption] = useState(false);
 
+    const [title, setTitle] = useState("");
+    const [post, setPost] = useState("====================\n\n1. 주문번호\n\n\n2. 문의내용");
+
+    const handleClick = (e) => {
+        e.preventDefault();
+    }
+
+    const handleTitleChange = (e) => {
+        setTitle(e.target.value);
+    }
+
+    const handlePostChange = (e) => {
+        setPost(e.target.value);
+    }
+
     const clickWrapp = (event) => {
         if(!event.target.classList.contains('sel')){
             setOption(current => !current);
@@ -28,14 +43,18 @@ export default function OneOnOnePosting() {
         <form>
         <CategoryContainer>
             카테고리
-            <div style={{display:'flex'}}>{/*
+            <div style={{display:'flex'}}>
+                
+                {/*
                 <Select name='category'>
                     <option value="All">전체</option>
                     <option value="Pay">후원/결제 문의</option>
                     <option value="Shipping">배송 문의</option>
                     <option value="Cancel">취소/반품/환불 문의</option>
                     <option value="Other">기타 문의</option>
-                </Select>*/}
+                </Select>*/
+                }
+                
                 <CustomSelect optionData = {Category} isShow={option} width='24.7vw' />
                 <Select name='DetailCategory'>
                     <option value="Detail">상세유형</option>
@@ -45,15 +64,15 @@ export default function OneOnOnePosting() {
         <hr/>
         <CategoryContainer>
             <Label htmlFor = "title">제목</Label>
-            <Input id='title'></Input>
+            <Input id='title' value={title} onChange={handleTitleChange}></Input>
         </CategoryContainer>
         <hr/>
         <InputContainer>
             내용
         <ContentBox>
         <PostInput 
-        value=
-        '1.주문번호'
+        value={post}
+        onChange={handlePostChange}
         ></PostInput>
         <PhotoContainer>
             <img src={UploadPhoto} alt='UploadPhoto' style={{marginTop:5, maxWidth:100}} />
@@ -65,8 +84,8 @@ export default function OneOnOnePosting() {
         </PhotoContainer>
         </ContentBox>
         </InputContainer>
-        <CancelButton>취소하기</CancelButton>
-        <SubmitButton>등록하기</SubmitButton>
+        <CancelButton onClick={handleClick}>취소하기</CancelButton>
+        <SubmitButton onClick={handleClick}>등록하기</SubmitButton>
         </form>
     </HelpContainer>
   )
@@ -128,7 +147,7 @@ const Input = styled.input`
     border: solid 2px #DFDFDF;
     border-radius: 10px;
 `
-const PostInput = styled.input`
+const PostInput = styled.textarea`
 padding: 5px;
 height:40vh;
 width: 50vw;
@@ -153,7 +172,7 @@ const PostButton = styled.button`
     padding-left:200px;
     padding-right:200px;
     border-radius: 15px;
-    background-color: #FF6565;
+    background-color: #FF4256;
     color:white;
     
 `
@@ -165,7 +184,7 @@ const SubmitButton = styled.button`
     padding-left:100px;
     padding-right:100px;
     border-radius: 15px;
-    background-color: #FF6565;
+    background-color: #FF4256;
     color:white;
 `
 

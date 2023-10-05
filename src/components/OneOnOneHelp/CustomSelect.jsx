@@ -54,11 +54,13 @@ cursor: pointer;
   font-size: 20px;
 }
 `;
+
 const Label = styled.label`
 font-size: 14px;
 margin-left: 4px;
 text-align: center;
 `;
+
 const SelectOptions = styled.ul`
 position: absolute;
 list-style: none;
@@ -74,10 +76,11 @@ box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 background-color: white;
 color: black;
 `;
+
 const Option = styled.li`
 font-size: 14px;
 padding: 10px 20px;
-transition: background-color 0.2s ease-in;
+transition: background-color 0.1s ease-in;
 background-color: ${(props) => props.selected ? "#FF9C2F" : "white"};
 &:hover {
     background-color:  ${(props) => props.selected ? "#FF9C2F" : "#dcdbdb"};

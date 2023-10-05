@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { styled } from 'styled-components'
-import {IoIosArrowDown} from 'react-icons/io'
 import CustomSelect from './CustomSelect';
 
 export default function OneOnOneHelp() {
@@ -123,7 +122,7 @@ const PostButton = styled.button`
     padding-left:200px;
     padding-right:200px;
     border-radius: 15px;
-    background-color: #FF6565;
+    background-color: #FF4256;
     color:white;
     
 `
