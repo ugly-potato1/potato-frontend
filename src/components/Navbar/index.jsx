@@ -100,3 +100,4 @@ const MypageBox = styled.nav`
   
 
 `
+

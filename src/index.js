@@ -9,8 +9,8 @@ import Login from './pages/Login';
 import Intro from './pages/Intro';
 import Funding from './pages/Funding';
 import Popup from './pages/Popup';
-import InitMypage from './pages/MyPage/InitMypage';
-import DetailMypage from './pages/MyPage/DetailMypage';
+import InitMypage from './pages/Mypage/InitMypage';
+import DetailMypage from './pages/Mypage/DetailMypage';
 
 
 
