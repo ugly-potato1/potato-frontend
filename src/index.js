@@ -1,16 +1,16 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import "./index.css";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Main from "./pages/Main";
-import Login from "./pages/Login";
-import Intro from "./pages/Intro";
-import Funding from "./pages/Funding";
-import Popup from "./pages/Popup";
-import InitMypage from "./pages/MyPage/InitMypage";
-import DetailMypage from "./pages/MyPage/DetailMypage";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Main from './pages/Main';
+import Login from './pages/Login';
+import Intro from './pages/Intro';
+import Funding from './pages/Funding';
+import Popup from './pages/Popup';
+import InitMypage from './pages/Mypage/InitMypage';
+import DetailMypage from './pages/Mypage/DetailMypage';
 import KakaoLogin from "./pages/Login/KakaoLogin";
 
 const router = createBrowserRouter([
