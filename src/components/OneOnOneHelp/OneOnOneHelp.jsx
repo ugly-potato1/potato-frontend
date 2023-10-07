@@ -8,6 +8,9 @@ export default function OneOnOneHelp() {
     }
     const [option, setOption] = useState(false);
 
+    const [categoryIdx, setCategoryIdx] = useState(0);
+    const [titleOrContentIdx, setTitleOrContentIdx] = useState(0);
+
     const Post = false;
 
     const Category = [{key: "All", value: "전체"},
@@ -19,6 +22,17 @@ export default function OneOnOneHelp() {
     const TitleOrContent = [{key: "Title", value: "제목"},
                     {key: "Content", value: "내용"},
                     {key: "TitleContent", value: "제목+내용"}];
+
+
+    const receiveCategoryValue = (rcv) => {
+        setCategoryIdx(Category.findIndex(v => v.value === rcv));
+        console.log(Category.findIndex(v => v.value === rcv));
+    }
+
+    const receiveTitleOrContent = (rcv) => {
+        setTitleOrContentIdx(TitleOrContent.findIndex(v => v.value === rcv));
+        console.log(TitleOrContent.findIndex(v => v.value === rcv));
+    }
 
     const clickWrapp = (event) => {
         if(!event.target.classList.contains('sel')){
@@ -50,8 +64,8 @@ export default function OneOnOneHelp() {
                     <option value="TitleContent">제목+내용</option>
                 </Select>*/}
                 <div style={{display:'flex'}}>
-                <CustomSelect optionData = {Category} isShow={option} width='160px' />
-                <CustomSelect optionData = {TitleOrContent} isShow={option} width='160px' />
+                <CustomSelect optionData = {Category} sendValueFunction={receiveCategoryValue} isShow={option} width='160px' />
+                <CustomSelect optionData = {TitleOrContent} sendValueFunction={receiveTitleOrContent} isShow={option} width='160px' />
                 <SearchInput></SearchInput>
                 <SearchButton onClick={handleCategoryButton}>검색</SearchButton>
                 </div>

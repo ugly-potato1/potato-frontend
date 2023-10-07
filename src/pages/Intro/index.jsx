@@ -150,7 +150,8 @@ export default function Intro() {
         </div>
         <h4 className='m-10 leading-normal font-semibold'>전국 곳곳에서 우리를 기다리는 못난이 친구들을<br/>마을과 함께하는 펀딩 프로젝트로 함께 해봐요!</h4>
       </div>
+    <OneOnOneHelp />
+    <OneOnOnePosting />
     </div>
-
   )
 }

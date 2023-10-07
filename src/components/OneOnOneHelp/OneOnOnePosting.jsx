@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { styled } from 'styled-components'
 import CustomSelect from './CustomSelect'
 import UploadPhoto from '../../assets/imgs/Group 64622.png'
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios';
 
 export default function OneOnOnePosting() {
     const Category = [{key: "All", value: "전체"},
@@ -9,15 +11,31 @@ export default function OneOnOnePosting() {
                     {key: "Shipping", value: "배송 문의"},
                     {key: "Cancel", value: "취소/반품/환불 문의"},
                     {key: "Other", value: "기타 문의"}];
-
                     
+    
+    const navigate = useNavigate();
+
     const [option, setOption] = useState(false);
 
-    const [title, setTitle] = useState("");
-    const [post, setPost] = useState("====================\n\n1. 주문번호\n\n\n2. 문의내용");
+    const [categoryIdx, setCategoryIdx] = useState(0);
 
-    const handleClick = (e) => {
+
+    const [title, setTitle] = useState("");
+    const [postContent, setPostContent] = useState("====================\n\n1. 주문번호\n\n\n2. 문의내용");
+
+    const handleCancel = (e) => {
         e.preventDefault();
+        navigate("/");
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        navigate("/");
+    }
+
+    const receiveSelectValue = (rcv) => {
+        setCategoryIdx(Category.findIndex(v => v.value === rcv));
+        console.log(Category.findIndex(v => v.value === rcv));
     }
 
     const handleTitleChange = (e) => {
@@ -25,7 +43,7 @@ export default function OneOnOnePosting() {
     }
 
     const handlePostChange = (e) => {
-        setPost(e.target.value);
+        setPostContent(e.target.value);
     }
 
     const clickWrapp = (event) => {
@@ -55,7 +73,7 @@ export default function OneOnOnePosting() {
                 </Select>*/
                 }
                 
-                <CustomSelect optionData = {Category} isShow={option} width='24.7vw' />
+                <CustomSelect optionData = {Category} sendValueFunction={receiveSelectValue} isShow={option} width='24.7vw' />
                 <Select name='DetailCategory'>
                     <option value="Detail">상세유형</option>
                 </Select>
@@ -71,7 +89,7 @@ export default function OneOnOnePosting() {
             내용
         <ContentBox>
         <PostInput 
-        value={post}
+        value={postContent}
         onChange={handlePostChange}
         ></PostInput>
         <PhotoContainer>
@@ -84,8 +102,8 @@ export default function OneOnOnePosting() {
         </PhotoContainer>
         </ContentBox>
         </InputContainer>
-        <CancelButton onClick={handleClick}>취소하기</CancelButton>
-        <SubmitButton onClick={handleClick}>등록하기</SubmitButton>
+        <CancelButton onClick={handleCancel}>취소하기</CancelButton>
+        <SubmitButton onClick={handleSubmit}>등록하기</SubmitButton>
         </form>
     </HelpContainer>
   )
