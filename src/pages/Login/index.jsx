@@ -11,8 +11,8 @@ export default function Login() {
     // kakao login api 연결
     const baseUrl = "https://kauth.kakao.com/oauth/authorize";
     const config = {
-      client_id: process.env.KAKAO_REST_API_KEY,
-      redirect_uri: process.env.KAKAO_REDIRECT_URI,
+      client_id: process.env.REACT_APP_KAKAO_REST_API_KEY,
+      redirect_uri: process.env.REACT_APP_KAKAO_REDIRECT_URI,
       response_type: "code",
     };
     const params = new URLSearchParams(config).toString();
