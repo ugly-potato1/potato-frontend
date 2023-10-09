@@ -1,7 +1,8 @@
 import React from 'react'
+import EmptyCart from '../SubContent/EmptyCart'
 
 export default function Cart() {
   return (
-    <div>장바구니</div>
+    <EmptyCart/>
   )
 }

@@ -3,16 +3,16 @@ import React from 'react';
 import { useState, useEffect } from 'react'
 import styled from 'styled-components'
 
-export default function EmptyWish() {
+export default function EmptyCart() {
     return (
     <Wrapper>
-      <Header>
-        <a>찜한 마을</a>
-      </Header>
-      <HeadLine></HeadLine>
-      <EmptyWishList>
-            <a>찜한 목록이 없습니다.</a>
-          </EmptyWishList>
+        <Header>
+        <a>장바구니</a>
+        </Header>
+        <HeadLine></HeadLine>
+      <EmptyCartList>
+            <a>장바구니가 비었습니다.</a>
+          </EmptyCartList>
     </Wrapper>
   );
 }
@@ -76,7 +76,7 @@ const WishListWrapper = styled.div`
   background-color: #DFDFDF;
 `
 
-const EmptyWishList = styled.div`
+const EmptyCartList = styled.div`
   
   display : flex;
   flex-direction: column;
