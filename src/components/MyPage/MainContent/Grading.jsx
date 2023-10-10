@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components'; // styled-components를 한 번만 import합니다.
+import styled from 'styled-components'; 
 import Carrot from '../../../assets/imgs/Carrot.png';
 import Plant from '../../../assets/imgs/growing_plant.png';
-import Farmer from '../../../assets/imgs/Mypage/Farmer.png'
-import Earth from '../../../assets/imgs/Mypage/Earth.png'
+import Farmer from '../../../assets/imgs/Mypage/Farmer.png';
+import Earth from '../../../assets/imgs/Mypage/Earth.png';
+import Flag from '../../../assets/imgs/Mypage/Flag.png';
 
 export default function Grading() {
   const [username, setUsername] = useState('');
@@ -88,7 +89,7 @@ export default function Grading() {
       <GradeWrapper>
         <GradeItem>
           <ImageWrapper>
-            <GradeImage src={Farmer} alt="나라지킴이" />
+            <GradeImage src={Flag} alt="나라지킴이" />
           </ImageWrapper>
           <GradeContent>
             <GradeName>나라지킴이</GradeName>
@@ -161,7 +162,7 @@ const UserWrapper = styled.div`
     line-height: normal;
     letter-spacing: 0.7px;
     margin-right: 0.5rem; /* PlantImg와의 간격 설정 */
-    flex-shrink: 0; /* 텍스트가 줄지 않도록 설정 */
+    flex-shrink: 0; 
   }
   p4{
     margin-top : 2rem;
@@ -194,7 +195,7 @@ const ImageWrapper = styled.div`
   width: 144px;
   height: 144px;
   border : 1px solid #D97704;
-  border-radius: 50%; /* 원 모양으로 만듭니다 */
+  border-radius: 50%; 
 `;
 
 const GradeImage = styled.img`
