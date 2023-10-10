@@ -240,7 +240,7 @@
     width: 28%;
     transform: translate(-54%, -50%);
     border: 1px solid black;
-    border-radius: 1rem;
+    border-radius: 1rem 0 0 1rem;
     background-color:rgba(0, 0, 0, 0.61);/*까만색(0,0,0) 61% 불투명도*/
   }
 
@@ -259,7 +259,7 @@
     border-radius: 17px;
     font-size: 22px;
     font-weight: bold;
-    margin: 350px 50px 0px ;
+    margin: 350px 43px 0px ;
   }
   .button__sample1:hover{
     background: #F78181;
@@ -280,7 +280,7 @@
     border-radius: 17px;
     font-size: 22px;
     font-weight: bold;
-    margin: 50px 50px 0px ;
+    margin: 50px 43px 0px ;
   }
   .button__sample2:hover{
     background: #F5DA81;
@@ -296,7 +296,7 @@
 .img__container img{
     width: 300px;
     height: 250px;
-    border-radius: 1rem;
+    border-radius: 1rem 1rem 0 0;
     margin-top: 80px;
 }
 .bottom__container{
