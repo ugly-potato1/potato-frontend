@@ -76,7 +76,7 @@ export default function Main() {
           </img>      
           </div>
         </div>
-      <div className='bottom container'>
+      <div className='bottom__container'>
         <div className='sub__title__4'>우리의 미션</div>
         <div className='img__container'>
           <>
@@ -100,10 +100,11 @@ export default function Main() {
           <div  className='sub__title__5'>못난이 농작물<br/> 인식 개선 · 체험</div>
           </div>  
           </div>
+          <div className='bottom__button'>이름만 못난이인 농작물 더 알아보기</div>
+          <button className='bottom__bar'>
+       </button>
       </div>
-       <div className='bottom__bar'>
-        
-       </div>
+       
       </div>
     </div>
   )
