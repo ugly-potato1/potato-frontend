@@ -12,8 +12,8 @@ const Loading = styled.div`
 
 const KakaoLogin = () => {
   const navigate = useNavigate();
-  const client_id = "4a86c154b1d30cfa2344eec577e91453";
-  const redirect_uri = "http://localhost:3000/oauth/kakao";
+  const client_id = process.env.REACT_APP_KAKAO_REST_API_KEY;
+  const redirect_uri = process.env.REACT_APP_KAKAO_REDIRECT_URI;
   const code = useSearchParams()[0].get("code");
 
   const getKakaoToken = async () => {

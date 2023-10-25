@@ -11,8 +11,8 @@ export default function Login() {
     // kakao login api 연결
     const baseUrl = "https://kauth.kakao.com/oauth/authorize";
     const config = {
-      client_id: "4a86c154b1d30cfa2344eec577e91453",
-      redirect_uri: "http://localhost:3000/oauth/kakao",
+      client_id: process.env.REACT_APP_KAKAO_REST_API_KEY,
+      redirect_uri: process.env.REACT_APP_KAKAO_REDIRECT_URI,
       response_type: "code",
     };
     const params = new URLSearchParams(config).toString();
@@ -92,7 +92,7 @@ const LoginBtn = styled.div`
   margin-top: 2.6rem;
 `;
 
-const SocialLogin = styled.img.attrs((props) => ({
+const SocialLogin = styled.img.attrs(props => ({
   src: props.socialImg,
 }))`
   width: 25rem;
