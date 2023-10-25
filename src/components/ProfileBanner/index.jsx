@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
+import {LuChevronRight} from 'react-icons/lu'
 import ProfileImage from '../../assets/imgs/mypage_profile.png'
 import CarrotImg from '../../assets/imgs/Carrot.png'
 import PlantImg from '../../assets/imgs/growing_plant.png'
@@ -21,7 +22,7 @@ export default function ProfileBanner() {
         </TextBox>
         </ProfileWrapper>
         <RightContainer>
-          <Plant src ={PlantImg}></Plant><a>Co2를 <b>0g</b>만큼 줄였어요!<c>></c></a>
+          <Plant src ={PlantImg}></Plant><a>Co2를 <b>0g</b>만큼 줄였어요!<LuChevronRight/></a>
           <FundingButton>마을 구출 동참하기</FundingButton>
         </RightContainer>
       </ProfileContainer>
@@ -76,6 +77,7 @@ font-weight: 400;
 line-height: normal;
 letter-spacing: 0.56px;
 margin-bottom : 30px;
+border : 1px solid black;
 }
   b{
     color: #000;
@@ -88,6 +90,12 @@ letter-spacing: 0.7px;
   c{
     font-size : 35px;
     color : rgba(159, 159, 159, 1);
+  }
+  svg {
+    position: relative;
+    margin-left : 80%;
+    transform: translate(0, -103%);
+    font-size : 2rem;
   }
 `
 
