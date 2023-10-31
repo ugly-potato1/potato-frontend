@@ -5,9 +5,10 @@ import styled from 'styled-components';
 import History from '../../components/MyPage/MainContent/History';
 import WishList from '../../components/MyPage/MainContent/WishList';
 import Cart from '../../components/MyPage/MainContent/Cart';
-import Review from '../../components/MyPage/MainContent/Review';
+import Review from '../../components/MyPage/MainContent/Review/Review';
 import FAQ from '../../components/MyPage/MainContent/FAQ';
 import Inquiry from '../../components/MyPage/MainContent/Inquiry';
+import ProfileBanner from '../../components/ProfileBanner';
 
 export default function DetailMypage() {
 
@@ -44,7 +45,7 @@ export default function DetailMypage() {
 
   return (
     <>
-      <ProfileBox>임시 ProfileSection</ProfileBox>
+      <ProfileBanner/>
       <Container>
         <SideMenu id={id} curIdx={curIdx} setCurIdx={setCurIdx}/>
         <MainContent>

@@ -11,6 +11,7 @@ import ChatBubbleIcon from '../../assets/imgs/Mypage/InitMypageBtn/chat_bubble.p
 
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
+import ProfileBanner from '../../components/ProfileBanner'
 
 export default function InitMypage() {
 
@@ -36,7 +37,7 @@ export default function InitMypage() {
 
   return (
     <>
-      <ProfileBox>임시 ProfileSection</ProfileBox>
+      <ProfileBanner/>
       <Wrapper>
         <p>나의 작물</p>
         <ButtonWrapper>
