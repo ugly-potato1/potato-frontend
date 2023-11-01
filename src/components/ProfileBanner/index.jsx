@@ -5,8 +5,10 @@ import ProfileImage from "../../assets/imgs/mypage_profile.png";
 import CarrotImg from "../../assets/imgs/Carrot.png";
 import PlantImg from "../../assets/imgs/growing_plant.png";
 import SettingImg from "../../assets/imgs/setting_icon.png";
+import { useNavigate } from "react-router-dom";
 
 export default function ProfileBanner() {
+  const navigate = useNavigate();
   return (
     <BannerContainer>
       <ProfileContainer>
@@ -19,7 +21,12 @@ export default function ProfileBanner() {
             <c>작물지킴이</c>
             <a>
               홍길동<b>님</b>
-              <SetIcon src={SettingImg}></SetIcon>
+              <SetIcon
+                src={SettingImg}
+                onClick={() => {
+                  navigate(`/mypage/profile/userInfo`);
+                }}
+              ></SetIcon>
             </a>
           </TextBox>
         </ProfileWrapper>
@@ -116,6 +123,7 @@ const SetIcon = styled.img`
   height: 19px;
   margin-left: 75%;
   bottom: 1.7rem;
+  cursor: pointer;
 `;
 
 const ImageBox = styled.div`
