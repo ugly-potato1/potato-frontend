@@ -62,7 +62,7 @@ const KakaoLogin = () => {
   로그아웃 클릭시 localstorage.removeItem("token")으로 로그아웃
   추가로 localstorage가 아닌 recoil을 사용해서 해당 atom에 저장하도록 구현하는 방법이 더 선호됨
  */
-  return <Loading>Loading...</Loading>;
+  return <Loading>Loading....</Loading>;
 };
 
 export default KakaoLogin;

@@ -1,0 +1,166 @@
+import styled from "styled-components";
+import ProfileImage from "../../assets/imgs/mypage_profile.png";
+import { Link } from "react-router-dom";
+import { getUserInfo, postUserInfo } from "../../apis/UserApi";
+import { useQuery, useMutation } from "react-query";
+import { useForm } from "react-hook-form";
+
+const EditProfile = () => {
+  const { data, isLoading } = useQuery(["userInfo"], getUserInfo);
+  const { mutate } = useMutation(postUserInfo);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      username: "홍길동",
+      userEmail: "OOOOO@naver.com",
+      userPhoneNumber: "010-1234-5678",
+    },
+  });
+  const onValid = data => {
+    //유효성 check과정 필요
+    //mutate(data로 부터 온값들 객체로 전달); // post요청
+    console.log(data);
+  };
+
+  return (
+    <Wrapper onSubmit={handleSubmit(onValid)}>
+      <Line />
+      <ProfileImgArea>
+        <h1>프로필 사진</h1>
+        <img src={ProfileImage} />
+        <input type="file" {...register("userImage")} />
+        <input type="submit" value="저장" />
+      </ProfileImgArea>
+      <Line />
+      <Box>
+        <h1>닉네임</h1>
+        <input
+          type="text"
+          placeholder="이름을 입력하세요"
+          {...register("username", { required: "이름을 입력해주세요" })}
+        />
+        <span>{errors.username && errors.username.message}</span>
+        <input type="submit" value="저장" />
+      </Box>
+      <Line />
+      <Box>
+        <h1>이메일</h1>
+        <input
+          type="email"
+          placeholder="이메일을 입력하세요"
+          {...register("userEmail", { required: "이메일을 입력해주세요" })}
+        />
+        <span>{errors.userEmail && errors.userEmail.message}</span>
+        <input type="submit" value="인증메일 전송" />
+      </Box>
+      <Line />
+      <Box>
+        <h1>연락처</h1>
+        <input
+          type="text"
+          placeholder="연락처를 입력하세요"
+          {...register("userPhoneNumber", { required: "연락처를 입력하세요" })}
+        />
+        <span>{errors.userPhoneNumber && errors.userPhoneNumber.message}</span>
+        <input type="submit" value="인증번호 전송" />
+      </Box>
+      <Line />
+      <SmallBox>
+        <h1>로그아웃</h1>
+        <h1>패밀리탈퇴</h1>
+      </SmallBox>
+    </Wrapper>
+  );
+};
+
+const Loading = styled.div``;
+const Wrapper = styled.form`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+const ProfileImgArea = styled.div`
+  display: flex;
+  align-items: center;
+  width: 753px;
+  height: 72px;
+  flex-shrink: 0;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  h1 {
+    margin-right: 100px;
+    font-weight: 600;
+  }
+  img {
+    margin-right: 20px;
+    width: 60px;
+    height: 60px;
+  }
+  input[type="submit"] {
+    position: absolute;
+    right: 300px;
+    border-radius: 0.94rem;
+    border: 1px solid #ff4256;
+    background-color: #ff4256;
+    color: #ffffff;
+    padding: 5px 11px;
+    cursor: pointer;
+  }
+`;
+const Box = styled.div`
+  display: flex;
+  align-items: center;
+  width: 753px;
+  height: 26px;
+  flex-shrink: 0;
+  margin-top: 30px;
+  margin-bottom: 25px;
+
+  span {
+    color: #ff4256;
+  }
+  h1:first-child {
+    font-weight: 600;
+    margin-right: 138px;
+  }
+
+  input[type="text"],
+  input[type="email"] {
+    border-radius: 4px;
+    border: 1px solid #dfdfdf;
+    margin-right: 20px;
+  }
+  input[type="submit"] {
+    position: absolute;
+    right: 300px;
+    border-radius: 0.94rem;
+    border: 1px solid #ff4256;
+    background-color: #ff4256;
+    color: #ffffff;
+    padding: 5px 11px;
+    cursor: pointer;
+  }
+`;
+const SmallBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 753px;
+  height: 60px;
+  margin-top: 30px;
+  h1 {
+    font-weight: 600;
+  }
+  h1:first-child {
+    color: #ff4256;
+  }
+`;
+const Line = styled.hr`
+  width: 753px;
+  height: 1px;
+`;
+
+export default EditProfile;
