@@ -44,6 +44,7 @@ const Wrapper = styled.div`
   justify-content: center;
   width: 80%;
   margin-left: 2.5rem;
+  position: relative;
 `;
 const Line = styled.div`
   width: 100%;
@@ -69,7 +70,7 @@ const ProfileImgArea = styled.div`
   }
   a {
     position: absolute;
-    right: 300px;
+    right: 0;
     border-radius: 0.94rem;
     border: 1px solid #ff4256;
     color: #ff4256;
@@ -91,7 +92,7 @@ const Box = styled.div`
   }
   a {
     position: absolute;
-    right: 300px;
+    right: 0;
     border-radius: 0.94rem;
     border: 1px solid #ff4256;
     color: #ff4256;
