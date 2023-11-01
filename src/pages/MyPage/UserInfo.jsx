@@ -42,6 +42,13 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 80%;
+  margin-left: 2.5rem;
+`;
+const Line = styled.div`
+  width: 100%;
+  height: 2px;
+  background-color: #dfdfdf;
 `;
 const ProfileImgArea = styled.div`
   display: flex;
@@ -106,8 +113,5 @@ const SmallBox = styled.div`
     color: #ff4256;
   }
 `;
-const Line = styled.hr`
-  width: 753px;
-  height: 1px;
-`;
+
 export default UserInfo;
