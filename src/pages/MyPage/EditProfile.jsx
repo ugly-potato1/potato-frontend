@@ -19,7 +19,7 @@ const EditProfile = () => {
       userPhoneNumber: "010-1234-5678",
     },
   });
-  const onValid = data => {
+  const onValid = (data) => {
     //유효성 check과정 필요
     //mutate(data로 부터 온값들 객체로 전달); // post요청
     console.log(data);
@@ -76,11 +76,18 @@ const EditProfile = () => {
   );
 };
 
-const Loading = styled.div``;
 const Wrapper = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 80%;
+  margin-left: 2.5rem;
+  position: relative;
+`;
+const Line = styled.div`
+  width: 100%;
+  height: 2px;
+  background-color: #dfdfdf;
 `;
 const ProfileImgArea = styled.div`
   display: flex;
@@ -101,7 +108,7 @@ const ProfileImgArea = styled.div`
   }
   input[type="submit"] {
     position: absolute;
-    right: 300px;
+    right: 0;
     border-radius: 0.94rem;
     border: 1px solid #ff4256;
     background-color: #ff4256;
@@ -135,7 +142,7 @@ const Box = styled.div`
   }
   input[type="submit"] {
     position: absolute;
-    right: 300px;
+    right: 0;
     border-radius: 0.94rem;
     border: 1px solid #ff4256;
     background-color: #ff4256;
@@ -157,10 +164,6 @@ const SmallBox = styled.div`
   h1:first-child {
     color: #ff4256;
   }
-`;
-const Line = styled.hr`
-  width: 753px;
-  height: 1px;
 `;
 
 export default EditProfile;
