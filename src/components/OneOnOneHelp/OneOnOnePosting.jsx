@@ -7,7 +7,7 @@ import axios from 'axios';
 
 export default function OneOnOnePosting() {
     const Category = [{key: "All", value: "전체"},
-                    {key: "Pay", value: "후원/결제 문의"},
+                    {key: "Pay", value: "결제 문의"},
                     {key: "Shipping", value: "배송 문의"},
                     {key: "Cancel", value: "취소/반품/환불 문의"},
                     {key: "Other", value: "기타 문의"}];

@@ -22,7 +22,7 @@ import afford from '../../assets/imgs/Intro/afford.png'
 import envfriendly from '../../assets/imgs/Intro/envfriendly.png'
 import OneOnOneHelp from '../../components/OneOnOneHelp/OneOnOneHelp'
 import OneOnOnePosting from '../../components/OneOnOneHelp/OneOnOnePosting'
-import CustomSelect from '../../components/OneOnOneHelp/CustomSelect'
+import AddrSetMypage from '../MyPage/AddrSetMypage'
 
 const Category = [{key: "All", value: "전체"},
                     {key: "Pay", value: "후원/결제 문의"},
@@ -150,8 +150,7 @@ export default function Intro() {
         </div>
         <h4 className='m-10 leading-normal font-semibold'>전국 곳곳에서 우리를 기다리는 못난이 친구들을<br/>마을과 함께하는 펀딩 프로젝트로 함께 해봐요!</h4>
       </div>
-    <OneOnOneHelp />
-    <OneOnOnePosting />
+      <AddrSetMypage />
     </div>
   )
 }
