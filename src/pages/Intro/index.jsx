@@ -8,6 +8,7 @@ import envProb2 from '../../assets/imgs/Intro/unsplash_FxnqdmKBJps.png'
 import envProb3 from '../../assets/imgs/Intro/unsplash_6xeDIZgoPaw.png'
 import econoProb1 from '../../assets/imgs/Intro/unsplash_xDwEa2kaeJA.png'
 import econoProb2 from '../../assets/imgs/Intro/unsplash_sFydXGrt5OA.png'
+import problem from '../../assets/imgs/Intro/Group 64722.png'
 import introCard1 from '../../assets/imgs/Intro/Group 64525.png'
 import introCard2 from '../../assets/imgs/Intro/Group 64509.png'
 import introCard3 from '../../assets/imgs/Intro/Group 64510.png'
@@ -52,7 +53,7 @@ export default function Intro() {
           <h5>이로 인해 다음의 문제들이 발생하게 됩니다.</h5>
         </div>
       </div>
-      <div className='text-center bg-orange-100 h-auto p-5'>
+      {/*<div className='text-center bg-orange-100 h-auto p-5'>
           <div className='m-auto'>
             <h3 className='m-5 font-bold'>환경적 문제</h3>
               <div className='flex justify-evenly mx-10 font-semibold'>
@@ -83,7 +84,8 @@ export default function Intro() {
               </div>
             </div>
           </div>
-      </div>
+      </div>*/}
+      <img src = {problem} alt = '문제점'/>
       <div className='justify-center text-center'>
           <div className='flex justify-center mx-auto w-1/3 m-9 rounded-xl p-5 outline-dashed outline-offset-4 outline-red-400 bg-red-200 w'>
             <img src = {introCard1}  alt='개성있는 외형을 가진 농산물' className='h-24'/>
@@ -150,7 +152,7 @@ export default function Intro() {
         </div>
         <h4 className='m-10 leading-normal font-semibold'>전국 곳곳에서 우리를 기다리는 못난이 친구들을<br/>마을과 함께하는 펀딩 프로젝트로 함께 해봐요!</h4>
       </div>
-      <AddrSetMypage />
+      <AddrSetMypage></AddrSetMypage>
     </div>
   )
 }

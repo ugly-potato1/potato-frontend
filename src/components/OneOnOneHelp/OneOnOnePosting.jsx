@@ -190,7 +190,7 @@ const PostButton = styled.button`
     padding-left:200px;
     padding-right:200px;
     border-radius: 15px;
-    background-color: #FF4256;
+    background-color: #FF6565;
     color:white;
     
 `
@@ -202,7 +202,7 @@ const SubmitButton = styled.button`
     padding-left:100px;
     padding-right:100px;
     border-radius: 15px;
-    background-color: #FF4256;
+    background-color: #FF6565;
     color:white;
 `
 

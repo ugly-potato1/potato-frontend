@@ -1,5 +1,6 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
+import { styled } from 'styled-components';
 import DaumPostcode from "react-daum-postcode";
 
 export default function AddrForm({
@@ -9,6 +10,7 @@ export default function AddrForm({
     alert(JSON.stringify(data));
     },
     initValue,
+    endEdit,
     }) {
     const {
     register,
@@ -22,7 +24,16 @@ export default function AddrForm({
       setInputZipCodeValue(data.zonecode);
     };
 
+    const handleSave = () => {
+      endEdit();
+    }
+
+    const handleCancel = () => {
+      endEdit();
+    }
+
     return (
+      <div>
     <form onSubmit={handleSubmit(onSubmit)}>
 
 
@@ -99,6 +110,38 @@ export default function AddrForm({
         취소
       </button>
     </form>
+    <ButtonBox>
+      <SaveButton onClick = {handleSave}>저장</SaveButton>
+      <CancelButton onClick = {handleCancel}>취소</CancelButton>
+    </ButtonBox>
+    </div>
     );
 }
 
+const ButtonBox = styled.div`
+    display: flexbox;
+    margin: 0.5rem;
+    margin-top: 1rem;
+`
+
+const SaveButton = styled.button`
+    background-color: #FF6565;
+    color: white;
+    font-weight: bold;
+    margin-top: 1rem;
+    margin-right: 0.5rem;
+    border-color: transparent;
+`
+
+const CancelButton = styled.button`
+    color: #2A2A2A;
+    background-color: white;
+    border-color: #2A2A2A;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 10rem;
+    padding: 0.2rem;
+    padding-left: 0.9rem;
+    padding-right: 0.9rem;
+    margin-right:1rem;
+`
