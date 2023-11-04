@@ -103,17 +103,11 @@ export default function AddrForm({
       {errors.DetailAddress && <small role="alert">{errors.Callmessage}</small>}
 
 
-      <button type="submit" disabled={isSubmitting}>
-        저장
-      </button>
-      <button type="reset" disabled={isSubmitting}>
-        취소
-      </button>
-    </form>
     <ButtonBox>
-      <SaveButton onClick = {handleSave}>저장</SaveButton>
-      <CancelButton onClick = {handleCancel}>취소</CancelButton>
+      <SaveButton type="submit" disabled={isSubmitting} onClick = {handleSave}>저장</SaveButton>
+      <CancelButton type="reset" disabled={isSubmitting} onClick = {handleCancel}>취소</CancelButton>
     </ButtonBox>
+    </form>
     </div>
     );
 }
@@ -128,8 +122,13 @@ const SaveButton = styled.button`
     background-color: #FF6565;
     color: white;
     font-weight: bold;
-    margin-top: 1rem;
-    margin-right: 0.5rem;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 10rem;
+    padding: 0.2rem;
+    padding-left: 0.9rem;
+    padding-right: 0.9rem;
+    margin-right:1rem;
     border-color: transparent;
 `
 
