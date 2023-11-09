@@ -84,7 +84,7 @@ const RightContainer = styled.div`
     line-height: normal;
     letter-spacing: 0.56px;
     margin-bottom: 30px;
-    border: 1px solid black;
+    
   }
   b {
     color: #000;
