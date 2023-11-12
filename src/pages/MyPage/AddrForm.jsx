@@ -1,21 +1,25 @@
-import React from 'react';
-import { useForm } from "react-hook-form";
+import React, { useEffect } from 'react';
+import { useForm, reset } from "react-hook-form";
 import { styled } from 'styled-components';
 import DaumPostcode from "react-daum-postcode";
 
 export default function AddrForm({
-
   onSubmit = async (data) => {
     await new Promise((r) => setTimeout(r, 1_000));
-    alert(JSON.stringify(data));
+    const addr = JSON.stringify(data)
+    alert(addr);
+    addAddr(data);
+    endEdit();
     },
     initValue,
+    addAddr,
     endEdit,
     }) {
     const {
     register,
     handleSubmit,
-    formState: { isSubmitting, isSubmitted, errors }
+    formState: { isSubmitting, isSubmitted, errors },
+    reset,
     } = useForm();
 
     const onCompletePost = data => {
@@ -24,21 +28,52 @@ export default function AddrForm({
       setInputZipCodeValue(data.zonecode);
     };
 
-    const handleSave = () => {
-      endEdit();
-    }
 
     const handleCancel = () => {
       endEdit();
     }
 
+    useEffect(() => {
+      // you can do async server request and fill up form
+      // 수정시 서버에서 id로 정보 받아와서 채워넣음
+      setTimeout(() => {
+        reset({
+          AddrName: "",
+          name: "",
+          address: "",
+          DetailAddress: "",
+          Call: "",
+        });
+      }, 2000);
+    }, [reset]);
+
     return (
       <div>
-    <form onSubmit={handleSubmit(onSubmit)}>
+      <hr />
+    <AddressForm onSubmit={handleSubmit(onSubmit, oninvalid)}>
+      <div>
+      <InputBox>
+      <label htmlFor="AddrName">배송지명</label>
+      <StyledInput
+        id="AddrName"
+        type="text"
+        placeholder=""
+        aria-invalid={
+          isSubmitted ? (errors.AddrName ? "true" : "false") : undefined
+        }
+        {...register("AddrName", {
+          required: "배송지명은 필수 입력입니다.",
+          pattern: {
+            //정규식
+          }
+        })}
+      />
+      </InputBox>
+      {errors.AddrName && <StyledSmall role="alert">{errors.AddrName.message}</StyledSmall>}
 
-
+      <InputBox>
       <label htmlFor="name">받는 사람</label>
-      <input
+      <StyledInput
         id="name"
         type="text"
         placeholder=""
@@ -52,11 +87,12 @@ export default function AddrForm({
           }
         })}
       />
-      {errors.name && <small role="alert">{errors.name.message}</small>}
+      </InputBox>
+      {errors.name && <StyledSmall role="alert">{errors.name.message}</StyledSmall>}
 
-
+      <InputBox>
       <label htmlFor="address">주소</label>
-      <input
+      <StyledInput
         id="address"
         type="text"
         placeholder=""
@@ -67,12 +103,13 @@ export default function AddrForm({
           required: "주소는 필수 입력입니다.",
         })}
       />
-      {errors.address && <small role="alert">{errors.address.message}</small>}
+      </InputBox>
+      {errors.address && <StyledSmall role="alert">{errors.address.message}</StyledSmall>}
 
-
-      <label htmlFor="DetaillAddress">상세주소</label>
+      <InputBox>
+      <label htmlFor="DetaillAddress">상세 주소</label>
       
-      <input
+      <StyledInput
         id="DetailAaddress"
         type="text"
         placeholder=""
@@ -83,10 +120,12 @@ export default function AddrForm({
           required: "주소는 필수 입력입니다.",
         })}
       />
-      {errors.DetailAddress && <small role="alert">{errors.DetailAddress.message}</small>}
+      </InputBox>
+      {errors.DetailAddress && <StyledSmall role="alert">{errors.DetailAddress.message}</StyledSmall>}
 
+      <InputBox>
       <label htmlFor="Call">연락처</label>
-      <input
+      <StyledInput
         id="Call"
         type="tel"
         placeholder=""
@@ -100,28 +139,57 @@ export default function AddrForm({
           }
         })}
       />
-      {errors.DetailAddress && <small role="alert">{errors.Callmessage}</small>}
-
-
+      </InputBox>
+      {errors.Call && <StyledSmall role="alert">{errors.Call.message}</StyledSmall>}
+      </div>
     <ButtonBox>
-      <SaveButton type="submit" disabled={isSubmitting} onClick = {handleSave}>저장</SaveButton>
+      <SaveButton type="submit" disabled={isSubmitting} onClick = {handleSubmit}>저장</SaveButton>
       <CancelButton type="reset" disabled={isSubmitting} onClick = {handleCancel}>취소</CancelButton>
     </ButtonBox>
-    </form>
+    </ AddressForm>
     </div>
     );
 }
 
+
+
+const AddressForm = styled.form`
+  display: flex;
+  justify-content: space-evenly;
+`
+
+const InputBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  label {
+    font-weight: bold;
+    color: #2A2A2A;
+    width: 6vw;
+    margin-right: 4rem;
+  }
+`
+
+const StyledInput = styled.input`
+  width: 25vw;
+  height: 2rem;
+  margin: 1.5rem;
+  border-style: solid;
+  border-color: #DFDFDF;
+  border-width: 1px;
+  border-radius: 0.2rem;
+`
+
 const ButtonBox = styled.div`
     display: flexbox;
     margin: 0.5rem;
-    margin-top: 1rem;
+    margin-top: 1.5rem;
 `
 
 const SaveButton = styled.button`
     background-color: #FF6565;
     color: white;
-    font-weight: bold;
     border-style: solid;
     border-width: 1px;
     border-radius: 10rem;
@@ -135,7 +203,7 @@ const SaveButton = styled.button`
 const CancelButton = styled.button`
     color: #2A2A2A;
     background-color: white;
-    border-color: #2A2A2A;
+    border-color: #DFDFDF;
     border-style: solid;
     border-width: 1px;
     border-radius: 10rem;
@@ -143,4 +211,11 @@ const CancelButton = styled.button`
     padding-left: 0.9rem;
     padding-right: 0.9rem;
     margin-right:1rem;
+`
+
+const StyledSmall = styled.small`
+    text-align: center;
+    font-weight: bold;
+    margin-left: 50%;
+    color: #FF6565;
 `

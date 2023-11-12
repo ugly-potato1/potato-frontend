@@ -5,10 +5,31 @@ import AddrForm from './AddrForm';
 export default function AddrSetMypage() {
 
     const [AddrList, setAddrList] = useState([
-        {id:0, AddrName: '기본 배송지', name:"김김김", call:"01012345678", },
+        {id:0, 
+        AddrName: '기본 배송지', 
+        name:"김김김", 
+        address:"서울시 중구", 
+        DetailAdress:"1번지", 
+        call:"01012345678", },
+        {id:1, AddrName: '회사', name:"김김김", address:"어디", DetailAdress:"저기", call:"01012345678", },
       ]);
     
     const [isEditting, setIsEditting] = useState(0);
+
+    const addAddrList = (a) => {
+        
+        setAddrList(prev =>  ([
+            ...prev,
+           {
+            id: a.AddrName,
+            AddrName: a.AddrName,
+            name: a.name,
+            address: a.address,
+            DetailAdress: a.DetailAddress,
+            call: a.Call,
+        }]));
+        console.log(AddrList);
+    }
 
     const endEdit = () => {
         setIsEditting(0);
@@ -18,14 +39,30 @@ export default function AddrSetMypage() {
         setIsEditting(1);
     }
 
-    const handleEdit = () => {
+    const handleEdit = (id) => {
         setIsEditting(1);
+    }
+    const handleDelete = (id) => {
+        console.log(id);
+        if(AddrList.length <= 1){
+            alert("배송지가 최소 1개 필요합니다.")
+        }
+        else{
+            if (window.confirm("배송지를 삭제하시겠습니까?")) {
+                //const id = this.id;
+                setAddrList(AddrList.filter(AddrList => AddrList.id != id));
+                alert("삭제되었습니다.");
+              } 
+            else {
+
+              }
+        }
     }
 
     return (
         <>
         {!isEditting && <>
-        {  AddrList.map(({id, AddrName, name, call}) => (
+        {  AddrList.map(({id, AddrName, name, address, DetailAdress, call}) => (
             <div key = {id}>
             <>
                 <hr />
@@ -36,13 +73,14 @@ export default function AddrSetMypage() {
                     <Detail>
                         <p>{name}</p>
                         <p>{call}</p>
+                        <p>{address + ' ' + DetailAdress}</p>
                         <p></p>
                     </Detail>
                     <ButtonBox>
-                        <EditButton onClick={handleEdit}>
+                        <EditButton onClick={() => {handleEdit(AddrName, name, address, DetailAdress, call)}}>
                             수정
                         </EditButton>
-                        <DeleteButton>
+                        <DeleteButton onClick={() => {handleDelete(id)}}>
                             삭제
                         </DeleteButton>
                     </ButtonBox>
@@ -56,7 +94,7 @@ export default function AddrSetMypage() {
             배송지 추가하기
         </AddButton>
         </>}
-        {isEditting ? <AddrForm endEdit={endEdit}/> : ""}
+        {isEditting ? <AddrForm addAddr={addAddrList} endEdit={endEdit}/> : ""}
         </> 
     )
 }
@@ -69,6 +107,7 @@ const AddressBox = styled.div`
 const AddressName = styled.div`
     font-weight: bold;
     margin-top: 1.5rem;
+    width: 5rem;
 `
 
 const Detail = styled.div`
@@ -78,6 +117,7 @@ const Detail = styled.div`
     margin-left: 6rem;
     margin-right: 30vw;
     line-height: 120%;
+    width: 10rem;
 `
 
     const ButtonBox = styled.div`

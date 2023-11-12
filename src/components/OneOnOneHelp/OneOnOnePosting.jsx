@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { styled } from 'styled-components'
+import { CiCircleRemove } from 'react-icons/ci'
 import CustomSelect from './CustomSelect'
 import UploadPhoto from '../../assets/imgs/Group 64622.png'
 import { useNavigate } from 'react-router-dom'
@@ -35,7 +36,7 @@ export default function OneOnOnePosting() {
 
     const receiveSelectValue = (rcv) => {
         setCategoryIdx(Category.findIndex(v => v.value === rcv));
-        console.log(Category.findIndex(v => v.value === rcv));
+        setSelectValue(rcv);
     }
 
     const handleTitleChange = (e) => {
@@ -45,6 +46,89 @@ export default function OneOnOnePosting() {
     const handlePostChange = (e) => {
         setPostContent(e.target.value);
     }
+
+    // 이미지 업로드 관련
+    const [images, setImages] = useState([]);
+    const [selectValue, setSelectValue] = useState('');
+    const [previewImages, setPreviewImages] = useState([]);
+
+    const handleImageChange = (e) => {
+        const files = e.target.files;
+
+    if (files.length + images.length > 5) {
+      alert('You can upload up to 5 images.');
+      return;
+    }
+
+    const newImages = [...images];
+    const newPreviewImages = [...previewImages];
+
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+
+      // Check file size (30MB limit)
+      if (file.size > 30 * 1024 * 1024) {
+        alert('File size exceeds the limit of 30MB.');
+        continue;
+      }
+
+      const imageUrl = URL.createObjectURL(file);
+
+      newImages.push(file);
+      newPreviewImages.push(imageUrl);
+    }
+
+    setImages(newImages);
+    setPreviewImages(newPreviewImages);
+  };
+
+  const handleImageRemove = (index) => {
+    const newImages = [...images];
+    const newPreviewImages = [...previewImages];
+
+    newImages.splice(index, 1);
+    newPreviewImages.splice(index, 1);
+
+    setImages(newImages);
+    setPreviewImages(newPreviewImages);
+  };
+
+  const handleUploadClick = () => {
+    document.getElementById('fileInput').click();
+  };
+      
+    const handleFormSubmit = async (e) => {
+      e.preventDefault();
+      
+      // Create a new FormData object
+      const formData = new FormData();
+      
+      // Append each image to the formData
+      images.forEach((image) => {
+        formData.append('images', image);
+      });
+      
+      // Append other form fields to the formData
+      formData.append('title', title);
+      formData.append('postContent', postContent);
+      formData.append('selectValue', selectValue);
+    /*
+      try {
+        // Make a POST request using Axios
+        const response = await axios.post('your_api_endpoint', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+    
+        // Handle the response as needed
+        console.log('Response:', response.data);
+      } catch (error) {
+        // Handle errors
+        console.error('Error uploading images:', error);
+      }*/
+    };
+    //이미지 업로드 관련
 
     const clickWrapp = (event) => {
         if(!event.target.classList.contains('sel')){
@@ -58,7 +142,7 @@ export default function OneOnOnePosting() {
            
   return (
     <HelpContainer>
-        <form>
+        <form onSubmit={handleFormSubmit}>
         <CategoryContainer>
             카테고리
             <div style={{display:'flex'}}>
@@ -93,21 +177,40 @@ export default function OneOnOnePosting() {
         onChange={handlePostChange}
         ></PostInput>
         <PhotoContainer>
-            <img src={UploadPhoto} alt='UploadPhoto' style={{marginTop:5, maxWidth:100}} />
-            <PhotoText>
+            <input
+            type="file"
+            accept="image/*"
+            multiple
+            style={{ display: 'none' }}
+            id="fileInput"
+            onChange={handleImageChange}
+        />
+        <button type="button" onClick={handleUploadClick}>
+            <img src={UploadPhoto} alt="Upload Button" style={{ width: '100px', height: '100px' }} />
+        </button>
+            {images.length<=0 && <PhotoText>
             · 30MB 이하의 이미지만 업로드 가능합니다.<br/>
             · 상품과 무관한 내용은 삭제 될 수 있습니다.<br/>
             · 사진은 최대 5장까지 등록 가능합니다.
-            </PhotoText>
+            </PhotoText>}
+            {previewImages.map((previewImage, index) => (
+          <div key={index} style={{ position: 'relative', display: 'inline-block', marginRight: '10px' }}>
+            <img src={previewImage} alt={`preview-${index}`} style={{ width: '100px', height: '100px' }} />
+            <button onClick={() => handleImageRemove(index)} style={{ position: 'absolute', top: 0, right: 0 }}>
+              <CiCircleRemove/>
+            </button>
+          </div>
+        ))}
         </PhotoContainer>
         </ContentBox>
         </InputContainer>
         <CancelButton onClick={handleCancel}>취소하기</CancelButton>
-        <SubmitButton onClick={handleSubmit}>등록하기</SubmitButton>
+        <SubmitButton onClick={handleFormSubmit}>등록하기</SubmitButton>
         </form>
     </HelpContainer>
   )
 }
+
 
 
 const HelpContainer = styled.div`

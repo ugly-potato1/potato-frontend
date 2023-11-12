@@ -11,7 +11,23 @@ export default function OneOnOneHelp() {
     const [categoryIdx, setCategoryIdx] = useState(0);
     const [titleOrContentIdx, setTitleOrContentIdx] = useState(0);
 
-    const Post = false;
+    const [posts, setPosts] = useState([false]); // 게시글 데이터는 자신의 상태나 API에서 가져온 데이터로 초기화
+
+    // 현재 페이지를 state로 관리
+    const [currentPage, setCurrentPage] = useState(1);
+
+    // 페이지당 게시글 수
+    const postsPerPage = 10;
+
+    // 현재 페이지의 게시글 범위 계산
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+
+    // 페이지 변경 이벤트 핸들러
+    const handlePageChange = (pageNumber) => {
+        setCurrentPage(pageNumber);
+    };
 
     const Category = [{key: "All", value: "전체"},
                     {key: "Pay", value: "결제 문의"},
@@ -63,16 +79,35 @@ export default function OneOnOneHelp() {
                     <option value="Content">내용</option>
                     <option value="TitleContent">제목+내용</option>
                 </Select>*/}
+                {/*
                 <div style={{display:'flex'}}>
                 <CustomSelect optionData = {Category} sendValueFunction={receiveCategoryValue} isShow={option} width='160px' />
                 <CustomSelect optionData = {TitleOrContent} sendValueFunction={receiveTitleOrContent} isShow={option} width='160px' />
                 <SearchInput></SearchInput>
                 <SearchButton onClick={handleCategoryButton}>검색</SearchButton>
                 </div>
+                */}
             </form>
         </CategoryContainer>
         <PostContainer>
-            {Post ? Post.map((p) => <li>{p}</li>):
+            {posts ? <div>
+        {currentPosts.map((post) => (
+            <div key={post.id}>
+            <h3>{post.title}</h3>
+            <p>{post.content}</p>
+            </div>
+        ))}
+
+        {/* 리스트 버튼 생성 */}
+        <div>
+            {Array.from({ length: Math.ceil(posts.length / postsPerPage) }, (_, index) => (
+            <button key={index} onClick={() => handlePageChange(index + 1)}>
+                {index + 1}
+            </button>
+            ))}
+        </div>
+        </div>
+      :
             "게시글이 없습니다."
             }
         </PostContainer>
