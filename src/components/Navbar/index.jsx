@@ -1,5 +1,5 @@
 import React from 'react'
-import {ReactComponent as Farmely} from '../../assets/imgs/Farmely.svg'
+import {ReactComponent as Farmely} from '../../assets/imgs/Farmely2.svg'
 import styled from 'styled-components'
 import {HiOutlineShoppingCart, HiOutlineMenu} from 'react-icons/hi'
 import { NavLink, Link } from 'react-router-dom';

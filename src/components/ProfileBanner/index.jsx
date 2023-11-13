@@ -17,8 +17,14 @@ export default function ProfileBanner() {
             <img src={ProfileImage}></img>
           </ImageBox>
           <TextBox>
-            <Carrot src={CarrotImg}></Carrot>
-            <c>작물지킴이</c>
+            <Carrot src={CarrotImg}
+            onClick={() => {
+              navigate(`/grading`);
+            }}></Carrot>
+            <c                onClick={() => {
+                  navigate(`/grading`);
+                }}
+            >작물지킴이</c>
             <a>
               홍길동<b>님</b>
               <SetIcon
@@ -84,7 +90,7 @@ const RightContainer = styled.div`
     line-height: normal;
     letter-spacing: 0.56px;
     margin-bottom: 30px;
-    border: 1px solid black;
+    
   }
   b {
     color: #000;
@@ -167,6 +173,7 @@ const TextBox = styled.div`
     font-style: normal;
     font-weight: 500;
     line-height: 150%;
+    cursor: pointer;
   }
 `;
 
@@ -178,6 +185,7 @@ const Carrot = styled.img`
   flex-direction: column;
   width: 24px;
   height: 24px;
+  cursor: pointer;
 `;
 const Plant = styled.img`
   display: flex;
