@@ -107,7 +107,7 @@ const AddressBox = styled.div`
 const AddressName = styled.div`
     font-weight: bold;
     margin-top: 1.5rem;
-    width: 5rem;
+    width: 6rem;
 `
 
 const Detail = styled.div`
@@ -145,6 +145,7 @@ const Detail = styled.div`
         padding-left: 0.9rem;
         padding-right: 0.9rem;
         margin-right:1rem;
+        margin-bottom: 0.2rem;
     `
 
 const DeleteButton = styled.button`
