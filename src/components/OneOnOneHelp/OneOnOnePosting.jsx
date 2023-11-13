@@ -6,7 +6,10 @@ import UploadPhoto from '../../assets/imgs/Group 64622.png'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
 
-export default function OneOnOnePosting() {
+export default function OneOnOnePosting({
+  endEdit,
+}
+) {
     const Category = [{key: "All", value: "전체"},
                     {key: "Pay", value: "결제 문의"},
                     {key: "Shipping", value: "배송 문의"},
@@ -26,7 +29,7 @@ export default function OneOnOnePosting() {
 
     const handleCancel = (e) => {
         e.preventDefault();
-        navigate("/");
+        endEdit();
     }
 
     const handleSubmit = (e) => {
@@ -127,6 +130,8 @@ export default function OneOnOnePosting() {
         // Handle errors
         console.error('Error uploading images:', error);
       }*/
+      
+      endEdit();
     };
     //이미지 업로드 관련
 
