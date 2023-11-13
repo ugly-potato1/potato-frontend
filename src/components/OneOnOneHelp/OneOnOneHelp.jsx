@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { styled } from 'styled-components'
 import CustomSelect from './CustomSelect';
+import OneOnOnePosting from './OneOnOnePosting';
 
 export default function OneOnOneHelp() {
     function handleCategoryButton(e) {
         e.preventDefault();
     }
     const [option, setOption] = useState(false);
+
+    const [isEditting, setIsEditting] = useState(false);
 
     const [categoryIdx, setCategoryIdx] = useState(0);
     const [titleOrContentIdx, setTitleOrContentIdx] = useState(0);
@@ -28,6 +31,14 @@ export default function OneOnOneHelp() {
     const handlePageChange = (pageNumber) => {
         setCurrentPage(pageNumber);
     };
+
+    const handlePost = () => {
+        setIsEditting(1);
+    }
+    const endEdit = () => {
+        setIsEditting(0);
+    }
+
 
     const Category = [{key: "All", value: "전체"},
                     {key: "Pay", value: "결제 문의"},
@@ -63,6 +74,7 @@ export default function OneOnOneHelp() {
                 
   return (
     <HelpContainer>
+        {isEditting == 0 && <div>
         <HelpText>1:1 문의</HelpText>
         <hr />
         <CategoryContainer>
@@ -111,7 +123,9 @@ export default function OneOnOneHelp() {
             "게시글이 없습니다."
             }
         </PostContainer>
-        <PostButton>글쓰기</PostButton>
+        <PostButton onClick={handlePost}>글쓰기</PostButton>
+        </div>}
+        {isEditting && <OneOnOnePosting endEdit={endEdit}/>}
     </HelpContainer>
   )
 }
