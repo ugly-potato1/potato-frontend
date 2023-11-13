@@ -1,7 +1,8 @@
 import React from 'react'
+import OneOnOneHelp from './../../OneOnOneHelp/OneOnOneHelp';
 
 export default function Inquiry() {
   return (
-    <div>1:1 문의</div>
+    <OneOnOneHelp />
   )
 }

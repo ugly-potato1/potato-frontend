@@ -1,5 +1,6 @@
+import AddrSetMypage from './AddrSetMypage';
 const Deliver = () => {
-  return <h1>Deliver</h1>;
+  return <AddrSetMypage />;
 };
 
 export default Deliver;
