@@ -1,3 +1,4 @@
+//찜목록
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Image1 from "../../../assets/imgs/Mypage/WishListImg.png";

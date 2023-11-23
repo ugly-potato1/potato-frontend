@@ -1,3 +1,4 @@
+//프로필 상단 배너
 import React from "react";
 import styled from "styled-components";
 import { LuChevronRight } from "react-icons/lu";

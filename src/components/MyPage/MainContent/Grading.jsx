@@ -1,3 +1,4 @@
+//등급표
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components'; 
 import Carrot from '../../../assets/imgs/Carrot.png';
