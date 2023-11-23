@@ -17,6 +17,7 @@ import UserInfo from "./pages/MyPage/UserInfo";
 import Deliver from "./pages/MyPage/Deliver";
 import Alert from "./pages/MyPage/Alert";
 import EditProfile from "./pages/MyPage/EditProfile";
+import Grading from "./components/MyPage/MainContent/Grading";
 
 const router = createBrowserRouter([
   {
@@ -47,10 +48,13 @@ const router = createBrowserRouter([
             path: "alert",
             element: <Alert />,
           },
-          { path: "edit-profile", element: <EditProfile /> },
+          { path: "edit-profile", 
+            element: <EditProfile /> 
+          },
         ],
       },
       { path: "/auth", element: <Login /> },
+      { path: "/grading",element: <Grading />},
     ],
   },
 ]);

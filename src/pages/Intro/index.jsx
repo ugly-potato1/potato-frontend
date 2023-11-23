@@ -8,6 +8,7 @@ import envProb2 from '../../assets/imgs/Intro/unsplash_FxnqdmKBJps.png'
 import envProb3 from '../../assets/imgs/Intro/unsplash_6xeDIZgoPaw.png'
 import econoProb1 from '../../assets/imgs/Intro/unsplash_xDwEa2kaeJA.png'
 import econoProb2 from '../../assets/imgs/Intro/unsplash_sFydXGrt5OA.png'
+import problem from '../../assets/imgs/Intro/Group 64722.png'
 import introCard1 from '../../assets/imgs/Intro/Group 64525.png'
 import introCard2 from '../../assets/imgs/Intro/Group 64509.png'
 import introCard3 from '../../assets/imgs/Intro/Group 64510.png'
@@ -20,7 +21,20 @@ import paprica from '../../assets/imgs/Intro/paprica.png'
 import pea from '../../assets/imgs/Intro/pea.png'
 import afford from '../../assets/imgs/Intro/afford.png'
 import envfriendly from '../../assets/imgs/Intro/envfriendly.png'
+import OneOnOneHelp from '../../components/OneOnOneHelp/OneOnOneHelp'
+import OneOnOnePosting from '../../components/OneOnOneHelp/OneOnOnePosting'
+import AddrSetMypage from '../MyPage/AddrSetMypage'
 
+const Category = [{key: "All", value: "전체"},
+                    {key: "Pay", value: "후원/결제 문의"},
+                    {key: "Shipping", value: "배송 문의"},
+                    {key: "Cancel", value: "취소/반품/환불 문의"},
+                    {key: "Other", value: "기타 문의"}];
+            
+
+const TitleOrContent = [{key: "Title", value: "제목"},
+                    {key: "Content", value: "내용"},
+                    {key: "TitleContent", value: "제목+내용"}];
 
 export default function Intro() {
   return (
@@ -39,13 +53,13 @@ export default function Intro() {
           <h5>이로 인해 다음의 문제들이 발생하게 됩니다.</h5>
         </div>
       </div>
-      <div className='text-center bg-orange-100 h-auto p-5'>
+      {/*<div className='text-center bg-orange-100 h-auto p-5'>
           <div className='m-auto'>
             <h3 className='m-5 font-bold'>환경적 문제</h3>
               <div className='flex justify-evenly mx-10 font-semibold'>
                   <div className='relative'>
                   <img src={envProb1} alt='썩으면서 악취 발생' className='h-52'/>
-                  <h5 className='absolute text-center bottom-1/2 right-1/2 translate-x-1/2 translate-y-1/2 text-slate-50'>썩으면서 악취 발생</h5>
+                  <h5 className='absolute text-center bottom-1/2 right-1/2 translate-x-1/2 translate-y-1/2 text-slate-50 whitespace-nowrap'>썩으면서 악취 발생</h5>
                   </div>
                   <div className='relative'>
                     <img src={envProb2} alt='수질 오염 발생' className=' h-52'/>
@@ -59,18 +73,19 @@ export default function Intro() {
           </div>
           <div className='m-auto'>
             <h3 className='my-5 mt-10 font-bold'>경제적 문제</h3>
-            <div className='flex justify-evenly mx-28 font-semibold'>
+            <div className='flex justify-evenly mx-28 font-semibold whitespace-nowrap'>
               <div className='relative'>
                 <img src={econoProb1} alt='노동력 낭비' className=' h-52'/>
                 <h5 className='absolute text-center bottom-1/2 right-1/2 translate-x-1/2 translate-y-1/2 text-slate-50'>노동력 낭비</h5>
               </div>
               <div className='relative'>
                 <img src={econoProb2} alt='농산물 재배에 투입된 자원 낭비' className=' h-52'/>
-                <h5 className='absolute text-center bottom-1/2 right-1/2 translate-x-1/2 translate-y-1/2 text-slate-50'>농산물 재배에<br/>투입된 자원 낭비</h5>
+                <h5 className='absolute text-center bottom-1/2 right-1/2 translate-x-1/2 translate-y-1/2 text-slate-50 leading-tight'>농산물 재배에<br/>투입된 자원 낭비</h5>
               </div>
             </div>
           </div>
-      </div>
+      </div>*/}
+      <img src = {problem} alt = '문제점'/>
       <div className='justify-center text-center'>
           <div className='flex justify-center mx-auto w-1/3 m-9 rounded-xl p-5 outline-dashed outline-offset-4 outline-red-400 bg-red-200 w'>
             <img src = {introCard1}  alt='개성있는 외형을 가진 농산물' className='h-24'/>

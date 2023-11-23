@@ -96,12 +96,12 @@ function groupBy(arr, groupSize) {
 }
 
 const Wrapper = styled.div`
-  box-sizing: border-box;
+
   display: flex;
-  margin: 0px auto;
   align-items: center;
   flex-direction: column;
-  position: relative;
+  position: relative;s
+  
 `;
 
 const Header = styled.div`
@@ -140,12 +140,14 @@ const WishListWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
 `;
 
 const WishListItems = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  
   gap: 50px; // 이미지 간격을 조절합니다
 `;
 
@@ -196,7 +198,8 @@ line-height: normal;
 
 const WishButton = styled.div`
 
-  margin-right : 600px;
+margin-right: auto;
+margin-left: 350px;
   display: flex;
   width: 250px;
   margin-top: 20px;
