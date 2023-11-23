@@ -1,3 +1,4 @@
+//후원내역조회
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import OneReviewItem from './Review/OneReviewItem'
