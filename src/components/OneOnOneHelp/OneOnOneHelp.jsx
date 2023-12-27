@@ -125,7 +125,7 @@ export default function OneOnOneHelp() {
         </PostContainer>
         <PostButton onClick={handlePost}>글쓰기</PostButton>
         </div>}
-        {isEditting && <OneOnOnePosting endEdit={endEdit}/>}
+        {isEditting ? <OneOnOnePosting endEdit={endEdit}/> : ""}
     </HelpContainer>
   )
 }
