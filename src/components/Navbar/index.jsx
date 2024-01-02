@@ -38,12 +38,13 @@ export default function Navbar() {
 const NavbarContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: 10rem;
   align-items: center;
+  width : 100vw;
+  height : 10rem;
   justify-content: center;
-  margin: 0 11rem;
   gap: 3.2rem;
-
+  overflow: hiddlen;
+  white-space: nowrap;
   a {
     text-decoration: none;
   }
@@ -51,7 +52,7 @@ const NavbarContainer = styled.div`
 
 const Header = styled.div`
   display: flex;
-
+  
   a{
     font-weight: 500;
     color: #686868;
@@ -64,6 +65,7 @@ const LoginBox = styled.div`
   gap: 1.5rem;
   position: absolute;
   right: 11rem;
+  justify-contents : center;
   align-items: center;
   a{
     color: #686868;
@@ -72,9 +74,7 @@ const LoginBox = styled.div`
 
 const Menu = styled.nav`
   display: flex;
-  gap: 12rem;
-  justify-content: center;
-  align-items: center;
+  gap: 20rem;
   a{
     font-size: 1.25rem;
     color: black;
@@ -82,8 +82,6 @@ const Menu = styled.nav`
   }
 
   svg{
-    position: absolute;
-    left: 11rem;
   }
 `
 
