@@ -36,13 +36,18 @@ export default function Main() {
     </SubContainer1>
     <SubTitle2>싸고 맛있는.</SubTitle2>
     <SubContainer2>
+    <BlurImg1 top="-200px" left="-400px" />
+    <BlurImg2 top="-180px" left="-200px" />
           <img
           src={Image03}>
           </img>
           <img
           src={Image04}>
           </img>     
+    <BlurImg1 top="200px" left="800px" />
+    <BlurImg2 top="180px" left="600px" />
         </SubContainer2>
+     
     </>
     <ButtonWrapper>
           <button>이름만 못난이인 농작물 더 알아보기
@@ -81,6 +86,8 @@ export default function Main() {
         
         <a>우리의 미션</a>
         <ImgContainer2>
+        <BlurImg1 top="0" left="-400px" />
+    <BlurImg2 top="0" left="-50px" />
           <div>
           <img
           src={Image10}>
@@ -99,6 +106,8 @@ export default function Main() {
           </img> 
           <BottomTitle>못난이 농작물<br/> 인식 개선 · 체험</BottomTitle>
           </div>  
+          <BlurImg1 top="300px" left="800px" />
+    <BlurImg2 top="300px" left="600px" />
           </ImgContainer2>
           <button>이름만 못난이인 농작물 더 알아보기</button>
         </BottomContainer>
@@ -226,6 +235,7 @@ flex-direction: column;
 align-items: center;
 justify-content: space-between;
 background-color: #f0efe9;
+
 img{
   position:relative;
   width: 683px;
@@ -470,105 +480,31 @@ font-weight: 600;
 line-height: normal;
 letter-spacing: 0.36px;
 `
+const BlurImg1 = styled.div`
+position:absolute;
+width: 466px;
+height: 466px;
+flex-shrink: 0;
+border-radius: 466px;
+background: rgba(255, 156, 47, 0.20);
+// background: green;
+filter: blur(100px);
+top: ${props => props.top};
+left: ${props => props.left};
+z-index: -1;
+`
 
-
-// export default function Main() {
-//   return (
-//     <div className='wrapper'>
-//       <div className = "main__container">
-//         <div className='banner__container'>
-//           <img className="banner__image1" 
-//           src={Image01}>
-//           </img>
-//           <div className='banner__shadow'>
-//             <span className='span__1'>농가와 소비자가 함께하는<br/> 지속 가능한 농업</span>
-//             <span className='span__2'>함께하는 환경 보호! 마을과 상생하는 프로젝트</span>
-//             <button class="title__button">마을구출 동참하기
-//             </button>
-//           </div>
-//         </div>
-//         <div className='sub__title'>다채롭기만한.<div className='span__3'>똑같이 알록달록한 농작물</div></div>
-        
-//         <div className='sub__container1'>
-//           <img className="banner__image2" 
-//           src={Image02}>
-//           </img>
-//         </div>
-//         <div className='sub__title__2'>싸고 맛있는.</div>
-//         <div className='sub__container2'>
-//           <img className="banner__image3" 
-//           src={Image03}>
-//           </img>
-//           <img className="banner__image4" 
-//           src={Image04}>
-//           </img>     
-//         </div>
-//         <div className='button__wrapper'>
-//           <button class="orange__button">이름만 못난이인 농작물 더 알아보기
-//           </button>
-//         </div>
-//         <div className='sub__container3'>
-//           <div className='sub__title__3'>마을과 함께하는<br/>상생 프로젝트</div>
-//           <div className='user__wrap'>
-//             <img className="banner__image5" 
-//             src={Image05}>
-//             </img>
-//             <div className='shadow'>
-//               <button class="button__sample1">마을구출 동참하기
-//               </button>
-//               <button class="button__sample2">마을구출 동참하기
-//               </button>
-//             </div>
-//           </div>
-//           <div className='img__container'>
-//           <img  
-//           src={Image06}>
-//           </img>   
-//           <img  
-//           src={Image07}>
-//           </img>
-//           <img 
-//           src={Image08}>
-//           </img>   
-//           <img 
-//           src={Image09}>
-//           </img>      
-//           </div>
-//         </div>
-//       <div className='bottom__container'>
-//         <div className='sub__title__4'>우리의 미션</div>
-//         <div className='img__container'>
-//           <>
-//           </>
-//           <div>
-//           <img className='sub__image'  
-//           src={Image10}>
-//           </img> 
-//           <div  className='sub__title__5'>지속가능한 농업</div>
-//           </div>
-//           <div>
-//           <img className='sub__image'  
-//           src={Image11}>
-//           </img> 
-//           <div  className='sub__title__5'>환경 보호</div>
-//           </div>
-//           <div>
-//           <img  className='sub__image' 
-//           src={Image12}>
-//           </img> 
-//           <div  className='sub__title__5'>못난이 농작물<br/> 인식 개선 · 체험</div>
-//           </div>  
-//           </div>
-//           <div className='bottom__button'>이름만 못난이인 농작물 더 알아보기</div>
-//           <button className='bottom__bar'>
-//        </button>
-//       </div>
-       
-//       </div>
-//     </div>
-//   )
-// }
-
-
-
+const BlurImg2 = styled.div`
+position:absolute;
+width: 466px;
+height: 466px;
+flex-shrink: 0;
+border-radius: 466px;
+background: rgba(255, 66, 86, 0.15);
+// background: red;
+filter: blur(100px);
+top: ${props => props.top};
+left: ${props => props.left};
+z-index: -1;
+`
 

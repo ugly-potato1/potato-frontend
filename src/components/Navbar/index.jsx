@@ -62,9 +62,9 @@ const Header = styled.div`
 
 const LoginBox = styled.div`
   display: flex;
+  position:relative;
   gap: 1.5rem;
-  position: absolute;
-  right: 11rem;
+  left : 130%;
   justify-contents : center;
   align-items: center;
   a{
