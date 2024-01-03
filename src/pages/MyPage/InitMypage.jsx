@@ -67,13 +67,13 @@ export default function InitMypage() {
 }
 
 const ProfileBox = styled.div`
-  width: 100%;
+  width: 100vw;
   height: 18.4rem;
   background-color: #fff5e9;
 `;
 
 const Wrapper = styled.div`
-  width: 100%;
+  width: 100vw;
   padding: 0 11.25rem;
   display: flex;
   flex-direction: column;
