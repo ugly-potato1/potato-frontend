@@ -38,11 +38,14 @@ const TitleOrContent = [{key: "Title", value: "제목"},
 
 export default function Intro() {
   return (
-    <div className='w-full max-w-full px-16px'>
+    <div className='w-screen h-screen box-border'>
+      <div className='bg-slate-500 h-60'>
+
+      </div>
       <div className='text-center'>
         <h3 className=' text-xl mt-10 font-bold'>못난이 농작물이란?</h3>
         <p className='mt-5'>맛이나 영양은 그대로지만, 색 · 흠집 여부 · 크기 등의 외관이 품질 구분 기준 표준에 미달하는 비규격 농산물입니다.</p>
-        <div className='flex flex-wrap justify-center my-10'>
+        <div className='flex justify-center my-10'>
           <div className='mx-10 my-5'><img src = {apple1} alt='표준' className='max-h-40'/>표준</div>
           <div className='mx-10 my-5'><img src = {apple2}  alt='색' className='max-h-40'/>색</div>
           <div className='mx-10 my-5'><img src = {apple3}  alt='크기' className='max-h-40'/>크기</div>
@@ -88,14 +91,14 @@ export default function Intro() {
       <img src = {problem} className='' alt = '문제점'/>
       <div className='justify-center text-center my-16'>
         <div className='flex justify-center mx-4'>
-          <img src={introCard1} alt='개성있는 외형을 가진 농산물' className='w-full sm:w-2/3 md:w-1/2 lg:w-1/3 xl:w-1/4 h-auto max-w-full flex-shrink-0' />
+          <img src={introCard1} alt='개성있는 외형을 가진 농산물' className='' />
         </div>
         <h2 className='font-bold my-7'>Farmely가 생각하는 못난이</h2>
-        <div className='flex justify-center flex-wrap'>
-          <div className='flex justify-center mx-4 my-2 sm:mx-6 sm:my-0 md:mx-8 md:my-0 lg:mx-10 lg:my-0'>
+        <div className='flex justify-center'>
+          <div className='flex justify-center mx-4 my-2'>
             <img src={introCard2} alt='수요를 넘어선 잉여 생산물' className='w-full h-auto max-w-full' />
           </div>
-          <div className='flex justify-center mx-4 my-2 sm:mx-6 sm:my-0 md:mx-8 md:my-0 lg:mx-10 lg:my-0'>
+          <div className='flex justify-center mx-4 my-2'>
             <img src={introCard3} alt='기타 도매할 길이 없는 농산물' className='w-full h-auto max-w-full' />
           </div>
         </div>
@@ -104,29 +107,29 @@ export default function Intro() {
       <div className='text-center font-semibold'>
         <h2 className='mt-10 font-bold'>우리의 미션</h2>
         <h5 className='my-10'>못난이 농작물을 이해하고 경험하며, 함께하는 것입니다</h5>
-        <div className='flex flex-wrap justify-center my-5'>
-          <div className='w-1/4 min-w-max'>
+        <div className='flex flex-wrap justify-evenly lg:justify-center my-5'>
+          <div className='w-1/3 xl:w-1/4 min-w-min'>
             <img className='max-h-80 m-auto' src={mission1} alt='못난이 농작물 이해하기'/>
           </div>
-          <div className='my-auto w-1/4 min-w-max text-center'>
+          <div className='my-auto w-1/3  xl:w-1/4 min-w-min text-center'>
             <h5 className='text-brand my-5'>못난이 농작물 이해하기</h5>
             <h6 className='leading-tight'>외형만 다르고 맛과 영양은 동일한, 못나지 않은,<br/>서로 개성이 다른 친구들일 뿐입니다.</h6>
           </div>
         </div>
-        <div className='flex flex-row-reverse flex-wrap justify-center my-5'>
-          <div className='w-1/4 min-w-max'>
+        <div className='flex flex-row-reverse flex-wrap justify-evenly lg:justify-center my-5'>
+          <div className='w-1/3 xl:w-1/4 min-w-min'>
             <img className='max-h-80 m-auto' src={mission2} alt='못난이 농작물 이해하기'/>
           </div>
-          <div className='my-auto w-1/4 min-w-max text-center'>
+          <div className='my-auto w-1/3 xl:w-1/4 min-w-max text-center'>
             <h5 className='text-brand my-5'>개성이 다른 친구들 경험해보기</h5>
             <h6>재미있게 알아가는 개성 충만 못난이 친구들</h6>
           </div>
         </div>
-        <div className='flex flex-wrap justify-center my-5'>
-        <div className='w-1/4 min-w-max'>
+        <div className='flex flex-wrap justify-evenly lg:justify-center my-5'>
+        <div className='w-1/3 xl:w-1/4 min-w-min'>
             <img className='max-h-80 m-auto' src={mission3} alt='못난이 농작물 이해하기'/>
           </div>
-          <div className='my-auto w-1/4 min-w-max text-center'>
+          <div className='my-auto w-1/3  xl:w-1/4 min-w-min text-center'>
             <h5 className='text-brand my-5 leading-tight'>농가와 소비자가 함께하는<br/>지속 가능한 농업</h5>
             <h6 className='leading-tight'>함께하는 환경 보호<br/>마을과 상생하는 프로젝트</h6>
           </div>
@@ -140,7 +143,7 @@ export default function Intro() {
         <iframe></iframe>
         </div>
         <div>
-        <div className='flex justify-evenly flex-wrap lg:flex-row'>
+        <div className='flex justify-evenly lg:flex-row'>
           <div className='flex justify-evenly lg:flex-row mx-10'>
             <img className='h-24 lg:relative lg:top-20 lg:left-40' src={carrot} alt='당근'/>
             <img className='h-20 lg:relative lg:top-6 lg:left-60' src={potato} alt='감자'/>
@@ -155,7 +158,7 @@ export default function Intro() {
             <img className='h-24 lg:relative lg:top-20 lg:right-40' src={pea} alt='완두콩'/>
           </div>
         </div>
-          <div className='mx-auto flex flex-wrap justify-around bg-orange-100 lg:w-1/2 p-12 rounded-2xl font-bold'>
+          <div className='mx-auto flex justify-around bg-orange-100 xl:w-1/2 lg:w-2/3 p-12 rounded-2xl font-bold'>
             <div><h2 className='my-5 lg:mb-5'>합리적인 가격으로</h2><img src={afford} alt='합리적인 가격으로'/></div>
             <div><h2 className='my-5 lg:mb-5'>친환경적으로</h2><img src={envfriendly} alt='친환경적으로'/></div>
           </div>
