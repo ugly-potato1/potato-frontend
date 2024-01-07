@@ -132,7 +132,7 @@ const HeadLine = styled.div`
   display: flex;
   flex-direction: column;
   height: 3px;
-  width: 900px;
+  width: 100%;
   position: relative;
   background-color: #dfdfdf;
 `;

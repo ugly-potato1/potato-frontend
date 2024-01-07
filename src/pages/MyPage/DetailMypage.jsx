@@ -63,12 +63,16 @@ const ProfileBox = styled.div`
 
 `
 const Container = styled.div`
+  width: 100%;
+  max-width: 70rem;
   display: flex;
-  gap: 2.5rem;
-  margin: 3.6rem 11.25rem 0 11.25rem;
+  gap: 5rem;
+  margin: 3.62rem auto 0;
   box-sizing: border-box;
+  
 `
 
 const MainContent = styled.div`
-  flex-grow: 4;
+  width: 48.25rem;
+  max-width: 48.75rem;
 `

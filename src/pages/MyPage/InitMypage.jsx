@@ -73,8 +73,9 @@ const ProfileBox = styled.div`
 `;
 
 const Wrapper = styled.div`
-  width: 100vw;
-  padding: 0 11.25rem;
+  width: 100%;
+  max-width: 70rem;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-items: center;
@@ -87,6 +88,7 @@ const Wrapper = styled.div`
 `;
 
 const ButtonWrapper = styled.div`
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-auto-rows: 4.25rem;
