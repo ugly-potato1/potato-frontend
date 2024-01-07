@@ -1,4 +1,5 @@
 import React from 'react'
+import {ReactComponent as Farmely} from '../../assets/imgs/Farmely3.svg'
 import apple1 from '../../assets/imgs/Intro/image 173.png'
 import apple2 from '../../assets/imgs/Intro/image 170.png'
 import apple3 from '../../assets/imgs/Intro/image 171.png'
@@ -88,12 +89,14 @@ export default function Intro() {
             </div>
           </div>
       </div>*/}
-      <img src = {problem} className='' alt = '문제점'/>
+      <div style={{backgroundColor: '#FFEDDA'}}>
+        <img src = {problem} className='mx-auto xl:max-w-7xl' alt = '문제점'/>
+      </div>
       <div className='justify-center text-center my-16'>
         <div className='flex justify-center mx-4'>
           <img src={introCard1} alt='개성있는 외형을 가진 농산물' className='' />
         </div>
-        <h2 className='font-bold my-7'>Farmely가 생각하는 못난이</h2>
+        <h2 className='font-bold my-7 flex items-center justify-center'><Farmely fill='#2A2A2A' className='mx-3'/>가 생각하는 못난이</h2>
         <div className='flex justify-center'>
           <div className='flex justify-center mx-4 my-2'>
             <img src={introCard2} alt='수요를 넘어선 잉여 생산물' className='w-full h-auto max-w-full' />
@@ -131,7 +134,7 @@ export default function Intro() {
           </div>
           <div className='my-auto w-1/3  xl:w-1/4 min-w-min text-center'>
             <h5 className='text-brand my-5 leading-tight'>농가와 소비자가 함께하는<br/>지속 가능한 농업</h5>
-            <h6 className='leading-tight'>함께하는 환경 보호<br/>마을과 상생하는 프로젝트</h6>
+            <h6 className='leading-tight'>함께하는 환경 보호<br/>농가와 상생하는 프로젝트</h6>
           </div>
         </div>
       </div>
@@ -148,7 +151,7 @@ export default function Intro() {
             <img className='h-24 lg:relative lg:top-20 lg:left-40' src={carrot} alt='당근'/>
             <img className='h-20 lg:relative lg:top-6 lg:left-60' src={potato} alt='감자'/>
           </div>
-          <div className='p-10 leading-normal font-bold mx-10'>
+          <div className='p-10 leading-normal font-bold mx-auto xl:mx-10'>
             <h5>못난이 친구들과 함께!</h5>
             <h5>마을 농장과 함께!</h5>
             <h5>우리의 미션을 함께!</h5>
