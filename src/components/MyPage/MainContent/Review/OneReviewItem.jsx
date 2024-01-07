@@ -15,16 +15,13 @@ export default function OneReviewItem({review, review: {id, title, apple, pear, 
           <Date>농작물 전달 완료일 {delivery_date} </Date>
           <p>결제 {price.toLocaleString('ko-KR')}원</p>
         </DateAndPrice>
-        {completed ? 
-          <ButtonWrapper>
+        <ButtonWrapper>
+          {completed? 
             <CompleteButton>작성 완료</CompleteButton>
-          </ButtonWrapper>
-          :
-          <InputWrapper>
-            <InputBox placeholder='후기 쓰고 사진 업로드하면 300P'></InputBox>
+            :
             <InputButton onClick={() => setModalOpen(true)}>후기 작성</InputButton>
-          </InputWrapper>
-        }
+          }
+        </ButtonWrapper>
       </Content>
     </ItemBox>
   )
@@ -84,43 +81,26 @@ const Date = styled.p`
   color: var(--main-color);
   letter-spacing: 0.01875rem;
 `
-
-const InputWrapper = styled.div`
-  width: 100%;
-  overflow: hidden;
-  border-radius: 1.25rem;
-  box-sizing: border-box;
-  position: relative;
-
-`
-
-const InputBox = styled.input`
-  width: 100%;
-  border: 1px solid #DFDFDF;
-  padding: 0.65rem 1.25rem;
-  border-radius: 1.25rem;
-  overflow: hidden;
-  box-sizing: border-box;
-`
-
-const InputButton = styled.button`
-  height: 100%;
-  position: absolute;
-  right: 0;
-  background-color: var(--main-color);
-  padding: 0.69rem 1.44rem;
-  color: white;
-`
-
 const ButtonWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: flex-end;
 `
+
+const InputButton = styled.button`
+  height: 100%;
+  right: 0;
+  background-color: var(--main-color);
+  padding: 0.69rem 1.44rem;
+  color: white;
+  border-radius: 1.25rem;
+`
+
 const CompleteButton = styled.button`
   width: 6.8rem;
   padding: 0.69rem 1.44rem;
   background-color: #A2A2A2;
   color: white;
   border-radius: 1.25rem;
+  cursor: default;
 `
