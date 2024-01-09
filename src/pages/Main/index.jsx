@@ -118,7 +118,7 @@ export default function Main() {
 
 const Wrapper = styled.div`
   box-sizing: border-box;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -300,7 +300,7 @@ button:hover{
 
 const SubContainer3 = styled.div`
     margin-top: 100px;
-    width : 100vw;
+    width : 100%;
     height: 1256px;
     display: flex;
     flex-direction: column;

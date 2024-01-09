@@ -150,7 +150,7 @@ const HeadLine = styled.div`
   display: flex;
   flex-direction: column;
   height: 3px;
-  width: 900px;
+  width: 100%;
   position: relative;
   background-color: #dfdfdf;
 `;
@@ -175,9 +175,8 @@ const HistoryWrapper = styled.ul`
 `
 
 const HistoryButton = styled.div`
-
   display: flex;
-  width: 250px;
+  width: 100%;
   justify-content:center;
   flex-direction : row;
   margin-top: 20px;
@@ -185,10 +184,9 @@ const HistoryButton = styled.div`
 `;
 
 const Button1 = styled.button`
-  display: flex;
+  flex-grow: 1;
   justify-content: center;
   align-items: center;
-  width: 500px;
   height: 51px;
   flex-shrink: 0;
   border: 1px solid #DFDFDF;

@@ -39,11 +39,10 @@ const NavbarContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width : 100vw;
+  width : 100%;
   height : 10rem;
   justify-content: center;
   gap: 3.2rem;
-  overflow: hiddlen;
   white-space: nowrap;
   a {
     text-decoration: none;
