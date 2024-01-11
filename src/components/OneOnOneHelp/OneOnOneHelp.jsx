@@ -36,6 +36,7 @@ export default function OneOnOneHelp() {
 
     // 페이지 변경 이벤트 핸들러
     const handlePageChange = (pageNumber) => {
+        
         setCurrentPage(pageNumber);
     };
 
@@ -111,7 +112,7 @@ export default function OneOnOneHelp() {
         <PostContainer>
             {posts.length>0 ? <div>
         {currentPosts.map((post) => (
-            <Accordion id = {post.id} title = {post.title} content={post.content} status={post.status} />
+            <Accordion key = {post.id} title = {post.title} content={post.content} status={post.status} />
         ))}
 
         {/* 리스트 버튼 생성 */}
@@ -183,7 +184,7 @@ const SearchButton = styled.button`
 `
 
 const PostContainer = styled.div`
-    margin: 50px;
+    margin: 5px;
     width: 50vw;
 `
 
