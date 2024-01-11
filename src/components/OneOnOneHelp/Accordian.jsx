@@ -1,24 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
+const AccordionMenu = ({ key, title, content, status = "inProgress" }) => {
+  const [isOpen, setIsOpen] = useState(false);
 
-const AccordionMenu = ({ id, title, content, status = "inProgress" }) => {
-  const [activeIndex, setActiveIndex] = useState(null);
-
-  const handleToggle = (index) => {
-    if(status !== "inProgress")
-        setActiveIndex((prevIndex) => (prevIndex === index ? null : index));
+  const handleToggle = () => {
+    if (status !== "inProgress") {
+      setIsOpen((prevOpen) => !prevOpen);
+    }
   };
 
   return (
     <AccordionWrap>
-      <div key={id} className={`que ${activeIndex === 0 ? 'on' : ''}`} onClick={() => handleToggle(0)}>
+      <div key={key} className={`que ${isOpen ? 'on' : ''}`} onClick={handleToggle}>
         <span>{title}</span>
         <div className="arrow-wrap">
-            {status !== "inProgress" ? "답변 완료" : "답변 중"}
+          {status !== "inProgress" ? "답변 완료" : "답변 중"}
         </div>
       </div>
-      <div className={`anw ${activeIndex === 0 ? 'active' : ''}`}>
+      <div className={`anw ${isOpen ? 'active' : ''}`}>
         <span>{content}</span>
       </div>
     </AccordionWrap>
@@ -38,18 +38,18 @@ const AccordionWrap = styled.div`
 
   .que {
     position: relative;
-    padding: 17px 0;
+    padding: 20px 10px;
     cursor: pointer;
     text-align: start;
-    font-size: 14px;
+    font-size: 16px;
     border-bottom: 1px solid #dddddd;
   }
 
   .que::before {
     display: inline-block;
-    content: 'Q';
-    font-size: 14px;
-    color: #FF4256;
+    content: 'Q.';
+    font-size: 16px;
+    color: #2A2A2A;
     margin: 0 5px;
   }
 
@@ -61,11 +61,11 @@ const AccordionWrap = styled.div`
   .anw {
     display: none;
     overflow: hidden;
-    font-size: 14px;
+    font-size: 16px;
     text-align: start;
     white-space: normal;
-    background-color: #ffffff;
-    padding: 27px 0;
+    background-color: #f0f0f0;
+    padding: 27px 10px;
   }
 
   .anw::before {

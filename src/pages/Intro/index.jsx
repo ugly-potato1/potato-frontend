@@ -25,6 +25,7 @@ import envfriendly from '../../assets/imgs/Intro/envfriendly.png'
 import OneOnOneHelp from '../../components/OneOnOneHelp/OneOnOneHelp'
 import OneOnOnePosting from '../../components/OneOnOneHelp/OneOnOnePosting'
 import AddrSetMypage from '../MyPage/AddrSetMypage'
+import { styled } from 'styled-components'
 
 const Category = [{key: "All", value: "전체"},
                     {key: "Pay", value: "후원/결제 문의"},
@@ -39,11 +40,15 @@ const TitleOrContent = [{key: "Title", value: "제목"},
 
 export default function Intro() {
   return (
-    <div className='w-screen h-screen box-border'>
-      <div className='bg-slate-500 h-60'>
+    <>
+    <div className='w-full h-screen box-border flex flex-col items-center justify-between'>
+      <div style={{marginLeft: 'auto', marginRight: 'auto', width: '3840px'}}>
+      <div className='bg-slate-500 h-60 box-border' style={{marginLeft: 'auto', marginRight: 'auto'}}>
 
       </div>
-      <div className='text-center'>
+      </div>
+      <div>
+      <div className='text-center box-border' style={{marginLeft: 'auto', marginRight: 'auto', width: '1280px'}}>
         <h3 className=' text-xl mt-10 font-bold'>못난이 농작물이란?</h3>
         <p className='mt-5'>맛이나 영양은 그대로지만, 색 · 흠집 여부 · 크기 등의 외관이 품질 구분 기준 표준에 미달하는 비규격 농산물입니다.</p>
         <div className='flex justify-center my-10'>
@@ -56,6 +61,7 @@ export default function Intro() {
           <h4 className='font-semibold'>전체 농산물의 30%를 차지하는 이 못난이들은 외형이 다르다는 이유로 버려지고 있습니다.</h4>
           <h5>이로 인해 다음의 문제들이 발생하게 됩니다.</h5>
         </div>
+      </div>
       </div>
       {/*<div className='text-center bg-orange-100 h-auto p-5'>
           <div className='m-auto'>
@@ -89,10 +95,15 @@ export default function Intro() {
             </div>
           </div>
       </div>*/}
-      <div style={{backgroundColor: '#FFEDDA'}}>
-        <img src = {problem} className='mx-auto xl:max-w-7xl' alt = '문제점'/>
+      <div style={{backgroundColor: '#FFEDDA', width: '3840px'}}>
+        <div style={{marginLeft: 'auto', marginRight: 'auto', width: '1280px'}}>
+          <img style={{}} src = {problem} className='' alt = '문제점'/>
+        </div>
       </div>
-      <div className='justify-center text-center my-16'>
+      <div>
+      <div className='justify-center text-center my-16 relative box-border' style={{marginLeft: 'auto', marginRight: 'auto', width: '1280px'}}>
+      <BlurImg2 top="-200px" left="-500px" />
+      <BlurImg1 top="0px" left="-800px" />
         <div className='flex justify-center mx-4'>
           <img src={introCard1} alt='개성있는 외형을 가진 농산물' className='' />
         </div>
@@ -106,68 +117,131 @@ export default function Intro() {
           </div>
         </div>
       </div>
+      </div>
       <hr />
-      <div className='text-center font-semibold'>
+      <div>
+      <div className='text-center font-semibold' style={{marginLeft: 'auto', marginRight: 'auto', width: '1280px'}}>
         <h2 className='mt-10 font-bold'>우리의 미션</h2>
         <h5 className='my-10'>못난이 농작물을 이해하고 경험하며, 함께하는 것입니다</h5>
-        <div className='flex flex-wrap justify-evenly lg:justify-center my-5'>
-          <div className='w-1/3 xl:w-1/4 min-w-min'>
+        <div className='flex flex-wrap justify-evenly my-5'>
+          <div className='w-1/3 min-w-min'>
             <img className='max-h-80 m-auto' src={mission1} alt='못난이 농작물 이해하기'/>
           </div>
-          <div className='my-auto w-1/3  xl:w-1/4 min-w-min text-center'>
+          <div className='my-auto w-1/3  min-w-min text-center'>
             <h5 className='text-brand my-5'>못난이 농작물 이해하기</h5>
             <h6 className='leading-tight'>외형만 다르고 맛과 영양은 동일한, 못나지 않은,<br/>서로 개성이 다른 친구들일 뿐입니다.</h6>
           </div>
         </div>
-        <div className='flex flex-row-reverse flex-wrap justify-evenly lg:justify-center my-5'>
-          <div className='w-1/3 xl:w-1/4 min-w-min'>
+        <div className='flex flex-row-reverse flex-wrap justify-evenly my-5'>
+          <div className='w-1/3 min-w-min'>
             <img className='max-h-80 m-auto' src={mission2} alt='못난이 농작물 이해하기'/>
           </div>
-          <div className='my-auto w-1/3 xl:w-1/4 min-w-max text-center'>
+          <div className='my-auto w-1/3 min-w-max text-center'>
             <h5 className='text-brand my-5'>개성이 다른 친구들 경험해보기</h5>
             <h6>재미있게 알아가는 개성 충만 못난이 친구들</h6>
           </div>
         </div>
-        <div className='flex flex-wrap justify-evenly lg:justify-center my-5'>
-        <div className='w-1/3 xl:w-1/4 min-w-min'>
+        <div className='flex flex-wrap justify-evenly my-5'>
+        <div className='w-1/3 min-w-min'>
             <img className='max-h-80 m-auto' src={mission3} alt='못난이 농작물 이해하기'/>
           </div>
-          <div className='my-auto w-1/3  xl:w-1/4 min-w-min text-center'>
+          <div className='my-auto w-1/3 min-w-min text-center'>
             <h5 className='text-brand my-5 leading-tight'>농가와 소비자가 함께하는<br/>지속 가능한 농업</h5>
             <h6 className='leading-tight'>함께하는 환경 보호<br/>농가와 상생하는 프로젝트</h6>
           </div>
         </div>
       </div>
+      </div>
       <hr />
-      <div className='text-center'>
+      <div>
+      <div className='text-center relative' style={{marginLeft: 'auto', marginRight: 'auto', width: '1280px'}}>
+        <BlurImg4 top="000px" right="-500px" />
+        <BlurImg3 top="300px" right="-700px" />
         <h3 className='my-10 leading-tight font-bold'>못난이 친구들을 직접 만나볼 수 있는<br/>펀딩 프로젝트</h3>
         <div>
           마을 섭외 과정 동영상
         <iframe></iframe>
         </div>
         <div>
-        <div className='flex justify-evenly lg:flex-row'>
-          <div className='flex justify-evenly lg:flex-row mx-10'>
-            <img className='h-24 lg:relative lg:top-20 lg:left-40' src={carrot} alt='당근'/>
-            <img className='h-20 lg:relative lg:top-6 lg:left-60' src={potato} alt='감자'/>
+        <div className='flex justify-evenly'>
+          <div className='flex justify-evenly'>
+            <img className='h-24 relative top-20 left-40' src={carrot} alt='당근'/>
+            <img className='h-20 relative top-6 left-60' src={potato} alt='감자'/>
           </div>
-          <div className='p-10 leading-normal font-bold mx-auto xl:mx-10'>
+          <div className='p-10 leading-normal font-bold mx-auto'>
             <h5>못난이 친구들과 함께!</h5>
             <h5>마을 농장과 함께!</h5>
             <h5>우리의 미션을 함께!</h5>
           </div>
-          <div className='flex justify-evenly lg:flex-row mx-10'>
-            <img className='h-24 lg:relative lg:top-1 lg:right-60' src={paprica} alt='파프리카'/>
-            <img className='h-24 lg:relative lg:top-20 lg:right-40' src={pea} alt='완두콩'/>
+          <div className='flex justify-evenly'>
+            <img className='h-24 relative top-1 right-60' src={paprica} alt='파프리카'/>
+            <img className='h-24 relative top-20 right-40' src={pea} alt='완두콩'/>
           </div>
         </div>
-          <div className='mx-auto flex justify-around bg-orange-100 xl:w-1/2 lg:w-2/3 p-12 rounded-2xl font-bold'>
-            <div><h2 className='my-5 lg:mb-5'>합리적인 가격으로</h2><img src={afford} alt='합리적인 가격으로'/></div>
-            <div><h2 className='my-5 lg:mb-5'>친환경적으로</h2><img src={envfriendly} alt='친환경적으로'/></div>
+          <div className='mx-auto flex justify-around bg-orange-100 p-12 rounded-2xl font-bold' style={{marginLeft: 'auto', marginRight: 'auto', width: '1000px'}}>
+            <div><h2 className='my-5'>합리적인 가격으로</h2><img src={afford} alt='합리적인 가격으로'/></div>
+            <div><h2 className='my-5'>친환경적으로</h2><img src={envfriendly} alt='친환경적으로'/></div>
           </div>
         </div>
         <h4 className='m-10 leading-normal font-semibold'>전국 곳곳에서 우리를 기다리는 못난이 친구들을<br/>마을과 함께하는 펀딩 프로젝트로 함께 해봐요!</h4>
       </div>
     </div>
+    </div>
+    </>
   )
 }
+
+const BlurImg1 = styled.div`
+position:absolute;
+width: 466px;
+height: 466px;
+flex-shrink: 0;
+border-radius: 466px;
+background: rgba(255, 156, 47, 0.20);
+// background: green;
+filter: blur(100px);
+top: ${props => props.top};
+left: ${props => props.left};
+z-index: -1;
+`
+
+const BlurImg2 = styled.div`
+position:absolute;
+width: 466px;
+height: 466px;
+flex-shrink: 0;
+border-radius: 466px;
+background: rgba(255, 66, 86, 0.15);
+// background: red;
+filter: blur(100px);
+top: ${props => props.top};
+left: ${props => props.left};
+z-index: -1;
+`
+const BlurImg3 = styled.div`
+position:absolute;
+width: 466px;
+height: 466px;
+flex-shrink: 0;
+border-radius: 466px;
+background: rgba(255, 156, 47, 0.20);
+// background: green;
+filter: blur(100px);
+top: ${props => props.top};
+right: ${props => props.right};
+z-index: -1;
+`
+
+const BlurImg4 = styled.div`
+position:absolute;
+width: 466px;
+height: 466px;
+flex-shrink: 0;
+border-radius: 466px;
+background: rgba(255, 66, 86, 0.15);
+// background: red;
+filter: blur(100px);
+top: ${props => props.top};
+right: ${props => props.right};
+z-index: -1;
+`
