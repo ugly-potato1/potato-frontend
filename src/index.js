@@ -9,6 +9,7 @@ import Login from "./pages/Login";
 import Intro from "./pages/Intro";
 import Funding from "./pages/Funding";
 import Popup from "./pages/Popup";
+import Community from "./pages/Community";
 import InitMypage from "./pages/MyPage/InitMypage";
 import DetailMypage from "./pages/MyPage/DetailMypage";
 import KakaoLogin from "./pages/Login/KakaoLogin";
@@ -30,6 +31,7 @@ const router = createBrowserRouter([
       { path: "/intro", element: <Intro /> },
       { path: "/funding", element: <Funding /> },
       { path: "/popup", element: <Popup /> },
+      { path: "/community", element: <Community /> },
       { path: "/mypage", element: <InitMypage /> },
       { path: "/mypage/detail", element: <DetailMypage /> },
       {
