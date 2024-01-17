@@ -1,21 +1,15 @@
-import axios from "axios";
+import axiosInstance from './axiosInstance';
 
 const ACCESS_TOKEN = ``;
 
 export const getUserInfo = async () => {
-  const { data } = await axios.get(``, {
-    headers: {
-      Accept: "application/json",
-      Authorization: ACCESS_TOKEN,
-    },
-  });
+  const { data } = await axiosInstance.get(``);
   return data;
 };
 
-export const postUserInfo = async userInfo => {
-  const { data } = await axios.post(``, {
+export const postUserInfo = async (userInfo) => {
+  const { data } = await axiosInstance.post(``, {
     userInfo,
   });
   return data;
-  ``;
 };
