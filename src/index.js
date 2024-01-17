@@ -19,6 +19,7 @@ import Alert from './pages/MyPage/Alert';
 import EditProfile from './pages/MyPage/EditProfile';
 import Grading from './components/MyPage/MainContent/Grading';
 import { RecoilRoot } from 'recoil';
+import Payment from './pages/Payment';
 
 const router = createBrowserRouter([
   {
@@ -54,6 +55,7 @@ const router = createBrowserRouter([
       },
       { path: '/auth', element: <Login /> },
       { path: '/grading', element: <Grading /> },
+      { path: '/payment', element: <Payment /> },
     ],
   },
 ]);
