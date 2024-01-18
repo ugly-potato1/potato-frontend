@@ -193,7 +193,6 @@ margin-top : 3rem;
 button:hover{
   background-color: #f78181;
 }
-}
 `
 
 

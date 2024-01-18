@@ -41,8 +41,8 @@ const TitleOrContent = [{key: "Title", value: "제목"},
 export default function Intro() {
   return (
     <>
-    <div className='w-full h-screen box-border flex flex-col items-center justify-between'>
-      <div style={{marginLeft: 'auto', marginRight: 'auto', width: '3840px'}}>
+    <div className='w-full h-auto box-border flex flex-col items-center justify-between overflow-hidden'>
+      <div style={{marginLeft: 'auto', marginRight: 'auto', width: '100%'}}>
       <div className='bg-slate-500 h-60 box-border' style={{marginLeft: 'auto', marginRight: 'auto'}}>
 
       </div>
@@ -95,9 +95,9 @@ export default function Intro() {
             </div>
           </div>
       </div>*/}
-      <div style={{backgroundColor: '#FFEDDA', width: '3840px'}}>
-        <div style={{marginLeft: 'auto', marginRight: 'auto', width: '1280px'}}>
-          <img style={{}} src = {problem} className='' alt = '문제점'/>
+      <div style={{backgroundColor: '#FFEDDA', width:'100vw', overflow:'hidden', display:'flex', justifyContent:'center', alignContent:'center'}}>
+        <div style={{}}>
+          <img style={{width: '1280px', display:'block', minWidth:'1280px'}} src = {problem} className='' alt = '문제점'/>
         </div>
       </div>
       <div>
