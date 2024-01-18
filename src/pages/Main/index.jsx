@@ -17,6 +17,8 @@ import { styled } from 'styled-components'
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Main() {
   const settings = {
@@ -26,7 +28,12 @@ export default function Main() {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 3000, 
+    autoplaySpeed: 2500, 
+  };
+  const navigate = useNavigate();
+
+  const handleButtonClick = () => {
+    navigate("/funding");
   };
   return (
   <>
@@ -37,7 +44,9 @@ export default function Main() {
             <BannerShadow>
               <Span1>농가와 소비자가 함께하는<br /> 지속 가능한 농업</Span1>
               <Span2>함께하는 환경 보호! 마을과 상생하는 프로젝트</Span2>
+              <Link to ='/funding'>
               <button>마을구출 동참하기</button>
+              </Link>
             </BannerShadow>
           </div>
           <div>
@@ -45,7 +54,9 @@ export default function Main() {
             <BannerShadow>
               <Span1>농가와 소비자가 함께하는<br /> 지속 가능한 농업</Span1>
               <Span2>함께하는 환경 보호! 마을과 상생하는 프로젝트</Span2>
+              <Link to = '/funding'>
               <button>지속 가능한 농업 동참하기</button>
+              </Link>
             </BannerShadow>
           </div>
 
@@ -53,7 +64,9 @@ export default function Main() {
           <img src={Image14} alt="Banner 3" />
             <BannerShadow>
               <a>우리를 기다리는 못난이 친구들이 누구일까? <br></br>농가와 함께하는 상생 프로젝트 알아보기!!</a>
+              <Link to = '/funding'>
               <button>지속 가능한 농업 동참하기</button>
+              </Link>
             </BannerShadow>
           </div>
         </StyledSlider>
@@ -80,8 +93,10 @@ export default function Main() {
      
 
     <ButtonWrapper>
+      <Link to = "/intro">
           <button>이름만 못난이인 농작물 더 알아보기
           </button>
+          </Link>
     </ButtonWrapper>
     <SubContainer3>
           <a>마을과 함께하는<br/>상생 프로젝트</a>
@@ -92,9 +107,7 @@ export default function Main() {
             <Shadow>
               <a>농가와 소비자가 함께하는<br/> 지속 가능한 농업</a>
               <b>함께하는 환경 보호!<br/>농가와 상생하는 프로젝트</b>
-              <button>Farmely 알아보기
-              </button>
-             
+              <button onClick={handleButtonClick}>못난이 친구들 구출 동참하기</button>
             </Shadow>
           </UserWrapper>
           <ImgContainer>
@@ -139,7 +152,9 @@ export default function Main() {
           <BlurImg1 top="300px" left="800px" />
     <BlurImg2 top="300px" left="600px" />
           </ImgContainer2>
+          <Link to='/intro'>
           <button>이름만 못난이인 농작물 더 알아보기</button>
+          </Link>
         </BottomContainer>
   </Wrapper>
   </>
@@ -148,14 +163,12 @@ export default function Main() {
 
 const Wrapper = styled.div`
   box-sizing: border-box;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
- 
-  
   `;
   const StyledSlider = styled(Slider)`
   width: 1920px;
@@ -170,14 +183,7 @@ const Wrapper = styled.div`
 
 
 `;
-// const BannerContainer = styled.div`
-//   width : 1300px;
-//   height: 550px;
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   position: relative;
-// `;
+
 
 const Span1 = styled.div`
 margin-top : 145px;
@@ -228,7 +234,7 @@ border: none;
 border-radius: 17px;
 font-size: 22px;
 font-weight: bold;
-margin-top : 3rem;
+margin-top : -4rem;
 
 }
 a{
@@ -392,7 +398,7 @@ height: 600px;
 top: 50%;
 left: 17.3%;
 width: 30%;
-transform: translate(-54%, -50%);
+transform: translate(-55%, -50%);
 border: 1px solid black;
 border-radius: 1rem 0 0 1rem;
 background-color:rgba(0, 0, 0, 0.61);
@@ -402,9 +408,9 @@ button{
   flex-direction: column;
   align-items: center;
   width : 90%;
-  height: 12%;
+  height: 11%;
   border-radius: 17px;
-background: #FF4256;
+  background: #FF4256;
   color: white;
   text-align: center;
   line-height: 65px;

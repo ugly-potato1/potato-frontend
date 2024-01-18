@@ -18,6 +18,7 @@ import Deliver from "./pages/MyPage/Deliver";
 import Alert from "./pages/MyPage/Alert";
 import EditProfile from "./pages/MyPage/EditProfile";
 import Grading from "./components/MyPage/MainContent/Grading";
+import Buying from "./pages/Funding/Buying";
 
 const router = createBrowserRouter([
   {
@@ -28,7 +29,8 @@ const router = createBrowserRouter([
       { path: "oauth/kakao", element: <KakaoLogin /> },
       { path: "/login", element: <Login /> },
       { path: "/intro", element: <Intro /> },
-      { path: "/funding", element: <Funding /> },
+      { path: "/funding", element: <Funding />, },
+      { path: "/funding/buying", element: <Buying/>},
       { path: "/popup", element: <Popup /> },
       { path: "/mypage", element: <InitMypage /> },
       { path: "/mypage/detail", element: <DetailMypage /> },
