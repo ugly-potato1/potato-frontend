@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@portone/browser-sdk": "^0.0.3",
     "@tanstack/react-query": "^5.4.3",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
@@ -16,8 +17,12 @@
     "react-query": "^3.39.3",
     "react-router-dom": "^6.15.0",
     "react-scripts": "5.0.1",
+<<<<<<< HEAD
     "react-slick": "^0.29.0",
     "slick-carousel": "^1.8.1",
+=======
+    "recoil": "^0.7.7",
+>>>>>>> origin/develop
     "styled-components": "^6.0.7",
     "web-vitals": "^2.1.0"
   },
