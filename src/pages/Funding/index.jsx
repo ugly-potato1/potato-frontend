@@ -1,6 +1,6 @@
-import React from "react";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
+import React from 'react';
+import styled from 'styled-components';
+import { Link, Outlet } from 'react-router-dom';
 
 const Wrapper = styled.div`
   display: flex;
@@ -115,39 +115,39 @@ export default function Funding() {
   const countryInfo = [
     {
       id: 1,
-      name: "전주마을",
+      name: '전주마을',
       detail:
-        "우리 전주마을은 ~~~~~~~~~~~ ~~~~~~~~~~~~~~~~~~~~----------------------------------aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        '우리 전주마을은 ~~~~~~~~~~~ ~~~~~~~~~~~~~~~~~~~~----------------------------------aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
     },
     {
       id: 2,
-      name: "전주마을",
+      name: '전주마을',
       detail:
-        "우리 전주마을은 ~~~~~~~~~~~ ~~~~~~~~~~~~~~~~~~~~----------------------------------aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        '우리 전주마을은 ~~~~~~~~~~~ ~~~~~~~~~~~~~~~~~~~~----------------------------------aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
     },
     {
       id: 3,
-      name: "전주마을",
+      name: '전주마을',
       detail:
-        "우리 전주마을은 ~~~~~~~~~~~ ~~~~~~~~~~~~~~~~~~~~----------------------------------aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        '우리 전주마을은 ~~~~~~~~~~~ ~~~~~~~~~~~~~~~~~~~~----------------------------------aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
     },
     {
       id: 4,
-      name: "전주마을",
+      name: '전주마을',
       detail:
-        "우리 전주마을은 ~~~~~~~~~~~ ~~~~~~~~~~~~~~~~~~~~----------------------------------aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        '우리 전주마을은 ~~~~~~~~~~~ ~~~~~~~~~~~~~~~~~~~~----------------------------------aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
     },
     {
       id: 5,
-      name: "전주마을",
+      name: '전주마을',
       detail:
-        "우리 전주마을은 ~~~~~~~~~~~ ~~~~~~~~~~~~~~~~~~~~----------------------------------aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        '우리 전주마을은 ~~~~~~~~~~~ ~~~~~~~~~~~~~~~~~~~~----------------------------------aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
     },
     {
       id: 6,
-      name: "전주마을",
+      name: '전주마을',
       detail:
-        "우리 전주마을은 ~~~~~~~~~~~ ~~~~~~~~~~~~~~~~~~~~----------------------------------aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        '우리 전주마을은 ~~~~~~~~~~~ ~~~~~~~~~~~~~~~~~~~~----------------------------------aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
     },
   ];
 
@@ -161,16 +161,16 @@ export default function Funding() {
           </span>
         </Banner>
         <Row>
-          {countryInfo.map(country => (
-            <> 
-            <Link to="/funding/buying">
-              <Box>
-                <Country>{country.name}</Country>
-                <Detail>
-                  <DetailTitle>{country.name}</DetailTitle>
-                  <DetailInfo>{country.detail}</DetailInfo>
-                </Detail>
-              </Box>
+          {countryInfo.map((country) => (
+            <>
+              <Link to="/funding/buying">
+                <Box>
+                  <Country>{country.name}</Country>
+                  <Detail>
+                    <DetailTitle>{country.name}</DetailTitle>
+                    <DetailInfo>{country.detail}</DetailInfo>
+                  </Detail>
+                </Box>
               </Link>
             </>
           ))}
