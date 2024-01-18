@@ -1,5 +1,5 @@
 import React from 'react'
-import Image01 from '../../assets/imgs/main_banner_3.png'
+import Image01 from '../../assets/imgs/MainBanner2.png'
 import Image02 from '../../assets/imgs/login_bg.png'
 import Image03 from '../../assets/imgs/main_cook_1.png'
 import Image04 from '../../assets/imgs/main_cook_2.jpg'
@@ -11,23 +11,66 @@ import Image09 from '../../assets/imgs/main_farmer_4.jpg'
 import Image10 from '../../assets/imgs/main_bottom_1.png'
 import Image11 from '../../assets/imgs/main_bottom_2.png'
 import Image12 from '../../assets/imgs/main_bottom_3.png'
+import Image13 from '../../assets/imgs/MainBanner1.png'
+import Image14 from '../../assets/imgs/MainBanner3.png'
 import { styled } from 'styled-components'
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Main() {
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2500, 
+  };
+  const navigate = useNavigate();
+
+  const handleButtonClick = () => {
+    navigate("/funding");
+  };
   return (
   <>
   <Wrapper>
-    <>
-    <BannerContainer>
-    <img
-          src={Image01}>
-          </img>
-          <BannerShadow>
-            <Span1>농가와 소비자가 함께하는<br/> 지속 가능한 농업</Span1>
-            <Span2>함께하는 환경 보호! 마을과 상생하는 프로젝트</Span2>
-            <button>마을구출 동참하기</button>
-          </BannerShadow>
-    </BannerContainer>
+    <StyledSlider {...settings}>
+          <div>
+            <img src={Image01} alt="Banner 1" />
+            <BannerShadow>
+              <Span1>농가와 소비자가 함께하는<br /> 지속 가능한 농업</Span1>
+              <Span2>함께하는 환경 보호! 마을과 상생하는 프로젝트</Span2>
+              <Link to ='/funding'>
+              <button>마을구출 동참하기</button>
+              </Link>
+            </BannerShadow>
+          </div>
+          <div>
+          <img src={Image13} alt="Banner 2" />
+            <BannerShadow>
+              <Span1>농가와 소비자가 함께하는<br /> 지속 가능한 농업</Span1>
+              <Span2>함께하는 환경 보호! 마을과 상생하는 프로젝트</Span2>
+              <Link to = '/funding'>
+              <button>지속 가능한 농업 동참하기</button>
+              </Link>
+            </BannerShadow>
+          </div>
+
+          <div>
+          <img src={Image14} alt="Banner 3" />
+            <BannerShadow>
+              <a>우리를 기다리는 못난이 친구들이 누구일까? <br></br>농가와 함께하는 상생 프로젝트 알아보기!!</a>
+              <Link to = '/funding'>
+              <button>지속 가능한 농업 동참하기</button>
+              </Link>
+            </BannerShadow>
+          </div>
+        </StyledSlider>
+    
     <SubTitle>다채롭기만한.<br></br><span>똑같이 알록달록한 농작물</span></SubTitle>
     <SubContainer1>
     <img 
@@ -48,10 +91,12 @@ export default function Main() {
     <BlurImg2 top="180px" left="600px" />
         </SubContainer2>
      
-    </>
+
     <ButtonWrapper>
+      <Link to = "/intro">
           <button>이름만 못난이인 농작물 더 알아보기
           </button>
+          </Link>
     </ButtonWrapper>
     <SubContainer3>
           <a>마을과 함께하는<br/>상생 프로젝트</a>
@@ -62,9 +107,7 @@ export default function Main() {
             <Shadow>
               <a>농가와 소비자가 함께하는<br/> 지속 가능한 농업</a>
               <b>함께하는 환경 보호!<br/>농가와 상생하는 프로젝트</b>
-              <button>못난이 친구들 구출 동참하기
-              </button>
-             
+              <button onClick={handleButtonClick}>못난이 친구들 구출 동참하기</button>
             </Shadow>
           </UserWrapper>
           <ImgContainer>
@@ -109,7 +152,9 @@ export default function Main() {
           <BlurImg1 top="300px" left="800px" />
     <BlurImg2 top="300px" left="600px" />
           </ImgContainer2>
+          <Link to='/intro'>
           <button>이름만 못난이인 농작물 더 알아보기</button>
+          </Link>
         </BottomContainer>
   </Wrapper>
   </>
@@ -124,21 +169,24 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
- 
-  
   `;
-
-const BannerContainer = styled.div`
-  box-sizing: border-box;
-  width : 1300px;
-  height: 550px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  const StyledSlider = styled(Slider)`
+  width: 1920px;
+  height: 551px;
   position: relative;
+  .slick-prev,
+  .slick-next {
+    font-size: 24px;
+    z-index: 1;
+  }
+
+
+
 `;
+
+
 const Span1 = styled.div`
-margin-top : 136px;
+margin-top : 145px;
 color: #FFF;
 text-align: center;
 font-family: Pretendard;
@@ -166,17 +214,16 @@ position: absolute;
 flex-direction: column;
 align-items: center;
 text-align: center;
-
-width: 551px;
+width: 750px;
 height: 100%;
-top: 45%;
-transform: translate(68%, -45%);
-background-color:rgba(0, 0, 0, 0.61);
+top: 44%;
+transform: translate(150%, -45%);
+// background-color:rgba(0, 0, 0, 0.61);
 button{
   display : flex;
 flex-direction: column;
 align-items: center;
-width : 277px;
+width: 328px;
 height: 65px;
 background-color: #FF6565;
 color: white;
@@ -187,8 +234,20 @@ border: none;
 border-radius: 17px;
 font-size: 22px;
 font-weight: bold;
-margin-top : 3rem;
+margin-top : -4rem;
 
+}
+a{
+  margin-top : 9rem;
+  margin-bottom : 3rem;
+  color: #2A2A2A;
+text-align: center;
+font-family: Pretendard;
+font-size: 38px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+letter-spacing: 0.38px;
 }
 button:hover{
   background-color: #f78181;
@@ -338,7 +397,7 @@ height: 600px;
 top: 50%;
 left: 17.3%;
 width: 30%;
-transform: translate(-54%, -50%);
+transform: translate(-55%, -50%);
 border: 1px solid black;
 border-radius: 1rem 0 0 1rem;
 background-color:rgba(0, 0, 0, 0.61);
@@ -348,9 +407,9 @@ button{
   flex-direction: column;
   align-items: center;
   width : 90%;
-  height: 12%;
+  height: 11%;
   border-radius: 17px;
-background: #FF4256;
+  background: #FF4256;
   color: white;
   text-align: center;
   line-height: 65px;
@@ -506,4 +565,3 @@ top: ${props => props.top};
 left: ${props => props.left};
 z-index: -1;
 `
-

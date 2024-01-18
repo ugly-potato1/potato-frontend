@@ -17,10 +17,16 @@ export default function Navbar() {
         </LoginBox>
       </Header>
       <Menu>
-        <HiOutlineMenu font-size="1.5rem" />
-        <NavLink to="/intro">파밀리 소개</NavLink>
-        <NavLink to="/funding">마을의 펀딩</NavLink>
-        <NavLink to="/popup">마을의 팝업</NavLink>
+        <HiOutlineMenu font-size='1.5rem'/>
+        <NavLink to='/intro'>
+          파밀리 소개
+        </NavLink>
+        <NavLink to='/funding'>
+          제철 못난이
+        </NavLink>
+        <NavLink to='/popup'>
+          마을의 팝업
+        </NavLink>
       </Menu>
     </NavbarContainer>
   );
@@ -34,6 +40,8 @@ const NavbarContainer = styled.div`
   height: 10rem;
   justify-content: center;
   gap: 3.2rem;
+  overflow: hiddlen;
+  margin-bottom: 28px;
   white-space: nowrap;
   a {
     text-decoration: none;

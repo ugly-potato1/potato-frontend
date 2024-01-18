@@ -23,6 +23,7 @@ import Payment from './pages/Payment';
 import Community from './pages/Community';
 import Ingredients from './pages/Community/Ingredients';
 import Recipe from './pages/Community/Recipe';
+import Buying from './pages/Buying/Buying';
 
 const router = createBrowserRouter([
   {
@@ -33,7 +34,14 @@ const router = createBrowserRouter([
       { path: '/user/oauth/signin/kakao', element: <KakaoLogin /> },
       { path: '/login', element: <Login /> },
       { path: '/intro', element: <Intro /> },
-      { path: '/funding', element: <Funding /> },
+      { path: '/funding', element: <Funding />, 
+        children : [ 
+          {
+          path : 'buying',
+          element : <Buying />
+          },
+        ]
+      },
       { path: '/popup', element: <Popup /> },
       { path: '/mypage', element: <InitMypage /> },
       { path: '/mypage/detail', element: <DetailMypage /> },

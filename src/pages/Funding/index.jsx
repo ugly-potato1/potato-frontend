@@ -162,7 +162,8 @@ export default function Funding() {
         </Banner>
         <Row>
           {countryInfo.map(country => (
-            <>
+            <> 
+            <Link to="/funding/buying">
               <Box>
                 <Country>{country.name}</Country>
                 <Detail>
@@ -170,6 +171,7 @@ export default function Funding() {
                   <DetailInfo>{country.detail}</DetailInfo>
                 </Detail>
               </Box>
+              </Link>
             </>
           ))}
         </Row>
