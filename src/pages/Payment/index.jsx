@@ -19,11 +19,13 @@ const Payment = () => {
       buyer_postcode: '06018', // 구매자 우편번호
     };
     const callback = (response) => {
-      const { success, merchant_uid, error_msg } = response;
+      const { success, imp_uid, merchant_uid, paid_amount, error_msg } =
+        response;
 
       if (success) {
-        // 백엔드 연동 필요
-        // 리다이렉션 페이지 구성 필요
+        // 백엔드 연동 과정 (결제금액이 올바른지 확인하기 위함)
+        // (백으로 imp_uid값 전송 필요 + 백에서는 가맹점 식별코드 및 secret key를 통해 accessToken값을 얻어오고, 주문 내역이 올바른지 확인하는 과정 필요)
+        // 올바른 결제인 경우 리다이렉션 페이지 구성 필요
         alert('결제 성공');
       } else {
         alert(`결제 실패: ${error_msg}`);

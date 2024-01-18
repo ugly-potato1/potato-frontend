@@ -5,10 +5,6 @@ import { HiOutlineShoppingCart, HiOutlineMenu } from 'react-icons/hi';
 import { NavLink, Link, useMatch } from 'react-router-dom';
 
 export default function Navbar() {
-  const communityMatch = useMatch('/community');
-  const farmelyMatch = useMatch('/intro');
-  const fundingBuyingMatch = useMatch('/funding/buying');
-  const popupMatch = useMatch('/popup');
   return (
     <NavbarContainer>
       <Header>
@@ -22,30 +18,10 @@ export default function Navbar() {
       </Header>
       <Menu>
         <HiOutlineMenu font-size="1.5rem" />
-        <NavLink
-          to="/intro"
-          style={{ color: farmelyMatch ? '#ff4256' : 'black' }}
-        >
-          파밀리 소개
-        </NavLink>
-        <NavLink
-          to="/funding/buying"
-          style={{ color: fundingBuyingMatch ? '#ff4256' : 'black' }}
-        >
-          제철과일 구매
-        </NavLink>
-        <NavLink
-          to="/community"
-          style={{ color: communityMatch ? '#ff4256' : 'black' }}
-        >
-          커뮤니티
-        </NavLink>
-        <NavLink
-          to="/popup"
-          style={{ color: popupMatch ? '#ff4256' : 'black' }}
-        >
-          파밀리 팝업
-        </NavLink>
+        <NavLink to="/intro">파밀리 소개</NavLink>
+        <NavLink to="/funding/buying">제철과일 구매</NavLink>
+        <NavLink to="/community">커뮤니티</NavLink>
+        <NavLink to="/popup">파밀리 팝업</NavLink>
       </Menu>
     </NavbarContainer>
   );
@@ -94,11 +70,10 @@ const Menu = styled.nav`
   width: 65%;
   a {
     font-size: 1.25rem;
-    color: black;
     font-weight: 500;
   }
-
-  svg {
+  a.active {
+    color: #ff4256;
   }
 `;
 
