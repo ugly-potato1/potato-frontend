@@ -2393,6 +2393,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@portone/browser-sdk@npm:^0.0.3":
+  version: 0.0.3
+  resolution: "@portone/browser-sdk@npm:0.0.3"
+  checksum: e3cebc3a3dd651ffe0d7c4e682bdc21243164c524e2f0da3fd8a01606c11a5efadb1aa251640463471e35cf8edd3e047d78c11a81056bffbfec663f044a300aa
+  languageName: node
+  linkType: hard
+
 "@remix-run/router@npm:1.14.1":
   version: 1.14.1
   resolution: "@remix-run/router@npm:1.14.1"
@@ -10842,6 +10849,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "potato-frontend@workspace:."
   dependencies:
+    "@portone/browser-sdk": ^0.0.3
     "@tanstack/react-query": ^5.4.3
     "@testing-library/jest-dom": ^5.14.1
     "@testing-library/react": ^13.0.0
