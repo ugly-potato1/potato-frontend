@@ -20,6 +20,9 @@ import EditProfile from './pages/MyPage/EditProfile';
 import Grading from './components/MyPage/MainContent/Grading';
 import { RecoilRoot } from 'recoil';
 import Payment from './pages/Payment';
+import Community from './pages/Community';
+import Ingredients from './pages/Community/Ingredients';
+import Recipe from './pages/Community/Recipe';
 
 const router = createBrowserRouter([
   {
@@ -35,6 +38,8 @@ const router = createBrowserRouter([
       { path: '/mypage', element: <InitMypage /> },
       { path: '/mypage/detail', element: <DetailMypage /> },
       { path: "/community", element: <Community /> },
+      { path: "/ingredients/:ingredient", element: <Ingredients />},
+      { path: "/recipes/:recipe", element: <Recipe />},
       {
         path: '/mypage/profile',
         element: <Profile />,
