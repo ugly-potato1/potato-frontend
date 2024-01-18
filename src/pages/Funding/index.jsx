@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Wrapper = styled.div`
   display: flex;
@@ -112,6 +113,11 @@ const Country = styled.div`
 `;
 
 export default function Funding() {
+  const navigate = useNavigate();
+
+  const handleButtonClick = () => {
+    navigate("buying");
+  };
   const countryInfo = [
     {
       id: 1,
@@ -163,15 +169,15 @@ export default function Funding() {
         <Row>
           {countryInfo.map(country => (
             <> 
-            <Link to="/funding/buying">
-              <Box>
+     
+              <Box onClick={handleButtonClick}>
                 <Country>{country.name}</Country>
                 <Detail>
                   <DetailTitle>{country.name}</DetailTitle>
                   <DetailInfo>{country.detail}</DetailInfo>
                 </Detail>
               </Box>
-              </Link>
+            
             </>
           ))}
         </Row>
