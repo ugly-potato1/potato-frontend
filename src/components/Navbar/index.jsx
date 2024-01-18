@@ -2,9 +2,13 @@ import React from 'react';
 import { ReactComponent as Farmely } from '../../assets/imgs/Farmely2.svg';
 import styled from 'styled-components';
 import { HiOutlineShoppingCart, HiOutlineMenu } from 'react-icons/hi';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, useMatch } from 'react-router-dom';
 
 export default function Navbar() {
+  const communityMatch = useMatch('/community');
+  const farmelyMatch = useMatch('/intro');
+  const fundingBuyingMatch = useMatch('/funding/buying');
+  const popupMatch = useMatch('/popup');
   return (
     <NavbarContainer>
       <Header>
@@ -17,15 +21,30 @@ export default function Navbar() {
         </LoginBox>
       </Header>
       <Menu>
-        <HiOutlineMenu font-size='1.5rem'/>
-        <NavLink to='/intro'>
+        <HiOutlineMenu font-size="1.5rem" />
+        <NavLink
+          to="/intro"
+          style={{ color: farmelyMatch ? '#ff4256' : 'black' }}
+        >
           파밀리 소개
         </NavLink>
-        <NavLink to='/funding'>
-          제철 못난이
+        <NavLink
+          to="/funding/buying"
+          style={{ color: fundingBuyingMatch ? '#ff4256' : 'black' }}
+        >
+          제철과일 구매
         </NavLink>
-        <NavLink to='/popup'>
-          마을의 팝업
+        <NavLink
+          to="/community"
+          style={{ color: communityMatch ? '#ff4256' : 'black' }}
+        >
+          커뮤니티
+        </NavLink>
+        <NavLink
+          to="/popup"
+          style={{ color: popupMatch ? '#ff4256' : 'black' }}
+        >
+          파밀리 팝업
         </NavLink>
       </Menu>
     </NavbarContainer>
