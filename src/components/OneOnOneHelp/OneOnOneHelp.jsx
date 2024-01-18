@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { styled } from 'styled-components'
 import CustomSelect from './CustomSelect';
 import OneOnOnePosting from './OneOnOnePosting';
+import Accordion from './Accordian';
 
 export default function OneOnOneHelp() {
     function handleCategoryButton(e) {
@@ -14,13 +15,19 @@ export default function OneOnOneHelp() {
     const [categoryIdx, setCategoryIdx] = useState(0);
     const [titleOrContentIdx, setTitleOrContentIdx] = useState(0);
 
-    const [posts, setPosts] = useState([false]); // 게시글 데이터는 자신의 상태나 API에서 가져온 데이터로 초기화
+    const [posts, setPosts] = useState([{id: 1, title: "hi", content: "hello"},
+    {id: 2, title: "hasdfi", content: "helasdfvvlo"},
+    {id: 3, title: "hsadfvsi", content: "heasdfllo"},
+    {id: 4, title: "hgfhfdi", content: "helxcvzxvlo"},
+    {id: 5, title: "hsadfadfi", content: "helasdgsadgfvsahelasdgsadgfvsaflohelasdgsadgfvsafloflo"},
+    {id: 6, title: "hxcvzvi", content: "helgagslo"},
+    {id: 7, title: "hsadfasi", content: "helasdsadflo", status: "closed"},]); // 게시글 데이터는 자신의 상태나 API에서 가져온 데이터로 초기화
 
     // 현재 페이지를 state로 관리
     const [currentPage, setCurrentPage] = useState(1);
 
     // 페이지당 게시글 수
-    const postsPerPage = 10;
+    const postsPerPage = 5;
 
     // 현재 페이지의 게시글 범위 계산
     const indexOfLastPost = currentPage * postsPerPage;
@@ -29,6 +36,7 @@ export default function OneOnOneHelp() {
 
     // 페이지 변경 이벤트 핸들러
     const handlePageChange = (pageNumber) => {
+        
         setCurrentPage(pageNumber);
     };
 
@@ -102,18 +110,18 @@ export default function OneOnOneHelp() {
             </form>
         </CategoryContainer>
         <PostContainer>
-            {posts ? <div>
+            {posts.length>0 ? <div>
         {currentPosts.map((post) => (
-            <div key={post.id}>
-            <h3>{post.title}</h3>
-            <p>{post.content}</p>
-            </div>
+            <Accordion key = {post.id} title = {post.title} content={post.content} status={post.status} />
         ))}
 
         {/* 리스트 버튼 생성 */}
-        <div>
+        <div style={{margin: '1rem'}}>
             {Array.from({ length: Math.ceil(posts.length / postsPerPage) }, (_, index) => (
-            <button key={index} onClick={() => handlePageChange(index + 1)}>
+            <button 
+            key={index} 
+            onClick={() => handlePageChange(index + 1)}
+            style={{margin: '1rem'}}>
                 {index + 1}
             </button>
             ))}
@@ -125,7 +133,7 @@ export default function OneOnOneHelp() {
         </PostContainer>
         <PostButton onClick={handlePost}>글쓰기</PostButton>
         </div>}
-        {isEditting && <OneOnOnePosting endEdit={endEdit}/>}
+        {isEditting ? <OneOnOnePosting endEdit={endEdit}/> : ""}
     </HelpContainer>
   )
 }
@@ -176,16 +184,17 @@ const SearchButton = styled.button`
 `
 
 const PostContainer = styled.div`
-    margin: 50px;
+    margin: 5px;
+    width: 50vw;
 `
 
 const PostButton = styled.button`
-    margin: 20px;
-    padding: 20px;
-    padding-left:200px;
-    padding-right:200px;
+    margin: 1rem;
+    width: 30vw;
+    height: 7vh;
     border-radius: 15px;
-    background-color: #FF4256;
-    color:white;
+    border: 1px solid #FF4256;
+    background-color: #ffffff;
+    color: #FF4256;
     
 `

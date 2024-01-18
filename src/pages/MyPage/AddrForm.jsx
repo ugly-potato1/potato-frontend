@@ -8,11 +8,15 @@ export default function AddrForm({
     await new Promise((r) => setTimeout(r, 1_000));
     const addr = JSON.stringify(data)
     alert(addr);
-    addAddr(data);
+    if(initValue.id != ""){
+      editAddr(data);}
+    else{
+      addAddr(data);}
     endEdit();
     },
     initValue,
     addAddr,
+    editAddr,
     endEdit,
     }) {
     const {
@@ -38,13 +42,13 @@ export default function AddrForm({
       // 수정시 서버에서 id로 정보 받아와서 채워넣음
       setTimeout(() => {
         reset({
-          AddrName: "",
-          name: "",
-          address: "",
-          DetailAddress: "",
-          Call: "",
+          AddrName: initValue.AddrName,
+          name: initValue.name,
+          address: initValue.address,
+          DetailAddress: initValue.DetailAddress,
+          Call: initValue.DetailAddress,
         });
-      }, 2000);
+      }, 100);
     }, [reset]);
 
     return (
@@ -110,7 +114,7 @@ export default function AddrForm({
       <label htmlFor="DetaillAddress">상세 주소</label>
       
       <StyledInput
-        id="DetailAaddress"
+        id="DetailAddress"
         type="text"
         placeholder=""
         aria-invalid={
