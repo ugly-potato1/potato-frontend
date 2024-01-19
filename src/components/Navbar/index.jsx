@@ -2,18 +2,48 @@ import React from 'react';
 import { ReactComponent as Farmely } from '../../assets/imgs/Farmely2.svg';
 import styled from 'styled-components';
 import { HiOutlineShoppingCart, HiOutlineMenu } from 'react-icons/hi';
-import { NavLink, Link, useMatch } from 'react-router-dom';
+import { FiLogOut } from 'react-icons/fi';
+import { NavLink, Link, useNavigate } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
+import { UserLoginState } from '../../stores/Login/atom';
 
 export default function Navbar() {
+  const [isLogin, setIsLogin] = useRecoilState(UserLoginState);
+  const navigate = useNavigate();
+  const handleCart = () => {
+    if (!isLogin) {
+      alert('먼저 로그인 하세요');
+    } else {
+      navigate('/funding/buying');
+    }
+  };
+  const handleLogout = () => {
+    // 백엔드주소로 logout요청
+    setIsLogin(false);
+    navigate('/');
+  };
   return (
     <NavbarContainer>
       <Header>
-        <Link to="/">
-          <Farmely />
-        </Link>
+        <Logo>
+          <Link to="/">
+            <Farmely />
+          </Link>
+        </Logo>
         <LoginBox>
-          <NavLink to="/login">로그인</NavLink>
-          <HiOutlineShoppingCart font-size="1.5rem" />
+          {!isLogin ? (
+            <NavLink to="/login">로그인</NavLink>
+          ) : (
+            <NavLink to="/mypage">마이페이지</NavLink>
+          )}
+          <HiOutlineShoppingCart
+            font-size="1.5rem"
+            onClick={handleCart}
+            className="icon-pointer"
+          />
+          {isLogin && (
+            <FiLogOut onClick={handleLogout} className="icon-pointer" />
+          )}
         </LoginBox>
       </Header>
       <Menu>
@@ -39,28 +69,34 @@ const NavbarContainer = styled.div`
   margin-bottom: 28px;
   white-space: nowrap;
   a {
+    color: #686868;
     text-decoration: none;
   }
 `;
 
 const Header = styled.div`
   display: flex;
-
+  justify-content: center;
+  align-items: center;
+  width: 60%;
   a {
     font-weight: 500;
-    color: #686868;
   }
 `;
-
+const Logo = styled.div`
+  width: 50%;
+  display: flex;
+  justify-content: center;
+`;
 const LoginBox = styled.div`
   display: flex;
   position: relative;
   gap: 1.5rem;
-  left: 130%;
+  left: 220px;
   justify-content: center;
   align-items: center;
-  a {
-    color: #686868;
+  .icon-pointer {
+    cursor: pointer;
   }
 `;
 
