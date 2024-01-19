@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ReactComponent as Farmely } from '../../assets/imgs/Farmely2.svg';
 import styled from 'styled-components';
 import { HiOutlineShoppingCart, HiOutlineMenu } from 'react-icons/hi';
 import { FiLogOut } from 'react-icons/fi';
-import { NavLink, Link, useNavigate } from 'react-router-dom';
+import { NavLink, Link, useNavigate, useMatch } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { UserLoginState } from '../../stores/Login/atom';
 
 export default function Navbar() {
   const [isLogin, setIsLogin] = useRecoilState(UserLoginState);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const introMatch = useMatch('/intro');
+  const fundingBuyingMatch = useMatch('/funding/buying');
+  const communityMatch = useMatch('/community');
+  const popupMatch = useMatch('/popup');
   const navigate = useNavigate();
   const handleCart = () => {
     if (!isLogin) {
@@ -22,6 +27,10 @@ export default function Navbar() {
     setIsLogin(false);
     navigate('/');
   };
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
     <NavbarContainer>
       <Header>
@@ -47,11 +56,53 @@ export default function Navbar() {
         </LoginBox>
       </Header>
       <Menu>
-        <HiOutlineMenu font-size="1.5rem" />
-        <NavLink to="/intro">파밀리 소개</NavLink>
-        <NavLink to="/funding/buying">제철과일 구매</NavLink>
-        <NavLink to="/community">커뮤니티</NavLink>
-        <NavLink to="/popup">파밀리 팝업</NavLink>
+        <MenuIcon onClick={toggleMenu}>
+          <HiOutlineMenu
+            font-size="1.5rem"
+            style={{ color: isMenuOpen ? 'orange' : '' }}
+          />
+          {isMenuOpen && (
+            <HambergerMenu>
+              <NavLink to="/intro">파밀리 소개</NavLink>
+              <NavLink to="/funding/buying">제철과일 구매</NavLink>
+              <NavLink to="/community">커뮤니티</NavLink>
+              <NavLink to="/popup">파밀리 팝업</NavLink>
+              <NavLink to="/popup" className="diff">
+                구매내역 조회
+              </NavLink>
+              <NavLink to="/popup" className="diff">
+                장바구니
+              </NavLink>
+              <NavLink to="/funding/buying" className="diff">
+                찜한목록
+              </NavLink>
+              <NavLink to="/popup" className="diff">
+                제철과일 후기
+              </NavLink>
+              <NavLink to="/popup" className="diff">
+                고객센터
+              </NavLink>
+            </HambergerMenu>
+          )}
+        </MenuIcon>
+        <NavLink to="/intro" style={{ color: introMatch ? '#ff4256' : '' }}>
+          파밀리 소개
+        </NavLink>
+        <NavLink
+          to="/funding/buying"
+          style={{ color: fundingBuyingMatch ? '#ff4256' : '' }}
+        >
+          제철과일 구매
+        </NavLink>
+        <NavLink
+          to="/community"
+          style={{ color: communityMatch ? '#ff4256' : '' }}
+        >
+          커뮤니티
+        </NavLink>
+        <NavLink to="/popup" style={{ color: popupMatch ? '#ff4256' : '' }}>
+          파밀리 팝업
+        </NavLink>
       </Menu>
     </NavbarContainer>
   );
@@ -108,11 +159,40 @@ const Menu = styled.nav`
     font-size: 1.25rem;
     font-weight: 500;
   }
-  a.active {
-    color: #ff4256;
-  }
 `;
 
+const MenuIcon = styled.div`
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  position: relative;
+`;
+const HambergerMenu = styled.div`
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  border-radius: 0px 0px 13px 13px;
+  border: 1px solid #ff9c2f;
+  bottom: -460px;
+  z-index: 1000;
+  a {
+    width: 155px;
+    background-color: #fff;
+    padding: 14px 54px 14px 16px;
+  }
+  .diff {
+    background-color: #ff9c2f;
+    color: white;
+  }
+  a:hover {
+    transform: scale(1.05);
+    background-color: #ff9c2f;
+    color: white;
+  }
+  a:last-child {
+    border-radius: 0px 0px 13px 13px;
+  }
+`;
 const MypageBox = styled.nav`
   display: flex;
   gap: 1.5rem;

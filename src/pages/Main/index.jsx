@@ -397,7 +397,7 @@ const Shadow = styled.div`
   border: 1px solid black;
   border-radius: 1rem 0 0 1rem;
   background-color: rgba(0, 0, 0, 0.61);
-  justify-contents: center;
+  justify-content: center;
   text-align: center;
   button {
     flex-direction: column;
