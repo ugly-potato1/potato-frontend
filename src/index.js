@@ -19,11 +19,11 @@ import Alert from './pages/MyPage/Alert';
 import EditProfile from './pages/MyPage/EditProfile';
 import Grading from './components/MyPage/MainContent/Grading';
 import { RecoilRoot } from 'recoil';
-import Payment from './pages/Payment';
 import Community from './pages/Community';
 import Ingredients from './pages/Community/Ingredients';
 import Recipe from './pages/Community/Recipe';
 import Buying from './pages/Buying/Buying';
+import Payment from './pages/Payment';
 
 const router = createBrowserRouter([
   {
