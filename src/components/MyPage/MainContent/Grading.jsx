@@ -56,21 +56,32 @@ export default function Grading() {
         {/* <p2>{`${grade}`}</p2> */}
         <InfoWrapper>
             <PlantImg src ={Plant}></PlantImg><p3>{`co2를 ${co2Reduction}만큼 줄였어요!`}</p3>
-            
+   
         </InfoWrapper>
+
         <p4>{`작물 0g당 0g의 co2를 절감할 수 있어요`}</p4>
         <p5>{`작물 0g당 0g의 co2를 절감할 수 있어요`}</p5>
       </UserWrapper>
+      <BlurImg1 top="0" left="1400px" />
       <br></br><br></br>
 
       <GradeWrapper>
+      <BlurImg2 top="200px" left="1500px" />
+
         <GradeItem>
+      <BlurImg1 top="400" left="-200px" />
+
+
           <ImageWrapper>
             <GradeImage src={Carrot} alt="작물지킴이" />
           </ImageWrapper>
           <GradeContent>
+    <BlurImg2 top="700" left="-150px" />
+
             <GradeName>작물지킴이</GradeName>
+
             <GradeDescription>co2 줄인 양 00g미만</GradeDescription>
+           
           </GradeContent>
         </GradeItem>
       </GradeWrapper>
@@ -81,6 +92,7 @@ export default function Grading() {
             <GradeImage src={Farmer} alt="마을지킴이" />
           </ImageWrapper>
           <GradeContent>
+
             <GradeName>마을지킴이</GradeName>
             <GradeDescription>co2 줄인 양 00g이상 00g미만</GradeDescription>
           </GradeContent>
@@ -269,3 +281,32 @@ const GradeDescription = styled.p`
   line-height: normal;
   letter-spacing: 0.44px;
 `;
+
+const BlurImg1 = styled.div`
+position:absolute;
+width: 466px;
+height: 466px;
+flex-shrink: 0;
+border-radius: 466px;
+background: rgba(255, 156, 47, 0.20);
+// background: green;
+filter: blur(100px);
+top: ${props => props.top};
+left: ${props => props.left};
+z-index: -1;
+`
+
+const BlurImg2 = styled.div`
+position:absolute;
+width: 466px;
+height: 466px;
+flex-shrink: 0;
+border-radius: 466px;
+background: rgba(255, 66, 86, 0.15);
+// background: red;
+filter: blur(100px);
+top: ${props => props.top};
+left: ${props => props.left};
+z-index: -1;
+`
+

@@ -1,28 +1,45 @@
-import styled from "styled-components";
-import ProfileImage from "../../assets/imgs/mypage_profile.png";
-import { Link } from "react-router-dom";
-import { getUserInfo, postUserInfo } from "../../apis/UserApi";
-import { useQuery, useMutation } from "react-query";
-import { useForm } from "react-hook-form";
-
+import styled from 'styled-components';
+import ProfileImage from '../../assets/imgs/mypage_profile.png';
+import { getUserInfo, postUserInfo } from '../../apis/UserApi';
+import { ReactComponent as FileSelectBtn } from '../../assets/imgs/Mypage/EditProfile/FileSelectBtn.svg';
+import { useQuery, useMutation } from 'react-query';
+import { useForm } from 'react-hook-form';
+import { useRef, useState } from 'react';
 const EditProfile = () => {
-  const { data, isLoading } = useQuery(["userInfo"], getUserInfo);
-  const { mutate } = useMutation(postUserInfo);
+  const [imageSrc, setImageSrc] = useState('');
+  const fileInputRef = useRef();
+  const { data, isLoading } = useQuery(['userInfo'], getUserInfo);
+  const { mutate: editUserInfo } = useMutation(postUserInfo);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
     defaultValues: {
-      username: "홍길동",
-      userEmail: "OOOOO@naver.com",
-      userPhoneNumber: "010-1234-5678",
+      username: '홍길동',
+      userEmail: 'OOOOO@naver.com',
+      userPhoneNumber: '010-1234-5678',
     },
   });
   const onValid = (data) => {
     //유효성 check과정 필요
-    //mutate(data로 부터 온값들 객체로 전달); // post요청
+    //editUserInfo(data로 부터 온값들 객체로 전달); // post요청
     console.log(data);
+  };
+  const handleCustomButtonClick = () => {
+    fileInputRef.current.click();
+  };
+  const encodeFileToBase64 = (fileBlob) => {
+    const reader = new FileReader();
+
+    reader.readAsDataURL(fileBlob);
+
+    return new Promise((resolve) => {
+      reader.onload = () => {
+        setImageSrc(reader.result);
+        resolve();
+      };
+    });
   };
 
   return (
@@ -30,8 +47,17 @@ const EditProfile = () => {
       <Line />
       <ProfileImgArea>
         <h1>프로필 사진</h1>
-        <img src={ProfileImage} />
-        <input type="file" {...register("userImage")} />
+        <img src={imageSrc ? imageSrc : ProfileImage} />
+        <FileSelectBtn onClick={handleCustomButtonClick} />
+        <input
+          type="file"
+          {...register('userImage', { required: '사진을 선택하세요' })}
+          ref={fileInputRef}
+          onChange={(e) => {
+            encodeFileToBase64(e.target.files[0]);
+          }}
+          style={{ display: 'none' }}
+        />
         <input type="submit" value="저장" />
       </ProfileImgArea>
       <Line />
@@ -40,7 +66,7 @@ const EditProfile = () => {
         <input
           type="text"
           placeholder="이름을 입력하세요"
-          {...register("username", { required: "이름을 입력해주세요" })}
+          {...register('username', { required: '이름을 입력해주세요' })}
         />
         <span>{errors.username && errors.username.message}</span>
         <input type="submit" value="저장" />
@@ -51,7 +77,7 @@ const EditProfile = () => {
         <input
           type="email"
           placeholder="이메일을 입력하세요"
-          {...register("userEmail", { required: "이메일을 입력해주세요" })}
+          {...register('userEmail', { required: '이메일을 입력해주세요' })}
         />
         <span>{errors.userEmail && errors.userEmail.message}</span>
         <input type="submit" value="인증메일 전송" />
@@ -62,7 +88,7 @@ const EditProfile = () => {
         <input
           type="text"
           placeholder="연락처를 입력하세요"
-          {...register("userPhoneNumber", { required: "연락처를 입력하세요" })}
+          {...register('userPhoneNumber', { required: '연락처를 입력하세요' })}
         />
         <span>{errors.userPhoneNumber && errors.userPhoneNumber.message}</span>
         <input type="submit" value="인증번호 전송" />
@@ -97,6 +123,9 @@ const ProfileImgArea = styled.div`
   flex-shrink: 0;
   margin-top: 25px;
   margin-bottom: 25px;
+  svg {
+    cursor: pointer;
+  }
   h1 {
     margin-right: 100px;
     font-weight: 600;
@@ -106,7 +135,7 @@ const ProfileImgArea = styled.div`
     width: 60px;
     height: 60px;
   }
-  input[type="submit"] {
+  input[type='submit'] {
     position: absolute;
     right: 0;
     border-radius: 0.94rem;
@@ -134,13 +163,13 @@ const Box = styled.div`
     margin-right: 138px;
   }
 
-  input[type="text"],
-  input[type="email"] {
+  input[type='text'],
+  input[type='email'] {
     border-radius: 4px;
     border: 1px solid #dfdfdf;
     margin-right: 20px;
   }
-  input[type="submit"] {
+  input[type='submit'] {
     position: absolute;
     right: 0;
     border-radius: 0.94rem;
