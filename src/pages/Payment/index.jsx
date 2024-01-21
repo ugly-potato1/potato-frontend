@@ -96,6 +96,7 @@ const PageTitle = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  min-width: 1200px;
   font-size: 28px;
   font-style: normal;
   font-weight: 700;
@@ -106,6 +107,7 @@ const CustomerInfo = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   width: 80%;
+  min-width: 1200px;
   margin: 0 auto;
   div {
     position: relative;
@@ -165,6 +167,7 @@ const BottonContainer = styled.div`
   position: relative;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  min-width: 1200px;
   width: 80%;
   margin: 0 auto;
   margin-top: 50px;
@@ -205,6 +208,7 @@ const PaymentBtn = styled.button``;
 
 const Bar = styled.div`
   width: 80%;
+  min-width: 1200px;
   height: 8px;
   flex-shrink: 0;
   background: #f3f3f3;
