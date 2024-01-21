@@ -201,7 +201,7 @@ const Tag = styled.button`
     box-sizing: border-box;
     border: 1px solid #E4E4E4;
     border-radius: 30px;
-    margin-right: 0.2rem;
+    margin-right: 0.5rem;
     padding: 0.5rem;
     color: #525252;
 `
@@ -223,6 +223,8 @@ const ShortDescription = styled.div`
 
 const ShortDescriptionTitle = styled.h2`
   width: 120px;
+  margin-right: 1.5rem;
+  font-size: 20px;
   color: #1D1D1D;
 `
 

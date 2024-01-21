@@ -98,7 +98,7 @@ export default function AddrSetMypage() {
         <>
         {!isEditing && <>
         {  AddrList.map(({AddrName, name, address, DetailAddress, call}) => (
-            <div key = {DetailAddress}>
+            <Wrap key = {DetailAddress} style={{width: "960px"}}>
             <>
                 <hr />
                 <AddressBox>
@@ -121,10 +121,10 @@ export default function AddrSetMypage() {
                     </ButtonBox>
                 </AddressBox>
             </>
-            </div>
+            <hr />
+            </Wrap>
             ))
         }
-        <hr />
         <AddButton onClick={handleAdd}>
             배송지 추가하기
         </AddButton>
@@ -133,39 +133,47 @@ export default function AddrSetMypage() {
         </> 
     )
 }
+const Wrap = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 1280px;
+    margin-left: 50px;
+`
 
 const AddressBox = styled.div`
     display: flex;
-    height: 6rem;
+    width: 1280px;
+    height: 8rem;
 `
 
 const AddressName = styled.div`
     font-weight: bold;
     margin-top: 1.5rem;
-    width: 6rem;
+    width: 200px;
 `
 
 const Detail = styled.div`
     color: #4A4A4A;
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
-    margin-left: 6rem;
-    margin-right: 30vw;
     line-height: 120%;
-    width: 10rem;
+    width: 600px;
 `
 
-    const ButtonBox = styled.div`
-        display: flexbox;
-        margin: 0.5rem;
-        margin-top: 1rem;
-    `
+const ButtonBox = styled.div`
+    display: flex;
+    margin: 0.5rem;
+    margin-top: 1rem;
+    width: 200px;
+`
 
     const AddButton = styled.button`
         color: #FF6565;
         font-weight: bold;
         margin-top: 1rem;
         margin-right: 0.5rem;
+        margin-left: 50px;
         background-color: transparent;
         border-color: transparent;
     `
@@ -176,9 +184,8 @@ const Detail = styled.div`
         border-style: solid;
         border-width: 1px;
         border-radius: 10rem;
-        padding: 0.2rem;
-        padding-left: 0.9rem;
-        padding-right: 0.9rem;
+        width: 65px;
+        height: 25px;
         margin-right:1rem;
         margin-bottom: 0.2rem;
     `
@@ -189,7 +196,6 @@ const DeleteButton = styled.button`
         border-style: solid;
         border-width: 1px;
         border-radius: 10rem;
-        padding: 0.2rem;
-        padding-left: 0.9rem;
-        padding-right: 0.9rem;
+        width: 65px;
+        height: 25px;
 `

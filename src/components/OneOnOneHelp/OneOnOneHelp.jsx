@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { styled } from 'styled-components'
+import axios from 'axios';
 import CustomSelect from './CustomSelect';
 import OneOnOnePosting from './OneOnOnePosting';
 import Accordion from './Accordian';
@@ -15,13 +16,7 @@ export default function OneOnOneHelp() {
     const [categoryIdx, setCategoryIdx] = useState(0);
     const [titleOrContentIdx, setTitleOrContentIdx] = useState(0);
 
-    const [posts, setPosts] = useState([{id: 1, title: "hi", content: "hello"},
-    {id: 2, title: "hasdfi", content: "helasdfvvlo"},
-    {id: 3, title: "hsadfvsi", content: "heasdfllo"},
-    {id: 4, title: "hgfhfdi", content: "helxcvzxvlo"},
-    {id: 5, title: "hsadfadfi", content: "helasdgsadgfvsahelasdgsadgfvsaflohelasdgsadgfvsafloflo"},
-    {id: 6, title: "hxcvzvi", content: "helgagslo"},
-    {id: 7, title: "hsadfasi", content: "helasdsadflo", status: "closed"},]); // 게시글 데이터는 자신의 상태나 API에서 가져온 데이터로 초기화
+    const [posts, setPosts] = useState([]); // 게시글 데이터는 자신의 상태나 API에서 가져온 데이터로 초기화
 
     // 현재 페이지를 state로 관리
     const [currentPage, setCurrentPage] = useState(1);
@@ -72,13 +67,29 @@ export default function OneOnOneHelp() {
     const clickWrapp = (event) => {
         if(!event.target.classList.contains('sel')){
             setOption(current => !current);
-            console.log(event);
         }
       };
 
     useEffect(() => {
         document.addEventListener("click", clickWrapp);
     }, []);  
+
+    const getPosts = async () => {
+        try {
+          const {data} = await axios.get(`/data/MyPage/OneOnOne.json`)
+          return data
+        }
+        catch(error) {
+          console.log(error)
+        }
+      }
+    
+    useEffect(() =>{
+        getPosts()
+        .then((res) => {
+        setPosts(res);
+        window.scrollTo(0, 0);
+        })},[isEditting]);
                 
   return (
     <HelpContainer>
@@ -147,6 +158,7 @@ const HelpText = styled.h1`
 
 const HelpContainer = styled.div`
     text-align: center;
+    width: 900px;
 `
 const CategoryContainer = styled.div`
     display: flex;
@@ -185,12 +197,12 @@ const SearchButton = styled.button`
 
 const PostContainer = styled.div`
     margin: 5px;
-    width: 50vw;
+    text-align: center;
 `
 
 const PostButton = styled.button`
     margin: 1rem;
-    width: 30vw;
+    width: 580px;
     height: 7vh;
     border-radius: 15px;
     border: 1px solid #FF4256;
