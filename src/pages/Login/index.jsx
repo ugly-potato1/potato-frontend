@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import LoginImg from '../../assets/imgs/login_bg.png';
-import { ReactComponent as LoginLogo } from '../../assets/imgs/Login/LoginLogo.svg';
+import LoginLogo from '../../assets/imgs/Login/LoginLogo.png';
 import { ReactComponent as LoginStartMsg } from '../../assets/imgs/login_start_msg.svg';
 import KakaoImg from '../../assets/imgs/kakao_login.png';
 import NaverImg from '../../assets/imgs/naver_login.png';
@@ -32,7 +32,7 @@ export default function Login() {
         <Overlay />
         <LoginWrapper>
           <p>로그인</p>
-          <LoginLogo />
+          <img src={LoginLogo} />
           <LoginBtn>
             <LoginStartMsg />
             <SocialLogin onClick={handleKakaoLogin} socialImg={KakaoImg} />

@@ -25,6 +25,7 @@ const KakaoLogin = () => {
     const { data: tokenRequest } = await axios.post(finalUrl);
 
     console.log('tokenRequest', tokenRequest);
+    // 백엔드 연동 필요
     setIsLogin(true);
     navigate('/');
   };
