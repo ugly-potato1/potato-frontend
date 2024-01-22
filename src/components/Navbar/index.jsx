@@ -14,6 +14,7 @@ export default function Navbar() {
   const fundingBuyingMatch = useMatch('/funding/buying');
   const communityMatch = useMatch('/community');
   const popupMatch = useMatch('/popup');
+  const paymentMatch = useMatch('/payment');
   const navigate = useNavigate();
   const handleCart = () => {
     if (!isLogin) {
@@ -64,7 +65,7 @@ export default function Navbar() {
           {isMenuOpen && (
             <HambergerMenu>
               <NavLink to="/intro">파밀리 소개</NavLink>
-              <NavLink to="/funding/buying">제철과일 구매</NavLink>
+              <NavLink to="/funding/buying">제철 못난이</NavLink>
               <NavLink to="/community">커뮤니티</NavLink>
               <NavLink to="/popup">파밀리 팝업</NavLink>
               <NavLink to="/popup" className="diff">
@@ -88,12 +89,21 @@ export default function Navbar() {
         <NavLink to="/intro" style={{ color: introMatch ? '#ff4256' : '' }}>
           파밀리 소개
         </NavLink>
-        <NavLink
-          to="/funding/buying"
-          style={{ color: fundingBuyingMatch ? '#ff4256' : '' }}
-        >
-          제철과일 구매
-        </NavLink>
+        {paymentMatch ? (
+          <NavLink
+            to="/payment"
+            style={{ color: paymentMatch ? '#ff4256' : '' }}
+          >
+            제철과일 구매
+          </NavLink>
+        ) : (
+          <NavLink
+            to="/funding/buying"
+            style={{ color: fundingBuyingMatch ? '#ff4256' : '' }}
+          >
+            제철못난이
+          </NavLink>
+        )}
         <NavLink
           to="/community"
           style={{ color: communityMatch ? '#ff4256' : '' }}

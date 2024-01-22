@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const Payment = () => {
+  // 배송지 저장할 state필요 (배송지 변경시에 state를 바꾸어 주어야 하며, 기본 배송지도 알아야함)
   const [agree, setAgree] = useState(false);
   const handleCheckboxChange = (e) => {
     setAgree(e.target.checked);
@@ -46,17 +47,20 @@ const Payment = () => {
 
   return (
     <PaymentLayout>
-      <PageTitle>결제 구역</PageTitle>
+      <PageTitle>주문/결제</PageTitle>
       <Bar />
       <CustomerInfo>
         <CustomerDetail>
           <h1>구매자 정보</h1>
-          <h1>이름</h1>
-          <h1 className="value">홍길동</h1>
-          <h1>이메일</h1>
-          <h1 className="value">OOOOO@naver.com</h1>
-          <h1>연락처</h1>
-          <h1 className="value">010-1234-5678</h1>
+          <h1>
+            이름 <span className="value">홍길동</span>
+          </h1>
+          <h1>
+            이메일 <span className="value">OOOOO@naver.com</span>
+          </h1>
+          <h1>
+            연락처 <span className="value">010-1234-5678</span>
+          </h1>
           <label>
             <input
               type="checkbox"
@@ -67,7 +71,28 @@ const Payment = () => {
           </label>
         </CustomerDetail>
         <DeliverInfo>
-          <h1>배송지 정보</h1>
+          <h1>
+            배송지 정보 <button>배송지 변경</button>
+          </h1>
+          <h1>
+            이름 <span className="value">홍길동</span>
+          </h1>
+          <h1>
+            연락처 <span className="value">010-1234-5678</span>
+          </h1>
+          <h1>
+            배송주소{' '}
+            <span className="value">
+              [00000] 서울 00구 00로 000 000동 000호
+            </span>
+          </h1>
+          <hr
+            style={{ width: '95%', margin: '0 auto', marginBottom: '30px' }}
+          />
+          <h1>
+            배송 요청사항{' '}
+            <input type="text" placeholder="ex) 초인종 누르지 말아 주세요~!" />
+          </h1>
         </DeliverInfo>
       </CustomerInfo>
       <BottonContainer>
@@ -89,6 +114,7 @@ export default Payment;
 const PaymentLayout = styled.div`
   display: flex;
   flex-direction: column;
+  min-width: 1300px;
   max-width: 1800px;
   margin: 0 auto;
 `;
@@ -104,47 +130,48 @@ const PageTitle = styled.div`
   letter-spacing: 0.56px;
 `;
 const CustomerInfo = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  flex-direction: column;
   width: 80%;
   min-width: 1200px;
   margin: 0 auto;
   div {
-    position: relative;
     border-radius: 15px;
     background: #fff;
     box-shadow: 0px 0px 13px 0px rgba(0, 0, 0, 0.12);
-    margin-top: 40px;
+    margin-top: 50px;
+    margin-bottom: 30px;
     flex-shrink: 0;
+    width: 100%;
   }
-  div:first-child {
-    max-width: 430px;
-    margin-top: 40px;
-    margin-right: 50px;
-    height: 291px;
+  div:not(:first-child) {
+    margin-top: 70px;
   }
   h1:first-child {
     position: absolute;
     top: -45px;
+    left: -20px;
     font-size: 22px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
     letter-spacing: 0.44px;
   }
-`;
-const CustomerDetail = styled.div`
-  display: flex;
-  flex-direction: column;
   h1:not(first-child),
   label {
     font-size: 18px;
     font-weight: 600;
     padding-left: 25px;
-    margin-bottom: 5px;
+    margin-bottom: 40px;
+    position: relative;
   }
   h1:nth-child(2) {
     padding-top: 30px;
+  }
+  h1 span,
+  h1 input {
+    position: absolute;
+    left: 150px;
   }
   .value {
     font-weight: 400;
@@ -160,9 +187,39 @@ const CustomerDetail = styled.div`
     font-weight: 500;
     margin-left: 5px;
   }
+  h1 input {
+    width: 446px;
+    font-size: 14px;
+    border-radius: 4px;
+    border: 1px solid #dfdfdf;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    position: absolute;
+    top: -5px;
+  }
 `;
-const DeliverInfo = styled.div``;
-
+const CustomerDetail = styled.div`
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: 250px;
+  margin-right: 50px;
+`;
+const DeliverInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 298px;
+  position: relative;
+  h1 button {
+    margin-left: 20px;
+    width: 160px;
+    font-size: 18px;
+    font-weight: 500;
+    border: 1px solid #bcbcbc;
+    border-radius: 5px;
+  }
+`;
 const BottonContainer = styled.div`
   position: relative;
   display: grid;
