@@ -49,7 +49,7 @@ const Payment = () => {
     <PaymentLayout>
       <PageTitle>주문/결제</PageTitle>
       <Bar />
-      <CustomerInfo>
+      <CustomerInfoContainer>
         <CustomerDetail>
           <h1>구매자 정보</h1>
           <h1>
@@ -94,8 +94,14 @@ const Payment = () => {
             <input type="text" placeholder="ex) 초인종 누르지 말아 주세요~!" />
           </h1>
         </DeliverInfo>
-      </CustomerInfo>
-      <BottonContainer>
+        <PaymentMethod style={{ boxShadow: 'none' }}>
+          <h1>결제 수단</h1>
+        </PaymentMethod>
+        <AgreeMent style={{ boxShadow: 'none' }}>
+          <h1>약관동의</h1>
+        </AgreeMent>
+      </CustomerInfoContainer>
+      <ButtonContainer>
         <TotalFee>
           <span>최종 구매 금액</span>
           <span className="bold">67000원</span>
@@ -104,7 +110,7 @@ const Payment = () => {
           <span className="bold">무료</span>
         </TotalFee>
         <PaymentBtn onClick={onClickPayment}>구매하기</PaymentBtn>
-      </BottonContainer>
+      </ButtonContainer>
     </PaymentLayout>
   );
 };
@@ -115,7 +121,7 @@ const PaymentLayout = styled.div`
   display: flex;
   flex-direction: column;
   min-width: 1300px;
-  max-width: 1800px;
+  max-width: 1920px;
   margin: 0 auto;
 `;
 const PageTitle = styled.div`
@@ -129,11 +135,10 @@ const PageTitle = styled.div`
   line-height: normal;
   letter-spacing: 0.56px;
 `;
-const CustomerInfo = styled.div`
+const CustomerInfoContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 80%;
-  min-width: 1200px;
+  width: 70%;
   margin: 0 auto;
   div {
     border-radius: 15px;
@@ -220,14 +225,25 @@ const DeliverInfo = styled.div`
     border-radius: 5px;
   }
 `;
-const BottonContainer = styled.div`
+const PaymentMethod = styled.div`
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: 100px;
+`;
+const AgreeMent = styled.div`
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: 100px;
+`;
+const ButtonContainer = styled.div`
   position: relative;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  min-width: 1200px;
-  width: 80%;
+  width: 70%;
   margin: 0 auto;
-  margin-top: 50px;
+  margin-top: 100px;
   div,
   button {
     height: 65px;
@@ -242,7 +258,7 @@ const BottonContainer = styled.div`
   button {
     background: #ff4256;
     color: white;
-    min-width: 464px;
+    min-width: 400px;
     position: absolute;
     font-weight: 800;
     font-size: 22px;
@@ -264,8 +280,7 @@ const TotalFee = styled.div`
 const PaymentBtn = styled.button``;
 
 const Bar = styled.div`
-  width: 80%;
-  min-width: 1200px;
+  width: 70%;
   height: 8px;
   flex-shrink: 0;
   background: #f3f3f3;
