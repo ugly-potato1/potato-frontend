@@ -27,9 +27,6 @@ import Recipe from './pages/Community/Recipe';
 import Buying from './pages/Buying/Buying';
 import Payment from './pages/Payment';
 
-axios.defaults.baseURL = process.env.REACT_APP_SERVER_URL;
-axios.defaults.withCredentials = true;
-
 const router = createBrowserRouter([
   {
     path: '/',

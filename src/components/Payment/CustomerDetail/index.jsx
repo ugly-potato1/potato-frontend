@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import styled from 'styled-components';
 import { getUserInfo } from '../../../apis/User';
 
-const CustomerDetail = ({ agreement, handleCheckboxChange }) => {
+const CustomerDetail = ({ handleCheckboxChange }) => {
   // 아래의 과정은 pages/Payment/index.jsx에서 실행해도 됨.
   // 즉 사용자 정보를 가져오고, 이를 해당 CustomerDetail에 뿌려주는 식으로 구현하자!
   // 서버로 부터 사용자의 정보를 가져오는 요청
@@ -25,11 +25,7 @@ const CustomerDetail = ({ agreement, handleCheckboxChange }) => {
         연락처 <span className="value">010-1234-5678</span>
       </h1>
       <label>
-        <input
-          type="checkbox"
-          checked={agreement}
-          onChange={handleCheckboxChange}
-        />
+        <input type="checkbox" onChange={handleCheckboxChange} />
         <span>위 연락처와 이메일로의 수신에 동의합니다.</span>
       </label>
     </Container>
