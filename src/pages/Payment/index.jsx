@@ -1,10 +1,18 @@
 import { ReactComponent as CancleBtn } from '../../assets/imgs/Payment/icon_cancle.svg';
+import { ReactComponent as DefaultAddress } from '../../assets/imgs/Payment/icon_defaultAddress.svg';
+import { ReactComponent as IconUser } from '../../assets/imgs/Payment/icon_user.svg';
+import { ReactComponent as IconPhone } from '../../assets/imgs/Payment/icon_phone.svg';
+import { ReactComponent as IconLocation } from '../../assets/imgs/Payment/icon _location_.svg';
+import { ReactComponent as IconDelete } from '../../assets/imgs/Payment/icon_delete.svg';
+import { ReactComponent as IconSelect } from '../../assets/imgs/Payment/icon_select.svg';
 import CustomerDetail from '../../components/Payment/CustomerDetail';
 import TotalPayment from '../../components/Payment/TotalPayment';
 import DeliverInfo from '../../components/Payment/DeliverInfo';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import * as S from './styles';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { fetchDeleteAddress } from '../../apis/Payment';
 
 // 사용자 전체 배송지 목록 (더미데이터)
 const addressList = [
@@ -14,6 +22,7 @@ const addressList = [
     phoneNumber: '010-1111-1111',
     address: '서울특별시 중구 퇴계로 235',
     detailAddress: '111동 1111호',
+    zoneCode: '11111',
     isDefault: true,
   },
   {
@@ -22,6 +31,7 @@ const addressList = [
     phoneNumber: '010-2222-2222',
     address: '서울특별시 성북구 퇴계로 235',
     detailAddress: '222동 2222호',
+    zoneCode: '22222',
     isDefault: false,
   },
   {
@@ -30,9 +40,16 @@ const addressList = [
     phoneNumber: '010-3333-3333',
     address: '서울특별시 성북구 퇴계로 235',
     detailAddress: '333동 3333호',
+    zoneCode: '33333',
     isDefault: false,
   },
 ];
+// 사용자 정보 (더미 데이터)
+const customer = {
+  name: '홍길동',
+  email: 'OOOOO@naver.com',
+  phoneNumber: '010-1234-5678',
+};
 
 const Payment = () => {
   // 이전 페이지로 부터 최종 금액을 받아오는 과정 필요 (ex. 이전페이지에서 Link의 state속성을 통해 넘겨주고 useLocation을 통해 받는식) + TotalPayment 컴포넌트에 뿌리기
@@ -40,6 +57,17 @@ const Payment = () => {
   // 사용자의 전체 배송지 목록 + 기본 배송지 목록을 가져오는 요청 + (배송지 추가 및 삭제에 대한 요청 고려)
   // 기본 배송지를 배송지 state를 만들어 여기에 저장하고, DeliverInfo 컴포넌트에 뿌리자!
   // 바로 위에서 만든 배송지 state는 배송지 변경에서 클릭시 해당 배송지를 업데이트하고, 다시 DeliverInfo에 뿌리는 과정 필요하다
+
+  const queryClient = useQueryClient();
+  const [currentAddress, setCurrentAddress] = useState({
+    addressId: 1,
+    customerName: '1번 고객',
+    phoneNumber: '010-1111-1111',
+    address: '서울특별시 중구 퇴계로 235',
+    detailAddress: '111동 1111호',
+    zoneCode: '11111',
+    isDefault: true,
+  }); // 현재 주소에 해당하며, 서버로 부터 기본배송지를 얻어온 후, 해당 값을 초기화한다. 또한 배송지를 선택할떄마다 해당 값이 바뀌도록 한다. 마지막으로 해당 값은 DeliverInfo 컴포넌트에 뿌려진다
   const [agreement, setAgreement] = useState(false);
   const [deliverRequest, setDeliverRequest] = useState(''); // 배송 요청 사항
   const [isChangeAddress, setChangeAddress] = useState(false); // 배송지 변경 클릭 유무 확인
@@ -96,16 +124,36 @@ const Payment = () => {
   };
   const cancleNewAddress = () => setNewAddress(false);
 
+  const handleSelectAddress = (address) => {
+    setCurrentAddress(address);
+    setChangeAddress(false);
+  };
+  const { mutate: handleDeleteAddress } = useMutation({
+    mutationFn: fetchDeleteAddress,
+    onSuccess: () => {
+      // queryClient.invalidateQueries(['totalUserAddress']);
+      // 위와 같이 삭제한 후, 전체적인 주소목록에 대해 다시 refetch하는 과정 필요
+      setChangeAddress(false);
+    },
+    onError: () => {
+      setChangeAddress(false);
+    },
+  });
+
   return (
     <>
       <S.PaymentLayout>
         <S.PageTitle>주문/결제</S.PageTitle>
         <S.Bar />
         <S.CustomerInfoContainer>
-          <CustomerDetail handleCheckboxChange={handleCheckboxChange} />
+          <CustomerDetail
+            handleCheckboxChange={handleCheckboxChange}
+            customer={customer}
+          />
           <DeliverInfo
             onClickChangeAddress={onClickChangeAddress}
             handleInputChange={handleInputChange}
+            currentAddress={currentAddress}
           />
           <PaymentMethod style={{ boxShadow: 'none' }}>
             <h1>결제 수단</h1>
@@ -117,7 +165,7 @@ const Payment = () => {
         <TotalPayment onClickPayment={onClickPayment} fee={67000} />
       </S.PaymentLayout>
       {isChangeAddress && (
-        <Overlay onClick={cancleChangeAddress}>
+        <Overlay>
           <DeliveryBox>
             <PopUpTitle>
               <h1>배송지 선택</h1>
@@ -130,10 +178,32 @@ const Payment = () => {
                   key={address.addressId}
                   isDefault={address.isDefault}
                 >
-                  {address.customerName}
-                  {address.phoneNumber}
-                  {address.address}
-                  {address.detailAddress}
+                  {address.isDefault && (
+                    <UserInfo>
+                      <DefaultAddress />
+                    </UserInfo>
+                  )}
+                  <UserInfo style={{ fontWeight: '600' }}>
+                    <IconUser />
+                    {address.customerName}
+                  </UserInfo>
+                  <UserInfo>
+                    <IconPhone />
+                    {address.phoneNumber}
+                  </UserInfo>
+                  <UserInfo>
+                    <IconLocation />
+                    {address.address}
+                  </UserInfo>
+                  <UserInfo style={{ paddingLeft: '35px' }}>
+                    {address.detailAddress}
+                  </UserInfo>
+                  <DeleteAddArea>
+                    <IconDelete
+                      onClick={() => handleDeleteAddress(address.addressId)}
+                    />
+                    <IconSelect onClick={() => handleSelectAddress(address)} />
+                  </DeleteAddArea>
                 </DeliveryItem>
               ))}
             </DeliveryList>
@@ -144,7 +214,7 @@ const Payment = () => {
         </Overlay>
       )}
       {isNewAddress && (
-        <Overlay onClick={cancleNewAddress}>
+        <Overlay>
           <NewAddressBox>
             <PopUpTitle>
               <h1>신규 배송지 추가</h1>
@@ -234,11 +304,35 @@ const DeliveryItem = styled.li`
   flex-direction: column;
   width: 80%;
   min-width: 500px;
-  height: 270px;
-  border-radius: 5px;
+  height: ${(props) => (props.isDefault ? '300px' : '270px')};
+  border-radius: 15px;
   border: 2px solid ${(props) => (props.isDefault ? '#f47885' : '#e3e3e3')};
   margin: 10px 0;
+  padding: 25px 20px;
 `;
+const UserInfo = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.36px;
+  svg {
+    margin-right: 15px;
+  }
+`;
+const DeleteAddArea = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 10px;
+  svg {
+    cursor: pointer;
+  }
+`;
+
 const NewAddressBtn = styled.button`
   width: 80%;
   min-width: 500px;
