@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
-const DeliverInfo = ({ onClickChangeAddress, handleInputChange }) => {
+const DeliverInfo = ({
+  onClickChangeAddress,
+  handleInputChange,
+  currentAddress,
+}) => {
   return (
     <DeliverInfoContainer>
       <h1>
@@ -8,13 +12,16 @@ const DeliverInfo = ({ onClickChangeAddress, handleInputChange }) => {
         <button onClick={onClickChangeAddress}>배송지 변경</button>
       </h1>
       <h1>
-        이름 <span className="value">홍길동</span>
+        이름 <span className="value">{currentAddress.customerName}</span>
       </h1>
       <h1>
-        연락처 <span className="value">010-1234-5678</span>
+        연락처 <span className="value">{currentAddress.phoneNumber}</span>
       </h1>
       <h1>
-        <span className="value">[00000] 서울 00구 00로 000 000동 000호</span>
+        배송주소{' '}
+        <span className="value">
+          [{currentAddress.zoneCode}] {currentAddress.address}
+        </span>
       </h1>
       <hr style={{ width: '95%', margin: '0 auto', marginBottom: '30px' }} />
       <h1>
