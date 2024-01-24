@@ -21,15 +21,15 @@
         }
       ],
       "data": {
-      "theme": "🍴내 맞춤 레시피🍴",
+      "theme": "내 맞춤 레시피",
       "Keyword1": {"word": ["#가벼운", "#디저트"],
-                  "img": "https://img1.daumcdn.net/thumb/R658x0.q70/?fname=http://t1.daumcdn.net/news/201708/19/chosun/20170819030343637qedb.jpg",
-                  "url": "/recipes/recipe1"},
+                   "img": "https://cdn.jjan.kr/data2/content/image/2018/07/26/.cache/512/20180726230351.jpg",
+                   "url": "/recipes/recipe1"},
       "Keyword2": {"word": ["#다이어트", "#에피타이저"],
-                  "img": "http://www.traveli.co.kr/repository/show/contents/S20141109140543m0.jpg",
-                  "url": "/recipes/"},
+                   "img": "https://recipe1.ezmember.co.kr/cache/recipe/2023/05/04/253512d1a05993e51e8a47a6e3ba54381.jpg",
+                   "url": "/recipes/recipe1"},
       "Keyword3": {"word": ["#제철", "#든든한"],
-                  "img": "https://mblogthumb-phinf.pstatic.net/MjAxODA3MDFfMjYz/MDAxNTMwNDE0MzU2NjM4.twgInRnMnNVHLizOmRpoiAaULVWto2lZHdneDFIVncAg.hQMj9E5AnqBnZlmYqKmtquGE6XLfh0ACG47bS5zYcdUg.JPEG.insuart/IMG_7503.JPG?type=w800",
-                  "url": "/recipes/"}  
+                   "img": "https://recipe1.ezmember.co.kr/cache/recipe/2017/06/21/90efd39f1c5590cc75023fde66789dcc1.jpg",
+                   "url": "/recipes/recipe1"}  
       }
 }
