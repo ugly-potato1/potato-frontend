@@ -41,9 +41,11 @@ export default function Main() {
   return (
     <>
       <Wrapper>
+        <BannerWrap>
         <StyledSlider {...settings}>
           <div>
             <img src={Image01} alt="Banner 1" />
+            <div>
             <BannerShadow>
               <Span1>
                 농가와 소비자가 함께하는
@@ -54,9 +56,11 @@ export default function Main() {
                 <button>마을구출 동참하기</button>
               </Link>
             </BannerShadow>
+            </div>
           </div>
           <div>
             <img src={Image13} alt="Banner 2" />
+            <div>
             <BannerShadow>
               <Span1>
                 농가와 소비자가 함께하는
@@ -67,10 +71,12 @@ export default function Main() {
                 <button>지속 가능한 농업 동참하기</button>
               </Link>
             </BannerShadow>
+            </div>
           </div>
 
           <div>
             <img src={Image14} alt="Banner 3" />
+            <div>
             <BannerShadow>
               <a>
                 우리를 기다리는 못난이 친구들이 누구일까? <br></br>농가와
@@ -80,8 +86,10 @@ export default function Main() {
                 <button>지속 가능한 농업 동참하기</button>
               </Link>
             </BannerShadow>
+            </div>
           </div>
         </StyledSlider>
+        </BannerWrap>
 
         <SubTitle>
           다채롭기만한.<br></br>
@@ -185,14 +193,21 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
 `;
-const StyledSlider = styled(Slider)`
-width: 200rem;
-height: 54rem;
-min-width : 1980px;
+const BannerWrap = styled.div`
+display : flex;
+position : relative;
+width: 120rem;
+height: 32.4375rem;
 flex-shrink: 0;
-  position: relative;
+align-items: center;
+justify-content : center;
+`
+const StyledSlider = styled(Slider)`
+width: 100%;
+min-width : 1080px;
+height : 100%;
+flex-shrink: 0;
   flex-direction: column;
   align-items: center;
   .slick-prev,
@@ -202,7 +217,7 @@ flex-shrink: 0;
   }
   img{
     width : 100%;
-    height : 100%;
+    height : 95%;
   }
 `;
 
@@ -211,7 +226,7 @@ const Span1 = styled.div`
   color: #fff;
   text-align: center;
   font-family: Pretendard;
-  font-size: 3.5rem;
+  font-size: 2.375rem;
   font-style: normal;
   font-weight: 800;
   line-height: normal;
@@ -223,7 +238,7 @@ const Span2 = styled.div`
   color: #FFF;
   text-align: center;
   font-family: Pretendard;
-  font-size: 1.8rem;
+  font-size: 1.25rem;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
@@ -237,17 +252,16 @@ const BannerShadow = styled.div`
   align-items: center;
   text-align: center;
   width: 900px;
-  height: 100%;
-  top: 44%;
-  transform: translate(230%, -30%);
+  height: 90%;
+  transform: translate(110%, -110%);
   // background-color:rgba(0, 0, 0, 0.61);
   button {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content:center;
-    width: 25.5rem;
-    height: 5rem;
+    width: 21rem;
+    height: 4rem;
     background-color: #ff6565;
     color: white;
     text-align: center;
@@ -255,7 +269,7 @@ const BannerShadow = styled.div`
     text-decoration: none;
     border: none;
     border-radius: 17px;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -268,7 +282,7 @@ const BannerShadow = styled.div`
     color: #2a2a2a;
     text-align: center;
     font-family: Pretendard;
-    font-size: 3rem;
+    font-size: 2.375rem;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
