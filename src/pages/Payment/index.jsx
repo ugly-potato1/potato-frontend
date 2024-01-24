@@ -3,13 +3,13 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const Payment = () => {
-  // 배송지 저장할 state필요 (배송지 변경시에 state를 바꾸어 주어야 하며, 기본 배송지도 알아야함)
-  const [agree, setAgree] = useState(false);
+  // 사용자의 배송지 목록을 가져오는 요청 + (배송지 추가 및 삭제에 대한 요청 고려)
+  const [agreement, setAgreement] = useState(false);
   const handleCheckboxChange = (e) => {
-    setAgree(e.target.checked);
+    setAgreement(e.target.checked);
   };
   const onClickPayment = () => {
-    if (!agree) {
+    if (!agreement) {
       alert('먼저 연락처와 이메일로의 수신에 동의하세요!');
       return;
     }
@@ -64,7 +64,7 @@ const Payment = () => {
           <label>
             <input
               type="checkbox"
-              checked={agree}
+              checked={agreement}
               onChange={handleCheckboxChange}
             />
             <span>위 연락처와 이메일로의 수신에 동의합니다.</span>
