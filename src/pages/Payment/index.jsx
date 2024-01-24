@@ -6,8 +6,9 @@ import CustomerDetail from '../../components/Payment/CustomerDetail';
 import TotalPayment from '../../components/Payment/TotalPayment';
 
 const Payment = () => {
-  // 사용자의 배송지 목록을 가져오는 요청 + (배송지 추가 및 삭제에 대한 요청 고려)
   // 이전 페이지로 부터 최종 금액을 받아오는 과정 필요 (ex. 이전페이지에서 Link의 state속성을 통해 넘겨주고 useLocation을 통해 받는식)
+  // 즉 사용자 정보를 가져오는 요청 필요 + 얻은 사용자 정보를 CustomerDetail컴포넌트에 props로 뿌리자!
+  // 사용자의 배송지 목록을 가져오는 요청 + (배송지 추가 및 삭제에 대한 요청 고려)
   const [agreement, setAgreement] = useState(false);
   const handleCheckboxChange = (e) => {
     setAgreement(e.target.checked);

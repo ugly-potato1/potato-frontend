@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { getUserInfo } from '../../../apis/User';
 
 const CustomerDetail = ({ agreement, handleCheckboxChange }) => {
+  // 아래의 과정은 pages/Payment/index.jsx에서 실행해도 됨.
+  // 즉 사용자 정보를 가져오고, 이를 해당 CustomerDetail에 뿌려주는 식으로 구현하자!
   // 서버로 부터 사용자의 정보를 가져오는 요청
   const { data, isLoading } = useQuery({
     queryKey: ['customerInfo'],
