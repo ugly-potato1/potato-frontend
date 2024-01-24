@@ -29,7 +29,7 @@ export default function Review() {
   return (
     <>
       <Container>
-        <p>농작물 후기</p>
+        <p>제철과일 후기</p>
         <Line/>
         <ReviewWrapper>
           {reviewList && reviewList.map((review, i) => (

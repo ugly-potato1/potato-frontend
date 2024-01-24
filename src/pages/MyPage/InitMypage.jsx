@@ -7,17 +7,17 @@ import CartIcon from "../../assets/imgs/Mypage/InitMypageBtn/cart.png";
 import FeedBackIcon from "../../assets/imgs/Mypage/InitMypageBtn/feedback.png";
 import QuestionIcon from "../../assets/imgs/Mypage/InitMypageBtn/question_circle.png";
 import ChatBubbleIcon from "../../assets/imgs/Mypage/InitMypageBtn/chat_bubble.png";
-
+import BookMarkIcon from "../../assets/imgs/Mypage/InitMypageBtn/bookmark.png"
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import ProfileBanner from "../../components/ProfileBanner";
 
 export default function InitMypage() {
   const MyCropBtn = [
-    { id: 0, text: "후원내역 조회", icon: TruckIcon },
-    { id: 1, text: "찜 목록", icon: HeartIcon },
-    { id: 2, text: "장바구니", icon: CartIcon },
-    { id: 3, text: "농작물 후기", icon: FeedBackIcon },
+    { id: 0, text: "구매내역 조회", icon: TruckIcon },
+    { id: 1, text: "찜한 목록", icon: HeartIcon },
+    { id: 2, text: "제철과일 후기", icon: FeedBackIcon },
+    { id: 3, text: "저장한 레시피", icon: BookMarkIcon },
   ];
 
   const CustomerCenterBtn = [
