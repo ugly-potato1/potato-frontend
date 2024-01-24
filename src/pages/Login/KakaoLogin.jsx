@@ -26,6 +26,7 @@ const KakaoLogin = () => {
 
     console.log('tokenRequest', tokenRequest);
     // 백엔드 연동 필요
+    // axiosInstance를 사용할 것 (기본 axios 사용 X)
     setIsLogin(true);
     navigate('/');
   };

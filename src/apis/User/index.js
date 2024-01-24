@@ -1,10 +1,11 @@
 import axios from 'axios';
+import { axiosInstance } from '..';
 
 export const getUserInfo = async () => {
-  const { data } = await axios.get(`/api/v1/user/profile`);
+  const { data } = await axiosInstance.get(`/api/v1/user/profile`);
   return data;
 };
 
 export const postUserInfo = async () => {
-  return axios.post();
+  return axiosInstance.post();
 };
