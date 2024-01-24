@@ -216,8 +216,10 @@ const ProductTitle = styled.div`
   font-weight: 700;
   line-height: normal;
   letter-spacing: 0.56px;
+  margin-bottom : 3rem;
 `;
 const ProductContainer = styled.div`
+ 
   height: 700px;
   display: flex;
   margin-top: 1rem;

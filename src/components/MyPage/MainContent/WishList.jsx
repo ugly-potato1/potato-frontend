@@ -1,7 +1,7 @@
 //찜목록
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import Image1 from "../../../assets/imgs/Mypage/WishListImg.png";
+import Image1 from "../../../assets/imgs/Funding/Tomato.png";
 import EmptyWish from '../SubContent/EmptyWish';
 
 
@@ -13,10 +13,12 @@ export default function WishList() {
   useEffect(() => {
     // 이미지 및 목록 데이터를 가져옵니다.
     const fetchedItems = [
-      { id: 1, name: '떡잎마을', imageUrl: Image1 , info: 'OO마을에서 자라는 싱긋한 사과가 일품 이다'},
-      { id: 2, name: '언덕마을', imageUrl: Image1 , info: 'OO마을에서 자라는 싱긋한 사과가 일품 이다'},
-      { id: 3, name: '태초마을', imageUrl: Image1 , info: 'OO마을에서 자라는 싱긋한 사과가 일품 이다'},
-      { id: 4, name: '하늘마을', imageUrl: Image1 , info: 'OO마을에서 자라는 싱긋한 사과가 일품 이다'},
+      { id: 1, name: '토마토', imageUrl: Image1 , },
+      { id: 2, name: '토마토', imageUrl: Image1 ,},
+      { id: 3, name: '태초마을', imageUrl: Image1 , },
+      { id: 4, name: '하늘마을', imageUrl: Image1 , },
+     
+     
       // 필요한 만큼 항목을 추가하세요
     ];
     setWishlistItems(fetchedItems);
@@ -29,16 +31,16 @@ export default function WishList() {
   // 이미지를 두 개씩 그룹화합니다.
   const groupedItems = groupBy(wishlistItems, 2);
 
-  const filteredItems = wishlistItems.filter((item) => {
-    if (filter === '진행중') {
-      // 진행중 아이템만 보기
-      return item.status === '진행중';
-    } else if (filter === '진행완료') {
-      // 진행완료 아이템만 보기
-      return item.status === '진행완료';
-    }
-    return true; // 다른 경우 모두 보기
-  });
+  // const filteredItems = wishlistItems.filter((item) => {
+  //   if (filter === '진행중') {
+  //     // 진행중 아이템만 보기
+  //     return item.status === '진행중';
+  //   } else if (filter === '진행완료') {
+  //     // 진행완료 아이템만 보기
+  //     return item.status === '진행완료';
+  //   }
+  //   return true; // 다른 경우 모두 보기
+  // });
 
   const handleFilterChange = (newFilter) => {
     setFilter(newFilter);
@@ -47,19 +49,9 @@ export default function WishList() {
   return (
     <Wrapper>
       <Header>
-        <a>찜한 마을</a>
+        <a>찜한 작물</a>
       </Header>
       <HeadLine></HeadLine>
-
-      {/* WishButton 컴포넌트를 렌더링하고 버튼 클릭 시 필터를 변경 */}
-      <WishButton>
-        <Button active={filter === '진행중'} onClick={() => handleFilterChange('진행중')}>
-          진행중
-        </Button>
-        <Button active={filter === '진행완료'} onClick={() => handleFilterChange('진행완료')}>
-          진행완료
-        </Button>
-      </WishButton>
 
       {showEmptyWish ? (
         <EmptyWish />
@@ -72,7 +64,6 @@ export default function WishList() {
                   <WishListItem key={item.id}>
                     <ItemImage src={item.imageUrl} alt={item.name} />
                     <ItemName>{item.name}</ItemName>
-                    <ItemInfo>{item.info}</ItemInfo>
                   </WishListItem>
                 ))}
               </Row>
@@ -95,7 +86,6 @@ function groupBy(arr, groupSize) {
     return acc;
   }, []);
 }
-
 const Wrapper = styled.div`
 
   display: flex;
@@ -140,39 +130,46 @@ const HeadLine = styled.div`
 const WishListWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  width : 55rem;
+  margin-left : 6rem;
+
 
 `;
 
 const WishListItems = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  
-  gap: 50px; // 이미지 간격을 조절합니다
+  margin-top : 3rem;
 `;
 
 const Row = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-bottom: 20px; // 행 간격 조절
+  margin-bottom: 2rem; // 행 간격 조절
 `;
 
 const WishListItem = styled.div`
   display: flex;
   flex-direction: column;
+  width: 24.4375rem;
+  height: 25rem;
+  align-items : center;
+  justify-content : center;
+  
 `;
 
 const ItemImage = styled.img`
   // 이미지에 대한 스타일을 추가하세요
   display : flex;
-  justify-content: space-between;
-  margin : 80px;
+  width: 20.8125rem;
+height: 14.5rem;
+flex-shrink: 0;
+border-radius: 1.25rem;
 
 `;
 
 const ItemName = styled.div`
-  margin-top : -36px;
+  margin-top : 1rem;
   display : flex;
   justify-content: center;
   color: #2A2A2A;
@@ -182,43 +179,5 @@ const ItemName = styled.div`
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-
-`;
-const ItemInfo = styled.div`
-margin-top : 10px;
-display : flex;
-justify-content: center;
-color: #2A2A2A;
-font-family: Inter;
-font-size: 18px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
-
-`;
-
-const WishButton = styled.div`
-
-margin-right: auto;
-margin-left: 350px;
-  display: flex;
-  width: 250px;
-  margin-top: 20px;
-
-`;
-
-const Button = styled.div`
-  
-display : flex;
-justify-content: center;
- text-align: center;
- flex-direction : column;
-width: 105px;
-height: 39px;
-flex-shrink: 0;
-border-radius: 25.5px;
-border: 1px solid #DFDFDF;
-background-color: ${(props) => (props.active ? '#ccc' : '#fff')}; /* 눌린 버튼은 회색, 아닌 버튼은 하얀색 */
-cursor : pointer;
 
 `;
