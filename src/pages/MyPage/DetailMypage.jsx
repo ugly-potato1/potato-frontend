@@ -9,6 +9,7 @@ import Review from '../../components/MyPage/MainContent/Review/Review';
 import FAQ from '../../components/MyPage/MainContent/FAQ';
 import Inquiry from '../../components/MyPage/MainContent/Inquiry';
 import ProfileBanner from '../../components/ProfileBanner';
+import SavedRecipes from '../../components/MyPage/MainContent/SavedRecipes';
 
 export default function DetailMypage() {
 
@@ -29,10 +30,10 @@ export default function DetailMypage() {
         setComp(<WishList/>)
         break;
       case 2:
-        setComp(<Cart/>)
+        setComp(<Review/>)
         break;
       case 3:
-        setComp(<Review/>)
+        setComp(<SavedRecipes/>)
         break;
       case 4: 
         setComp(<FAQ/>)
