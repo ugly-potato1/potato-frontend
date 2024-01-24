@@ -1,8 +1,17 @@
+import { useQuery } from '@tanstack/react-query';
 import styled from 'styled-components';
+import { getUserInfo } from '../../../apis/User';
 
 const CustomerDetail = ({ agreement, handleCheckboxChange }) => {
+  // 서버로 부터 사용자의 정보를 가져오는 요청
+  const { data, isLoading } = useQuery({
+    queryKey: ['customerInfo'],
+    queryFn: getUserInfo,
+  });
+  console.log(isLoading, data);
+  // 이후 data값에 들어있는 정보를 참고하여, 아래 이름, 이메일, 연락처에 넣어주는 과정 필요
   return (
-    <>
+    <Container>
       <h1>구매자 정보</h1>
       <h1>
         이름 <span className="value">홍길동</span>
@@ -21,52 +30,16 @@ const CustomerDetail = ({ agreement, handleCheckboxChange }) => {
         />
         <span>위 연락처와 이메일로의 수신에 동의합니다.</span>
       </label>
-    </>
+    </Container>
   );
 };
 
 export default CustomerDetail;
 
-const H1 = styled.h1`
-  span,
-  input {
-    position: absolute;
-    left: 150px;
-  }
-  input {
-    width: 446px;
-    font-size: 14px;
-    border-radius: 4px;
-    border: 1px solid #dfdfdf;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-left: 5px;
-    position: absolute;
-    top: -5px;
-  }
-`;
-const Span = styled.span`
-  .value {
-    font-weight: 400;
-    padding-bottom: 20px;
-  }
-`;
-const Label = styled.label`
-  font-size: 18px;
-  font-weight: 600;
-  padding-left: 25px;
-  margin-bottom: 40px;
-  position: relative;
+const Container = styled.div`
   display: flex;
-  align-items: center;
-  span {
-    color: #707070;
-    font-size: 14px;
-    font-weight: 500;
-    margin-left: 5px;
-  }
-`;
-const Input = styled.input`
-  position: absolute;
-  left: 150px;
+  flex-direction: column;
+  position: relative;
+  height: 250px;
+  margin-right: 50px;
 `;

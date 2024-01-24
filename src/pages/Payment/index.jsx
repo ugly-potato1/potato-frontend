@@ -3,9 +3,11 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import * as S from './styles';
 import CustomerDetail from '../../components/Payment/CustomerDetail';
+import TotalPayment from '../../components/Payment/TotalPayment';
 
 const Payment = () => {
   // 사용자의 배송지 목록을 가져오는 요청 + (배송지 추가 및 삭제에 대한 요청 고려)
+  // 이전 페이지로 부터 최종 금액을 받아오는 과정 필요 (ex. 이전페이지에서 Link의 state속성을 통해 넘겨주고 useLocation을 통해 받는식)
   const [agreement, setAgreement] = useState(false);
   const handleCheckboxChange = (e) => {
     setAgreement(e.target.checked);
@@ -52,12 +54,10 @@ const Payment = () => {
       <S.PageTitle>주문/결제</S.PageTitle>
       <S.Bar />
       <S.CustomerInfoContainer>
-        <S.CustomerDetail>
-          <CustomerDetail
-            handleCheckboxChange={handleCheckboxChange}
-            agreement={agreement}
-          />
-        </S.CustomerDetail>
+        <CustomerDetail
+          handleCheckboxChange={handleCheckboxChange}
+          agreement={agreement}
+        />
         <DeliverInfo>
           <h1>
             배송지 정보 <button>배송지 변경</button>
@@ -89,16 +89,7 @@ const Payment = () => {
           <h1>약관동의</h1>
         </AgreeMent>
       </S.CustomerInfoContainer>
-      <ButtonContainer>
-        <TotalFee>
-          <span>최종 구매 금액</span>
-          <span className="bold">67000원</span>
-          <ColumnBar />
-          <span>배송비</span>
-          <span className="bold">무료</span>
-        </TotalFee>
-        <PaymentBtn onClick={onClickPayment}>구매하기</PaymentBtn>
-      </ButtonContainer>
+      <TotalPayment onClickPayment={onClickPayment} fee={67000} />
     </S.PaymentLayout>
   );
 };
@@ -130,55 +121,4 @@ const AgreeMent = styled.div`
   flex-direction: column;
   position: relative;
   height: 100px;
-`;
-const ButtonContainer = styled.div`
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  width: 70%;
-  margin: 0 auto;
-  margin-top: 100px;
-  div,
-  button {
-    height: 65px;
-    flex-shrink: 0;
-    border-radius: 15px;
-  }
-  div {
-    max-width: 561px;
-    border: 1px solid #dfdfdf;
-    background: #fff;
-  }
-  button {
-    background: #ff4256;
-    color: white;
-    min-width: 400px;
-    position: absolute;
-    font-weight: 800;
-    font-size: 22px;
-    right: 0;
-  }
-`;
-const TotalFee = styled.div`
-  display: flex;
-  align-items: center;
-  span {
-    font-size: 22px;
-    font-weight: 500;
-    margin: 0 auto;
-  }
-  span.bold {
-    font-weight: 700;
-  }
-`;
-const PaymentBtn = styled.button``;
-
-const Bar = styled.div`
-  width: 70%;
-  height: 8px;
-  flex-shrink: 0;
-  background: #f3f3f3;
-  margin: 0 auto;
-  margin-top: 35px;
-  margin-bottom: 35px;
 `;
