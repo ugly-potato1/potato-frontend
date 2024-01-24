@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { styled } from 'styled-components'
+import axios from 'axios';
 import { FiSearch } from "react-icons/fi";
 import Image01 from './imgs/img1.png'
 import Image02 from './imgs/img2.png'
@@ -16,30 +17,63 @@ export default function Community() {
         else if(selectedTag === tag)
             setSelectedTag(null);
      };
+     
 
 
-    const [Keyword1, SetKeyword1] = useState(["#여름", "#가벼운"]);
-    const [Keyword2, SetKeyword2] = useState(["#여름", "#소화가 잘 되는"]);
-    const [Keyword3, SetKeyword3] = useState(["#여름", "#디저트"]);
+    const [data, setData] = useState([{
+        "theme": "",
+        "Keyword1": {"word": ["", ""],
+                    "img": "https://static.hillarys.co.uk/asset/media/9635/pure-white.jpg?width=620&height=620&mode=crop&cb=00010101000000&mcb=5f884e47a7424cfe86340315ccaafed0",
+                    "url": "/ingredients/tomato"},
+        "Keyword2": {"word": ["#다이어트", "#에피타이저"],
+                    "img": "https://static.hillarys.co.uk/asset/media/9635/pure-white.jpg?width=620&height=620&mode=crop&cb=00010101000000&mcb=5f884e47a7424cfe86340315ccaafed0",
+                    "url": "/ingredients/plum"},
+        "Keyword3": {"word": ["#여름", "#디저트"],
+                    "img": "https://static.hillarys.co.uk/asset/media/9635/pure-white.jpg?width=620&height=620&mode=crop&cb=00010101000000&mcb=5f884e47a7424cfe86340315ccaafed0",
+                    "url": "/ingredients/cherry"}
+    },{
+        "theme": "",
+        "Keyword1": {"word": ["#가벼운", "#디저트"],
+                    "img": "https://static.hillarys.co.uk/asset/media/9635/pure-white.jpg?width=620&height=620&mode=crop&cb=00010101000000&mcb=5f884e47a7424cfe86340315ccaafed0",
+                    "url": "/ingredients/tomato"},
+        "Keyword2": {"word": ["#다이어트", "#에피타이저"],
+                    "img": "https://static.hillarys.co.uk/asset/media/9635/pure-white.jpg?width=620&height=620&mode=crop&cb=00010101000000&mcb=5f884e47a7424cfe86340315ccaafed0",
+                    "url": "/ingredients/plum"},
+        "Keyword3": {"word": ["#여름", "#디저트"],
+                    "img": "https://static.hillarys.co.uk/asset/media/9635/pure-white.jpg?width=620&height=620&mode=crop&cb=00010101000000&mcb=5f884e47a7424cfe86340315ccaafed0",
+                    "url": "/ingredients/cherry"}
+    },{
+        "theme": "",
+        "Keyword1": {"word": ["#가벼운", "#디저트"],
+                    "img": "https://static.hillarys.co.uk/asset/media/9635/pure-white.jpg?width=620&height=620&mode=crop&cb=00010101000000&mcb=5f884e47a7424cfe86340315ccaafed0",
+                    "url": "/ingredients/tomato"},
+        "Keyword2": {"word": ["#다이어트", "#에피타이저"],
+                    "img": "https://static.hillarys.co.uk/asset/media/9635/pure-white.jpg?width=620&height=620&mode=crop&cb=00010101000000&mcb=5f884e47a7424cfe86340315ccaafed0",
+                    "url": "/ingredients/plum"},
+        "Keyword3": {"word": ["#여름", "#디저트"],
+                    "img": "https://static.hillarys.co.uk/asset/media/9635/pure-white.jpg?width=620&height=620&mode=crop&cb=00010101000000&mcb=5f884e47a7424cfe86340315ccaafed0",
+                    "url": "/ingredients/cherry"}
+    }]);
 
-    const [data, setData] = useState(
-        {
-            "theme": "여름 테마",
-            "Keyword1": {"word": ["#가벼운", "#디저트"],
-                        "img": "https://img1.daumcdn.net/thumb/R658x0.q70/?fname=http://t1.daumcdn.net/news/201708/19/chosun/20170819030343637qedb.jpg",
-                        "url": "/ingredients/tomato"},
-            "Keyword2": {"word": ["#다이어트", "#에피타이저"],
-                        "img": "http://www.traveli.co.kr/repository/show/contents/S20141109140543m0.jpg",
-                        "url": "/ingredients/plum"},
-            "Keyword3": {"word": ["#제철", "#든든한"],
-                        "img": "https://mblogthumb-phinf.pstatic.net/MjAxODA3MDFfMjYz/MDAxNTMwNDE0MzU2NjM4.twgInRnMnNVHLizOmRpoiAaULVWto2lZHdneDFIVncAg.hQMj9E5AnqBnZlmYqKmtquGE6XLfh0ACG47bS5zYcdUg.JPEG.insuart/IMG_7503.JPG?type=w800",
-                        "url": "/ingredients/cherry"},
+    const getCommunity = async () => {
+        try {
+          const {data} = await axios.get(`/data/Community/community.json`)
+          return data
         }
-    )
-    let newData = null;
-    useEffect(() =>{
-        newData = data // 태그 따라 걸러주는거
-      },[selectedTag])
+        catch(error) {
+          console.log(error)
+        }
+      }
+
+    useEffect(() => {
+    getCommunity()
+    .then((res) => {
+    setData(res);
+    })}, [])
+
+    // useEffect(() =>{
+
+    // },[selectedTag])
 
     return (
         <Wrapper>
@@ -68,13 +102,13 @@ export default function Community() {
             </Container>
             {(selectedTag === null) ? //tag 선택되면 컨텐츠 필터링
             (<div>
-            <ContentWrap color={'#FFF4F4'} data={data}>
+            <ContentWrap color={'#FFF4F4'} data={data[0]}>
 
             </ContentWrap>
-            <ContentWrap data={data}>
+            <ContentWrap data={data[1]}>
 
             </ContentWrap>
-            <ContentWrap data={data}>
+            <ContentWrap data={data[2]}>
 
             </ContentWrap>
             </div>) :

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {ReactComponent as Farmely} from '../../assets/imgs/Farmely3.svg'
 import apple1 from '../../assets/imgs/Intro/image 173.png'
 import apple2 from '../../assets/imgs/Intro/image 170.png'
@@ -39,6 +39,10 @@ const TitleOrContent = [{key: "Title", value: "제목"},
                     {key: "TitleContent", value: "제목+내용"}];
 
 export default function Intro() {
+
+  useEffect(() =>{
+    window.scrollTo(0, 0);},[]);
+    
   return (
     <>
     <div className='w-full h-auto box-border flex flex-col items-center justify-between overflow-hidden'>
