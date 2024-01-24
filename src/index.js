@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import axios from 'axios';
 import Main from './pages/Main';
 import Login from './pages/Login';
 import Intro from './pages/Intro';
@@ -25,6 +26,9 @@ import Ingredients from './pages/Community/Ingredients';
 import Recipe from './pages/Community/Recipe';
 import Buying from './pages/Buying/Buying';
 import Payment from './pages/Payment';
+
+axios.defaults.baseURL = process.env.REACT_APP_SERVER_URL;
+axios.defaults.withCredentials = true;
 
 const router = createBrowserRouter([
   {
