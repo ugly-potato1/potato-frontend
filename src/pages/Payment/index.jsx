@@ -1,15 +1,19 @@
 import { ReactComponent as ColumnBar } from '../../assets/imgs/Payment/columnBar.svg';
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import * as S from './styles';
+import CustomerDetail from '../../components/Payment/CustomerDetail';
+import TotalPayment from '../../components/Payment/TotalPayment';
 
 const Payment = () => {
-  // 배송지 저장할 state필요 (배송지 변경시에 state를 바꾸어 주어야 하며, 기본 배송지도 알아야함)
-  const [agree, setAgree] = useState(false);
+  // 사용자의 배송지 목록을 가져오는 요청 + (배송지 추가 및 삭제에 대한 요청 고려)
+  // 이전 페이지로 부터 최종 금액을 받아오는 과정 필요 (ex. 이전페이지에서 Link의 state속성을 통해 넘겨주고 useLocation을 통해 받는식)
+  const [agreement, setAgreement] = useState(false);
   const handleCheckboxChange = (e) => {
-    setAgree(e.target.checked);
+    setAgreement(e.target.checked);
   };
   const onClickPayment = () => {
-    if (!agree) {
+    if (!agreement) {
       alert('먼저 연락처와 이메일로의 수신에 동의하세요!');
       return;
     }
@@ -46,30 +50,14 @@ const Payment = () => {
   };
 
   return (
-    <PaymentLayout>
-      <PageTitle>주문/결제</PageTitle>
-      <Bar />
-      <CustomerInfo>
-        <CustomerDetail>
-          <h1>구매자 정보</h1>
-          <h1>
-            이름 <span className="value">홍길동</span>
-          </h1>
-          <h1>
-            이메일 <span className="value">OOOOO@naver.com</span>
-          </h1>
-          <h1>
-            연락처 <span className="value">010-1234-5678</span>
-          </h1>
-          <label>
-            <input
-              type="checkbox"
-              checked={agree}
-              onChange={handleCheckboxChange}
-            />
-            <span>위 연락처와 이메일로의 수신에 동의합니다.</span>
-          </label>
-        </CustomerDetail>
+    <S.PaymentLayout>
+      <S.PageTitle>주문/결제</S.PageTitle>
+      <S.Bar />
+      <S.CustomerInfoContainer>
+        <CustomerDetail
+          handleCheckboxChange={handleCheckboxChange}
+          agreement={agreement}
+        />
         <DeliverInfo>
           <h1>
             배송지 정보 <button>배송지 변경</button>
@@ -94,118 +82,20 @@ const Payment = () => {
             <input type="text" placeholder="ex) 초인종 누르지 말아 주세요~!" />
           </h1>
         </DeliverInfo>
-      </CustomerInfo>
-      <BottonContainer>
-        <TotalFee>
-          <span>최종 구매 금액</span>
-          <span className="bold">67000원</span>
-          <ColumnBar />
-          <span>배송비</span>
-          <span className="bold">무료</span>
-        </TotalFee>
-        <PaymentBtn onClick={onClickPayment}>구매하기</PaymentBtn>
-      </BottonContainer>
-    </PaymentLayout>
+        <PaymentMethod style={{ boxShadow: 'none' }}>
+          <h1>결제 수단</h1>
+        </PaymentMethod>
+        <AgreeMent style={{ boxShadow: 'none' }}>
+          <h1>약관동의</h1>
+        </AgreeMent>
+      </S.CustomerInfoContainer>
+      <TotalPayment onClickPayment={onClickPayment} fee={67000} />
+    </S.PaymentLayout>
   );
 };
 
 export default Payment;
 
-const PaymentLayout = styled.div`
-  display: flex;
-  flex-direction: column;
-  min-width: 1300px;
-  max-width: 1800px;
-  margin: 0 auto;
-`;
-const PageTitle = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-width: 1200px;
-  font-size: 28px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  letter-spacing: 0.56px;
-`;
-const CustomerInfo = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 80%;
-  min-width: 1200px;
-  margin: 0 auto;
-  div {
-    border-radius: 15px;
-    background: #fff;
-    box-shadow: 0px 0px 13px 0px rgba(0, 0, 0, 0.12);
-    margin-top: 50px;
-    margin-bottom: 30px;
-    flex-shrink: 0;
-    width: 100%;
-  }
-  div:not(:first-child) {
-    margin-top: 70px;
-  }
-  h1:first-child {
-    position: absolute;
-    top: -45px;
-    left: -20px;
-    font-size: 22px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    letter-spacing: 0.44px;
-  }
-  h1:not(first-child),
-  label {
-    font-size: 18px;
-    font-weight: 600;
-    padding-left: 25px;
-    margin-bottom: 40px;
-    position: relative;
-  }
-  h1:nth-child(2) {
-    padding-top: 30px;
-  }
-  h1 span,
-  h1 input {
-    position: absolute;
-    left: 150px;
-  }
-  .value {
-    font-weight: 400;
-    padding-bottom: 20px;
-  }
-  label {
-    display: flex;
-    align-items: center;
-  }
-  label span {
-    color: #707070;
-    font-size: 14px;
-    font-weight: 500;
-    margin-left: 5px;
-  }
-  h1 input {
-    width: 446px;
-    font-size: 14px;
-    border-radius: 4px;
-    border: 1px solid #dfdfdf;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-left: 5px;
-    position: absolute;
-    top: -5px;
-  }
-`;
-const CustomerDetail = styled.div`
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  height: 250px;
-  margin-right: 50px;
-`;
 const DeliverInfo = styled.div`
   display: flex;
   flex-direction: column;
@@ -220,56 +110,15 @@ const DeliverInfo = styled.div`
     border-radius: 5px;
   }
 `;
-const BottonContainer = styled.div`
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  min-width: 1200px;
-  width: 80%;
-  margin: 0 auto;
-  margin-top: 50px;
-  div,
-  button {
-    height: 65px;
-    flex-shrink: 0;
-    border-radius: 15px;
-  }
-  div {
-    max-width: 561px;
-    border: 1px solid #dfdfdf;
-    background: #fff;
-  }
-  button {
-    background: #ff4256;
-    color: white;
-    min-width: 464px;
-    position: absolute;
-    font-weight: 800;
-    font-size: 22px;
-    right: 0;
-  }
-`;
-const TotalFee = styled.div`
+const PaymentMethod = styled.div`
   display: flex;
-  align-items: center;
-  span {
-    font-size: 22px;
-    font-weight: 500;
-    margin: 0 auto;
-  }
-  span.bold {
-    font-weight: 700;
-  }
+  flex-direction: column;
+  position: relative;
+  height: 100px;
 `;
-const PaymentBtn = styled.button``;
-
-const Bar = styled.div`
-  width: 80%;
-  min-width: 1200px;
-  height: 8px;
-  flex-shrink: 0;
-  background: #f3f3f3;
-  margin: 0 auto;
-  margin-top: 35px;
-  margin-bottom: 35px;
+const AgreeMent = styled.div`
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: 100px;
 `;
