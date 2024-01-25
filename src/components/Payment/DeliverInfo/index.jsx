@@ -20,7 +20,8 @@ const DeliverInfo = ({
       <h1>
         배송주소{' '}
         <span className="value">
-          [{currentAddress.zoneCode}] {currentAddress.address}
+          [{currentAddress.zoneCode}] {currentAddress.address}{' '}
+          {currentAddress.detailAddress}
         </span>
       </h1>
       <hr style={{ width: '95%', margin: '0 auto', marginBottom: '30px' }} />
