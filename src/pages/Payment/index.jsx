@@ -166,6 +166,17 @@ const Payment = () => {
       setChangeAddress(false);
     },
   });
+  // 배송지 추가 요청
+  const { mutate: handleAddAddress } = useMutation({
+    mutationFn: (address) => fetchAddAddress(address),
+    onSuccess: () => {
+      // queryClient.invalidateQueries(['totalUserAddress']);
+      // 위와 같이 삭제한 후, 전체적인 주소목록에 대해 다시 refetch하는 과정 필요 or 백엔드로 부터 수정된 값들을 받아와서 총배송지를 다시 설정해주는 방법도 있음
+    },
+    onError: () => {
+      console.log('배송지 추가 요청 실패');
+    },
+  });
   const {
     register,
     handleSubmit,
@@ -178,6 +189,10 @@ const Payment = () => {
     console.log('백으로 보낼 추가 배송지에 대한 정보', data);
     console.log(myZoneCode);
     console.log('배송지 요청 사항', deliverRequest);
+    const sendAddress = { ...data, myZoneCode, deliverRequest };
+    console.log('백엔드에 최종적으로 보낼 인수', sendAddress);
+
+    handleAddAddress(sendAddress); // 배송지 추가 요청하는 부분
     cancleNewAddress();
   };
   const open = useDaumPostcodePopup();
