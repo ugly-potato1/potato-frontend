@@ -17,6 +17,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { fetchDeleteAddress } from '../../apis/Payment';
 import { useForm } from 'react-hook-form';
 import { useDaumPostcodePopup } from 'react-daum-postcode';
+import DeliverChoosePopup from '../../components/Payment/DeliverChoosePopup';
 
 // 사용자 전체 배송지 목록 (더미데이터)
 const addressList = [
@@ -86,6 +87,7 @@ const Payment = () => {
     setDeliverRequest(e.target.value);
   };
   const onClickPayment = () => {
+    console.log('배송지 요청 사항', deliverRequest);
     if (!agreement) {
       alert('먼저 연락처와 이메일로의 수신에 동의하세요!');
       return;
@@ -147,6 +149,7 @@ const Payment = () => {
   };
   const handleSelectAddress = (address) => {
     setCurrentAddress(address);
+    document.body.style.overflow = 'auto';
     setChangeAddress(false);
   };
   const handleAddressInclude = (e) => {
@@ -159,10 +162,12 @@ const Payment = () => {
     onSuccess: () => {
       // queryClient.invalidateQueries(['totalUserAddress']);
       // 위와 같이 삭제한 후, 전체적인 주소목록에 대해 다시 refetch하는 과정 필요 or 백엔드로 부터 수정된 값들을 받아와서 총배송지를 다시 설정해주는 방법도 있음
+      document.body.style.overflow = 'auto';
       setChangeAddress(false);
     },
     onError: () => {
       console.log('배송지 삭제 요청 실패');
+      document.body.style.overflow = 'auto';
       setChangeAddress(false);
     },
   });
@@ -172,8 +177,10 @@ const Payment = () => {
     onSuccess: () => {
       // queryClient.invalidateQueries(['totalUserAddress']);
       // 위와 같이 삭제한 후, 전체적인 주소목록에 대해 다시 refetch하는 과정 필요 or 백엔드로 부터 수정된 값들을 받아와서 총배송지를 다시 설정해주는 방법도 있음
+      document.body.style.overflow = 'auto';
     },
     onError: () => {
+      document.body.style.overflow = 'auto';
       console.log('배송지 추가 요청 실패');
     },
   });
@@ -188,8 +195,7 @@ const Payment = () => {
   const onValid = (data) => {
     console.log('백으로 보낼 추가 배송지에 대한 정보', data);
     console.log(myZoneCode);
-    console.log('배송지 요청 사항', deliverRequest);
-    const sendAddress = { ...data, myZoneCode, deliverRequest };
+    const sendAddress = { ...data, myZoneCode };
     console.log('백엔드에 최종적으로 보낼 인수', sendAddress);
 
     handleAddAddress(sendAddress); // 배송지 추가 요청하는 부분
@@ -247,51 +253,13 @@ const Payment = () => {
       </S.PaymentLayout>
       {isChangeAddress && (
         <Overlay>
-          <DeliveryBox>
-            <PopUpTitle>
-              <h1>배송지 선택</h1>
-              <CancleBtn onClick={cancleChangeAddress} />
-              <hr />
-            </PopUpTitle>
-            <DeliveryList>
-              {addressList.map((address) => (
-                <DeliveryItem
-                  key={address.addressId}
-                  isDefault={address.isDefault}
-                >
-                  {address.isDefault && (
-                    <UserInfo>
-                      <DefaultAddress />
-                    </UserInfo>
-                  )}
-                  <UserInfo style={{ fontWeight: '600' }}>
-                    <IconUser />
-                    {address.customerName}
-                  </UserInfo>
-                  <UserInfo>
-                    <IconPhone />
-                    {address.phoneNumber}
-                  </UserInfo>
-                  <UserInfo>
-                    <IconLocation />
-                    {address.address}
-                  </UserInfo>
-                  <UserInfo style={{ paddingLeft: '35px' }}>
-                    {address.detailAddress}
-                  </UserInfo>
-                  <DeleteAddArea>
-                    <IconDelete
-                      onClick={() => handleDeleteAddress(address.addressId)}
-                    />
-                    <IconSelect onClick={() => handleSelectAddress(address)} />
-                  </DeleteAddArea>
-                </DeliveryItem>
-              ))}
-            </DeliveryList>
-            <NewAddressBtn onClick={onClickNewAddress}>
-              신규 배송지 추가
-            </NewAddressBtn>
-          </DeliveryBox>
+          <DeliverChoosePopup
+            cancleChangeAddress={cancleChangeAddress}
+            addressList={addressList}
+            handleDeleteAddress={handleDeleteAddress}
+            handleSelectAddress={handleSelectAddress}
+            onClickNewAddress={onClickNewAddress}
+          />
         </Overlay>
       )}
       {isNewAddress && (
@@ -529,7 +497,8 @@ const NewAddressBox = styled.div`
   height: 70vh;
   border-radius: 16px;
   background: #fff;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
 `;
 const NewAddressForm = styled.form`
   width: 80%;
