@@ -16,6 +16,7 @@ import * as S from './styles';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { fetchDeleteAddress } from '../../apis/Payment';
 import { useForm } from 'react-hook-form';
+import { useDaumPostcodePopup } from 'react-daum-postcode';
 
 // 사용자 전체 배송지 목록 (더미데이터)
 const addressList = [
@@ -76,7 +77,7 @@ const Payment = () => {
   const [isChangeAddress, setChangeAddress] = useState(false); // 배송지 변경 클릭 유무 확인
   const [isNewAddress, setNewAddress] = useState(false); // 신규 배송지 추가 확인
   const [myZoneCode, setMyZondeCode] = useState(null); // zoneCode 상태
-  const [isAddressInclude, setAddressInclude] = useState(null); // 상세주소 컴포넌트를 보여주기 위해, 앞서 주소가 입력되었는지 확인할 변수
+  const [isAddressInclude, setAddressInclude] = useState(null); // 상세주소 컴포넌트를 보여주기 위해, 앞서 주소가 입력되었는지 확인할 변수 + 우편번호 찾기를 통해 찾은 전체주소에 해당함
 
   const handleCheckboxChange = (e) => {
     setAgreement(e.target.checked);
@@ -144,7 +145,6 @@ const Payment = () => {
     setAddressInclude(null);
     setNewAddress(false);
   };
-
   const handleSelectAddress = (address) => {
     setCurrentAddress(address);
     setChangeAddress(false);
@@ -162,6 +162,7 @@ const Payment = () => {
       setChangeAddress(false);
     },
     onError: () => {
+      console.log('배송지 삭제 요청 실패');
       setChangeAddress(false);
     },
   });
@@ -170,13 +171,39 @@ const Payment = () => {
     handleSubmit,
     formState: { errors },
     setValue,
-    getValues,
   } = useForm({ mode: 'onSubmit' });
 
-  // 백엔드로 주소 추가 요청 보내는 함수 + 주소 추가요청 이후, 전체 주소에 대한 정보를 다시 받아와야함
+  // 백엔드로 신규 배송지 추가 요청 보내는 함수 + 주소 추가요청 이후, 전체 주소에 대한 정보를 다시 받아와야함
   const onValid = (data) => {
-    console.log(data);
+    console.log('백으로 보낼 추가 배송지에 대한 정보', data);
+    console.log(myZoneCode);
+    console.log('배송지 요청 사항', deliverRequest);
     cancleNewAddress();
+  };
+  const open = useDaumPostcodePopup();
+  const handleClick = () => {
+    open({ onComplete: onCompleteHandler });
+  };
+  const onCompleteHandler = (data) => {
+    console.log('우편 api로 부터 오는 값', data);
+
+    let fullAddress = data.address;
+    let extraAddress = '';
+
+    if (data.addressType === 'R') {
+      if (data.bname !== '') {
+        extraAddress += data.bname;
+      }
+      if (data.buildingName !== '') {
+        extraAddress +=
+          extraAddress !== '' ? `, ${data.buildingName}` : data.buildingName;
+      }
+      fullAddress += extraAddress !== '' ? ` (${extraAddress})` : '';
+    }
+
+    setMyZondeCode(data.zonecode);
+    setAddressInclude(fullAddress);
+    setValue('address', fullAddress);
   };
 
   return (
@@ -256,7 +283,7 @@ const Payment = () => {
         <Overlay>
           <NewAddressBox>
             <PopUpTitle>
-              <h1>신규 배송지 추가 </h1>
+              <h1>신규 배송지 추가</h1>
               <CancleBtn onClick={cancleNewAddress} />
               <hr />
             </PopUpTitle>
@@ -301,10 +328,14 @@ const Payment = () => {
                 <NewAddressInput
                   {...register('address', { required: '주소를 입력해주세요.' })}
                   placeholder="우편번호 찾기"
+                  value={isAddressInclude}
                   onInput={handleAddressInclude}
                 />
-                <ZoneCodeArea>[{myZoneCode}]</ZoneCodeArea>
-                <IconSearchAddress className="searchAddress" />
+                <ZoneCodeArea>{myZoneCode && `[${myZoneCode}]`}</ZoneCodeArea>
+                <IconSearchAddress
+                  className="searchAddress"
+                  onClick={handleClick}
+                />
                 {isAddressInclude && (
                   <NewAddressInput
                     {...register('detailAddress', {
