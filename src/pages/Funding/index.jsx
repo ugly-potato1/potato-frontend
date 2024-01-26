@@ -1,182 +1,165 @@
-import React from 'react';
-import styled from 'styled-components';
-import { Link, Outlet } from 'react-router-dom';
+import IconTomato from '../../assets/imgs/Funding/Tomato.png';
+import IconPeach from '../../assets/imgs/Funding/Peach.png';
+import IconPlum from '../../assets/imgs/Funding/Plum.png';
+import { ReactComponent as IconGoCity } from '../../assets/imgs/Funding/IconGoCity.svg';
+import { useState } from 'react';
+import * as S from './styles';
+import { useNavigate } from 'react-router-dom';
 
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-left: 180px;
-  margin-right: 180px;
-`;
+//백으로 부터 받아올 도시들에 대한 더미데이터
+const cities = [
+  {
+    id: 1,
+    cityName: '청주',
+    advertisement: '저렴한 가격! 신선한 과일! 청주 못난이 과일을 맛보세요!',
+    fruits: [
+      {
+        fruitName: '토마토',
+        fruitImage: IconTomato,
+      },
+      { fruitName: '매실', fruitImage: IconPlum },
+      { fruitName: '자두', fruitImage: IconPeach },
+    ],
+  },
+  {
+    id: 2,
+    cityName: '상주',
+    advertisement: '상상주주상상주주 상주 못난이 과일을 맛보세요!',
+    fruits: [
+      {
+        fruitName: '토마토',
+        fruitImage: IconTomato,
+      },
+      { fruitName: '매실', fruitImage: IconPlum },
+      { fruitName: '자두', fruitImage: IconPeach },
+    ],
+  },
+  {
+    id: 3,
+    cityName: '여주',
+    advertisement: '여주여주여주 여주 못난이 과일을 맛보세요!',
+    fruits: [
+      {
+        fruitName: '토마토',
+        fruitImage: IconTomato,
+      },
+      { fruitName: '매실', fruitImage: IconPlum },
+      { fruitName: '자두', fruitImage: IconPeach },
+    ],
+  },
+  {
+    id: 4,
+    cityName: '봉화',
+    advertisement: '봉화봉화봉화 봉화 못난이 과일을 맛보세요!',
+    fruits: [
+      {
+        fruitName: '토마토',
+        fruitImage: IconTomato,
+      },
+      { fruitName: '매실', fruitImage: IconPlum },
+      { fruitName: '자두', fruitImage: IconPeach },
+    ],
+  },
+  {
+    id: 5,
+    cityName: '창녕',
+    advertisement: '창녕창녕창녕 창녕 못난이 과일을 맛보세요!',
+    fruits: [
+      {
+        fruitName: '토마토',
+        fruitImage: IconTomato,
+      },
+      { fruitName: '매실', fruitImage: IconPlum },
+      { fruitName: '자두', fruitImage: IconPeach },
+    ],
+  },
+  {
+    id: 6,
+    cityName: '고원',
+    advertisement: '고원고원고원 고원 못난이 과일을 맛보세요!',
+    fruits: [
+      {
+        fruitName: '토마토',
+        fruitImage: IconTomato,
+      },
+      { fruitName: '매실', fruitImage: IconPlum },
+      { fruitName: '자두', fruitImage: IconPeach },
+    ],
+  },
+  {
+    id: 7,
+    cityName: '사천',
+    advertisement: '사천사천사천 사천 못난이 과일을 맛보세요!',
+    fruits: [
+      {
+        fruitName: '토마토',
+        fruitImage: IconTomato,
+      },
+      { fruitName: '매실', fruitImage: IconPlum },
+      { fruitName: '자두', fruitImage: IconPeach },
+    ],
+  },
+];
 
-const Banner = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #ff6565;
-  width: 1080px;
-  height: 89px;
-  border-radius: 15px;
-  color: white;
-  padding: 10px 50px;
-  margin-top: 10px;
-  span:first-child {
-    font-size: 18px;
-    font-weight: 600;
-    width: 158px;
-    height: 21px;
-  }
-  span:last-child {
-    font-size: 17px;
-    font-weight: 600;
-    width: 203px;
-    height: 44px;
-    background-color: white;
-    color: #ff6565;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 30px;
-    letter-spacing: 0.34px;
-  }
-`;
-
-const Row = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  margin-top: 109px;
-`;
-
-const Detail = styled.div`
-  display: flex;
-  flex-direction: column;
-  opacity: 0;
-  width: 335px;
-  height: 232px;
-  color: white;
-  border-radius: 20px;
-`;
-
-const DetailTitle = styled.div`
-  width: 87px;
-  height: 30px;
-  font-size: 25px;
-  font-weight: 700;
-  margin: 0 auto;
-  margin-top: 25px;
-`;
-
-const DetailInfo = styled.div`
-  width: 242px;
-  height: 60px;
-  font-size: 17px;
-  font-weight: 600;
-  margin: 0 auto;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  line-clamp: 5;
-  margin-top: 25px;
-`;
-
-const Box = styled.div`
-  background-color: #ff6565;
-  width: 335px;
-  height: 232px;
-  border-radius: 20px;
-  margin-right: 37px;
-  position: relative;
-  margin-bottom: 109px;
-
-  &:hover {
-    ${Detail} {
-      transition: all 0.3s;
-      opacity: 1;
-      background-color: rgba(0, 0, 0, 0.4);
-    }
-  }
-`;
-
-const Country = styled.div`
-  width: 80px;
-  height: 30px;
-  font-size: 20px;
-  font-weight: 600;
-  text-align: center;
-  position: absolute;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-  bottom: -50px;
-`;
-
-export default function Funding() {
-  const countryInfo = [
-    {
-      id: 1,
-      name: '전주마을',
-      detail:
-        '우리 전주마을은 ~~~~~~~~~~~ ~~~~~~~~~~~~~~~~~~~~----------------------------------aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
-    },
-    {
-      id: 2,
-      name: '전주마을',
-      detail:
-        '우리 전주마을은 ~~~~~~~~~~~ ~~~~~~~~~~~~~~~~~~~~----------------------------------aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
-    },
-    {
-      id: 3,
-      name: '전주마을',
-      detail:
-        '우리 전주마을은 ~~~~~~~~~~~ ~~~~~~~~~~~~~~~~~~~~----------------------------------aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
-    },
-    {
-      id: 4,
-      name: '전주마을',
-      detail:
-        '우리 전주마을은 ~~~~~~~~~~~ ~~~~~~~~~~~~~~~~~~~~----------------------------------aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
-    },
-    {
-      id: 5,
-      name: '전주마을',
-      detail:
-        '우리 전주마을은 ~~~~~~~~~~~ ~~~~~~~~~~~~~~~~~~~~----------------------------------aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
-    },
-    {
-      id: 6,
-      name: '전주마을',
-      detail:
-        '우리 전주마을은 ~~~~~~~~~~~ ~~~~~~~~~~~~~~~~~~~~----------------------------------aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
-    },
-  ];
+const Funding = () => {
+  // 백엔드로 부터 총 마을 받아오는 과정 필요 + 이때 각 마을에 어떠한 상품들이 있는지에 대한 정보로 함께와야함 (상품들의 이미지를 보여주기 위함 + a)
+  // 위의 cities변수처럼 총마을을 저장해두는 변수 필요 + 총마을에 대한 정보를 받아왔을때, setSelectCity를 통해, 받아온 마을 중 첫번째마을로 selectCity변수를 초기화할것
+  // 또한 아래에 "보러가기 클릭시 라우팅 변수로 해당 도시이름을 적어주고, /funding/buying/:cityName"에서는 라우트 변수를 받아 따로 서버에 요청해야함
+  const [selectCity, setSelectCity] = useState({
+    id: 1,
+    cityName: '청주',
+    advertisement: '저렴한 가격! 신선한 과일! 청주 못난이 과일을 맛보세요!',
+    fruits: [
+      {
+        fruitName: '토마토',
+        fruitImage: IconTomato,
+      },
+      { fruitName: '매실', fruitImage: IconPlum },
+      { fruitName: '자두', fruitImage: IconPeach },
+    ],
+  });
+  const navigate = useNavigate();
 
   return (
-    <>
-      <Wrapper>
-        <Banner>
-          <span>펀딩이 처음 이신가요?</span>
-          <span>
-            <Link to="/">이용방법보러가기 ↓</Link>
-          </span>
-        </Banner>
-        <Row>
-          {countryInfo.map((country) => (
-            <>
-              <Link to="/funding/buying">
-                <Box>
-                  <Country>{country.name}</Country>
-                  <Detail>
-                    <DetailTitle>{country.name}</DetailTitle>
-                    <DetailInfo>{country.detail}</DetailInfo>
-                  </Detail>
-                </Box>
-              </Link>
-            </>
+    <S.FundingLayout>
+      <S.PageTitle>겨울 제철 못난이</S.PageTitle>
+      <S.CityContainer>
+        <S.CityList>
+          {cities.map((city) => (
+            <S.CityItem
+              key={city.id}
+              isselected={selectCity.cityName === city.cityName}
+              onClick={() => setSelectCity(city)}
+            >
+              {city.cityName}
+            </S.CityItem>
           ))}
-        </Row>
-      </Wrapper>
-      ;
-    </>
+        </S.CityList>
+      </S.CityContainer>
+      <S.FruitContainer>
+        <S.SelectedCityTitle>{selectCity.cityName}</S.SelectedCityTitle>
+        <S.SelectedCityAdvertisement>
+          {selectCity.advertisement}
+          <IconGoCity
+            onClick={() => {
+              navigate('/funding/buying');
+              window.scrollTo(0, 0);
+            }}
+          />
+        </S.SelectedCityAdvertisement>
+        <S.SelectedCityFruitContainer>
+          <S.SelectedCityFruitList>
+            {selectCity.fruits.map((fruit, idx) => (
+              <S.SelectedCityFruitItem key={idx}>
+                <img src={`${fruit.fruitImage}`} />
+                <h1>{fruit.fruitName}</h1>
+              </S.SelectedCityFruitItem>
+            ))}
+          </S.SelectedCityFruitList>
+        </S.SelectedCityFruitContainer>
+      </S.FruitContainer>
+    </S.FundingLayout>
   );
-}
+};
+
+export default Funding;

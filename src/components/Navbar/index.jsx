@@ -11,7 +11,7 @@ export default function Navbar() {
   const [isLogin, setIsLogin] = useRecoilState(UserLoginState);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const introMatch = useMatch('/intro');
-  const fundingBuyingMatch = useMatch('/funding/buying');
+  const fundingMatch = useMatch('/funding');
   const communityMatch = useMatch('/community');
   const popupMatch = useMatch('/popup');
   const paymentMatch = useMatch('/payment');
@@ -65,7 +65,7 @@ export default function Navbar() {
           {isMenuOpen && (
             <HambergerMenu>
               <NavLink to="/intro">파밀리 소개</NavLink>
-              <NavLink to="/funding/buying">제철 못난이</NavLink>
+              <NavLink to="/funding">제철 못난이</NavLink>
               <NavLink to="/community">커뮤니티</NavLink>
               <NavLink to="/popup">파밀리 팝업</NavLink>
               <NavLink to="/popup" className="diff">
@@ -98,8 +98,8 @@ export default function Navbar() {
           </NavLink>
         ) : (
           <NavLink
-            to="/funding/buying"
-            style={{ color: fundingBuyingMatch ? '#ff4256' : '' }}
+            to="/funding"
+            style={{ color: fundingMatch ? '#ff4256' : '' }}
           >
             제철못난이
           </NavLink>
