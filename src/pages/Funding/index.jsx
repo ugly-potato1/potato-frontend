@@ -128,7 +128,7 @@ const Funding = () => {
           {cities.map((city) => (
             <S.CityItem
               key={city.id}
-              isSelected={selectCity.cityName === city.cityName}
+              isselected={selectCity.cityName === city.cityName}
               onClick={() => setSelectCity(city)}
             >
               {city.cityName}
@@ -149,8 +149,8 @@ const Funding = () => {
         </S.SelectedCityAdvertisement>
         <S.SelectedCityFruitContainer>
           <S.SelectedCityFruitList>
-            {selectCity.fruits.map((fruit) => (
-              <S.SelectedCityFruitItem>
+            {selectCity.fruits.map((fruit, idx) => (
+              <S.SelectedCityFruitItem key={idx}>
                 <img src={`${fruit.fruitImage}`} />
                 <h1>{fruit.fruitName}</h1>
               </S.SelectedCityFruitItem>
