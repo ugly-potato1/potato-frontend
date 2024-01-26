@@ -4,15 +4,18 @@ import Image02 from '../../assets/imgs/login_bg.png';
 import Image03 from '../../assets/imgs/main_cook_1.png';
 import Image04 from '../../assets/imgs/main_cook_2.jpg';
 import Image05 from '../../assets/imgs/main_banner_2.png';
-import Image06 from '../../assets/imgs/main_farmer_1.png';
-import Image07 from '../../assets/imgs/main_farmer_2.png';
-import Image08 from '../../assets/imgs/main_farmer_3.png';
-import Image09 from '../../assets/imgs/main_farmer_4.jpg';
 import Image10 from '../../assets/imgs/main_bottom_1.png';
 import Image11 from '../../assets/imgs/main_bottom_2.png';
 import Image12 from '../../assets/imgs/main_bottom_3.png';
 import Image13 from '../../assets/imgs/MainBanner1.png';
 import Image14 from '../../assets/imgs/MainBanner3.png';
+import Image15 from '../../assets/imgs/bottom_banner1.png'
+import Image16 from '../../assets/imgs/bottom_banner2.png'
+import Image17 from '../../assets/imgs/bottom_banner3.png'
+import Image18 from '../../assets/imgs/bottom_banner4.png'
+import Image19 from '../../assets/imgs/bottom_banner5.png'
+import Image20 from '../../assets/imgs/bottom_banner6.png'
+import Image21 from '../../assets/imgs/bottom_banner7.png'
 import { styled } from 'styled-components';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
@@ -28,7 +31,7 @@ export default function Main() {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 2500,
+    autoplaySpeed: 7000,
   };
   const navigate = useNavigate();
 
@@ -38,9 +41,11 @@ export default function Main() {
   return (
     <>
       <Wrapper>
+        <BannerWrap>
         <StyledSlider {...settings}>
           <div>
             <img src={Image01} alt="Banner 1" />
+            <div>
             <BannerShadow>
               <Span1>
                 농가와 소비자가 함께하는
@@ -51,9 +56,11 @@ export default function Main() {
                 <button>마을구출 동참하기</button>
               </Link>
             </BannerShadow>
+            </div>
           </div>
           <div>
             <img src={Image13} alt="Banner 2" />
+            <div>
             <BannerShadow>
               <Span1>
                 농가와 소비자가 함께하는
@@ -64,10 +71,12 @@ export default function Main() {
                 <button>지속 가능한 농업 동참하기</button>
               </Link>
             </BannerShadow>
+            </div>
           </div>
 
           <div>
             <img src={Image14} alt="Banner 3" />
+            <div>
             <BannerShadow>
               <a>
                 우리를 기다리는 못난이 친구들이 누구일까? <br></br>농가와
@@ -77,8 +86,10 @@ export default function Main() {
                 <button>지속 가능한 농업 동참하기</button>
               </Link>
             </BannerShadow>
+            </div>
           </div>
         </StyledSlider>
+        </BannerWrap>
 
         <SubTitle>
           다채롭기만한.<br></br>
@@ -126,11 +137,22 @@ export default function Main() {
             </Shadow>
           </UserWrapper>
           <ImgContainer>
-            <img src={Image06}></img>
-            <img src={Image07}></img>
-            <img src={Image08}></img>
-            <img src={Image09}></img>
-          </ImgContainer>
+      <ImgColumn>
+      <img src={Image15} alt="Image 06" style={{ width: '14.6875rem' ,height: '15.125rem' ,  marginBottom: '0.94rem'}} />
+      <img src={Image16} alt="Image 06" style={{ width: '14.6875rem' ,height: '6.625rem' }} />
+      </ImgColumn>
+      <ImgColumn>
+      <img src={Image17} alt="Image 06" style={{ width: '18.875rem' ,height: '10.625rem',  marginBottom: '0.94rem',  marginRight: '1.88rem' }} />
+      <img src={Image18} alt="Image 06" style={{ width: '18.875rem' ,height: '11.3125rem',  marginRight: '1.88rem' }} />
+      </ImgColumn>
+      <ImgColumn>
+      <img src={Image19} alt="Image 06" style={{ width: '15.3125rem' ,height: ' 22.6875rem', marginRight: '1.88rem' }} />
+      </ImgColumn>
+      <ImgColumn>
+        <img src={Image20} alt="Image 06" style={{ width: '16.4375rem' ,height: '13.3125rem', marginBottom: '0.94rem' }} />
+        <img src={Image21} alt="Image 06" style={{ width: '16.4375rem' ,height: ' 8.3125rem' }} />
+      </ImgColumn>
+    </ImgContainer>
         </SubContainer3>
         <BottomContainer>
           <a>우리의 미션</a>
@@ -166,21 +188,36 @@ export default function Main() {
 
 const Wrapper = styled.div`
   box-sizing: border-box;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
 `;
+const BannerWrap = styled.div`
+display : flex;
+position : relative;
+width: 120rem;
+height: 32.4375rem;
+flex-shrink: 0;
+align-items: center;
+justify-content : center;
+`
 const StyledSlider = styled(Slider)`
-  width: 1920px;
-  height: 551px;
-  position: relative;
+width: 100%;
+min-width : 1080px;
+height : 100%;
+flex-shrink: 0;
+  flex-direction: column;
+  align-items: center;
   .slick-prev,
   .slick-next {
     font-size: 24px;
     z-index: 1;
+  }
+  img{
+    width : 100%;
+    height : 95%;
   }
 `;
 
@@ -189,22 +226,23 @@ const Span1 = styled.div`
   color: #fff;
   text-align: center;
   font-family: Pretendard;
-  font-size: 38px;
+  font-size: 2.375rem;
   font-style: normal;
   font-weight: 800;
   line-height: normal;
   letter-spacing: 0.76px;
 `;
 const Span2 = styled.div`
-  color: #fff;
-  text-align: center;
+
   margin-top: 29px;
+  color: #FFF;
+  text-align: center;
   font-family: Pretendard;
-  font-size: 20px;
+  font-size: 1.25rem;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
-  letter-spacing: 0.4px;
+  letter-spacing: 0.025rem;
 `;
 
 const BannerShadow = styled.div`
@@ -213,17 +251,17 @@ const BannerShadow = styled.div`
   flex-direction: column;
   align-items: center;
   text-align: center;
-  width: 750px;
-  height: 100%;
-  top: 44%;
-  transform: translate(150%, -45%);
+  width: 900px;
+  height: 90%;
+  transform: translate(110%, -110%);
   // background-color:rgba(0, 0, 0, 0.61);
   button {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 328px;
-    height: 65px;
+    justify-content:center;
+    width: 21rem;
+    height: 4rem;
     background-color: #ff6565;
     color: white;
     text-align: center;
@@ -231,8 +269,11 @@ const BannerShadow = styled.div`
     text-decoration: none;
     border: none;
     border-radius: 17px;
-    font-size: 22px;
-    font-weight: bold;
+    font-size: 1.4rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 0.0275rem;
     margin-top: -4rem;
   }
   a {
@@ -241,7 +282,7 @@ const BannerShadow = styled.div`
     color: #2a2a2a;
     text-align: center;
     font-family: Pretendard;
-    font-size: 38px;
+    font-size: 2.375rem;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
@@ -257,7 +298,7 @@ const SubTitle = styled.div`
   position: relative;
   font-size: 32px;
   font-weight: bold;
-  margin-top: 0%;
+  margin-top: 5rem;
   padding: 60px;
   flex-direction: column;
   align-items: center;
@@ -354,8 +395,8 @@ const ButtonWrapper = styled.div`
 
 const SubContainer3 = styled.div`
   margin-top: 100px;
-  width: 100%;
-  height: 1256px;
+  width: 100vw;
+  height: 1400px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -449,15 +490,25 @@ const Shadow = styled.div`
   }
 `;
 const ImgContainer = styled.div`
+  display: grid;
+  width : 1120px;
+  height : 30rem;
+  grid-template-columns: repeat(4, 1fr); /* 4 columns */
+  position : relative;
+  flex-direction : column;
+  justify-content : center;
+  align-items:center;
+  flex-shrink: 0;
+`;
+
+const ImgColumn = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
+  flex-direction: column;
+  margin : 0rem 1rem 0rem 1rem;
+  flex-shrink: 0;
   img {
-    width: 300px;
-    height: 250px;
+
     border-radius: 1rem 1rem 0 0;
-    margin-top: 80px;
   }
 `;
 

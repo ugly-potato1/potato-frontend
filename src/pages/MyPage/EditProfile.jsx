@@ -1,15 +1,19 @@
 import styled from 'styled-components';
 import ProfileImage from '../../assets/imgs/mypage_profile.png';
-import { getUserInfo, postUserInfo } from '../../apis/UserApi';
 import { ReactComponent as FileSelectBtn } from '../../assets/imgs/Mypage/EditProfile/FileSelectBtn.svg';
-import { useQuery, useMutation } from 'react-query';
+import { useQuery, useMutation } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
 import { useRef, useState } from 'react';
+import { getUserInfo, postUserInfo } from '../../apis/User';
 const EditProfile = () => {
   const [imageSrc, setImageSrc] = useState('');
   const fileInputRef = useRef();
-  const { data, isLoading } = useQuery(['userInfo'], getUserInfo);
-  const { mutate: editUserInfo } = useMutation(postUserInfo);
+  const { data, isLoading } = useQuery({
+    queryKey: ['userInfo'],
+    queryFn: getUserInfo,
+  });
+  const { mutate: editUserInfo } = useMutation({ mutationFn: postUserInfo });
+
   const {
     register,
     handleSubmit,
