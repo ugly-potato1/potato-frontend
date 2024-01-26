@@ -25,7 +25,7 @@ export default function OneOnOnePosting({
 
 
     const [title, setTitle] = useState("");
-    const [postContent, setPostContent] = useState("====================\n\n1. 주문번호\n\n\n2. 문의내용");
+    const [postContent, setPostContent] = useState("====================\n\n1. 주문번호\n\n\n2. 문의내용\n");
 
     const handleCancel = (e) => {
         e.preventDefault();

@@ -129,12 +129,13 @@ export default function OneOnOneHelp() {
         {/* 리스트 버튼 생성 */}
         <div style={{margin: '1rem'}}>
             {Array.from({ length: Math.ceil(posts.length / postsPerPage) }, (_, index) => (
-            <button 
+            <IndexButton 
             key={index} 
             onClick={() => handlePageChange(index + 1)}
-            style={{margin: '1rem'}}>
+            style={{margin: '1rem'}}
+            active={currentPage === index+1}>
                 {index + 1}
-            </button>
+            </IndexButton>
             ))}
         </div>
         </div>
@@ -175,6 +176,10 @@ const Select = styled.select`
     width: 11vw;
     border: solid 2px #DFDFDF;
     border-radius: 10px;
+`
+
+const IndexButton = styled.button`
+    color: ${(props) => (props.active ? '#2a2a2a' : '#a7a7a7')};
 `
 
 const SearchInput = styled.input`

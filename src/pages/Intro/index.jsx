@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import {ReactComponent as Farmely} from '../../assets/imgs/Farmely3.svg'
+import Image1 from '../../assets/imgs/MainBanner1.png';
 import apple1 from '../../assets/imgs/Intro/image 173.png'
 import apple2 from '../../assets/imgs/Intro/image 170.png'
 import apple3 from '../../assets/imgs/Intro/image 171.png'
@@ -26,6 +27,7 @@ import OneOnOneHelp from '../../components/OneOnOneHelp/OneOnOneHelp'
 import OneOnOnePosting from '../../components/OneOnOneHelp/OneOnOnePosting'
 import AddrSetMypage from '../MyPage/AddrSetMypage'
 import { styled } from 'styled-components'
+import { Link } from 'react-router-dom';
 
 const Category = [{key: "All", value: "전체"},
                     {key: "Pay", value: "후원/결제 문의"},
@@ -45,25 +47,37 @@ export default function Intro() {
     
   return (
     <>
-    <div className='w-full h-auto box-border flex flex-col items-center justify-between overflow-hidden'>
-      <div style={{marginLeft: 'auto', marginRight: 'auto', width: '100%'}}>
-      <div className='bg-slate-500 h-60 box-border' style={{marginLeft: 'auto', marginRight: 'auto'}}>
-
-      </div>
-      </div>
+    <div className='w-full h-auto box-border flex flex-col items-center justify-between overflow-hidden text-text'>
+      <BannerWrap>
+          <div>
+            <img src={Image1} alt="Banner 2" />
+            <div>
+            <BannerShadow>
+              <Span1>
+                농가와 소비자가 함께하는
+                <br /> 지속 가능한 농업
+              </Span1>
+              <Span2>함께하는 환경 보호! 마을과 상생하는 프로젝트</Span2>
+              <Link to="/funding">
+                <button>지속 가능한 농업 동참하기</button>
+              </Link>
+            </BannerShadow>
+            </div>
+          </div>
+      </BannerWrap>
       <div>
       <div className='text-center box-border' style={{marginLeft: 'auto', marginRight: 'auto', width: '1280px'}}>
-        <h3 className=' text-xl mt-10 font-bold'>못난이 농작물이란?</h3>
-        <p className='mt-5'>맛이나 영양은 그대로지만, 색 · 흠집 여부 · 크기 등의 외관이 품질 구분 기준 표준에 미달하는 비규격 농산물입니다.</p>
+        <h3 className=' text-2xl mt-20 font-bold'>못난이 농작물이란?</h3>
+        <p className='text-xl mt-5'>맛이나 영양은 그대로지만, 색 · 흠집 여부 · 크기 등의 외관이 품질 구분 기준 표준에 미달하는 비규격 농산물입니다.</p>
         <div className='flex justify-center my-10'>
           <div className='mx-10 my-5'><img src = {apple1} alt='표준' className='max-h-40'/>표준</div>
           <div className='mx-10 my-5'><img src = {apple2}  alt='색' className='max-h-40'/>색</div>
           <div className='mx-10 my-5'><img src = {apple3}  alt='크기' className='max-h-40'/>크기</div>
           <div className='mx-10 my-5'><img src = {apple4}  alt='흠집' className='max-h-40'/>흠집</div>
         </div>
-        <div className='my-7 leading-normal'>
-          <h4 className='font-semibold'>전체 농산물의 30%를 차지하는 이 못난이들은 외형이 다르다는 이유로 버려지고 있습니다.</h4>
-          <h5>이로 인해 다음의 문제들이 발생하게 됩니다.</h5>
+        <div className='my-7 mb-40 leading-normal'>
+          <h4 className='font-semibold text-xl'>전체 농산물의 30%를 차지하는 이 못난이들은 외형이 다르다는 이유로 버려지고 있습니다.</h4>
+          <h5 className='text-xl mt-1'>이로 인해 다음의 문제들이 발생하게 됩니다.</h5>
         </div>
       </div>
       </div>
@@ -111,29 +125,29 @@ export default function Intro() {
         <div className='flex justify-center mx-4'>
           <img src={introCard1} alt='개성있는 외형을 가진 농산물' className='' />
         </div>
-        <h2 className='font-bold my-7 flex items-center justify-center'><Farmely fill='#2A2A2A' className='mx-3'/>가 생각하는 못난이</h2>
+        <h2 className='font-bold text-2xl my-7 flex items-center justify-center'><Farmely fill='#2A2A2A' className='mx-3'/>가 생각하는 못난이</h2>
         <div className='flex justify-center'>
-          <div className='flex justify-center mx-4 my-2'>
+          <div className='flex justify-center mx-4 mr-20 my-2'>
             <img src={introCard2} alt='수요를 넘어선 잉여 생산물' className='w-full h-auto max-w-full' />
           </div>
-          <div className='flex justify-center mx-4 my-2'>
+          <div className='flex justify-center mx-4 ml-20 my-2'>
             <img src={introCard3} alt='기타 도매할 길이 없는 농산물' className='w-full h-auto max-w-full' />
           </div>
         </div>
       </div>
       </div>
-      <hr />
+      <div style={{boxSizing:"border-box",width:"1120px", height:"1px", backgroundColor:"#ffe0e0",color:"#ffe0e0",}}/>
       <div>
       <div className='text-center font-semibold' style={{marginLeft: 'auto', marginRight: 'auto', width: '1280px'}}>
-        <h2 className='mt-10 font-bold'>우리의 미션</h2>
-        <h5 className='my-10'>못난이 농작물을 이해하고 경험하며, 함께하는 것입니다</h5>
+        <h2 className='mt-10 text-2xl font-extrabold'>우리의 미션</h2>
+        <h5 className='my-10 text-xl font-light'>못난이 농작물을 이해하고 경험하며, 함께하는 것입니다</h5>
         <div className='flex flex-wrap justify-evenly my-5'>
           <div className='w-1/3 min-w-min'>
             <img className='max-h-80 m-auto' src={mission1} alt='못난이 농작물 이해하기'/>
           </div>
           <div className='my-auto w-1/3  min-w-min text-center'>
-            <h5 className='text-brand my-5'>못난이 농작물 이해하기</h5>
-            <h6 className='leading-tight'>외형만 다르고 맛과 영양은 동일한, 못나지 않은,<br/>서로 개성이 다른 친구들일 뿐입니다.</h6>
+            <h5 className='text-brand text-xl my-5'>못난이 농작물 이해하기</h5>
+            <h6 className='leading-tight font-light text-lg'>외형만 다르고 맛과 영양은 동일한, 못나지 않은,<br/>서로 개성이 다른 친구들일 뿐입니다.</h6>
           </div>
         </div>
         <div className='flex flex-row-reverse flex-wrap justify-evenly my-5'>
@@ -141,8 +155,8 @@ export default function Intro() {
             <img className='max-h-80 m-auto' src={mission2} alt='못난이 농작물 이해하기'/>
           </div>
           <div className='my-auto w-1/3 min-w-max text-center'>
-            <h5 className='text-brand my-5'>개성이 다른 친구들 경험해보기</h5>
-            <h6>재미있게 알아가는 개성 충만 못난이 친구들</h6>
+            <h5 className='text-brand text-xl my-5'>개성이 다른 친구들 경험해보기</h5>
+            <h6 className='font-light text-lg'>재미있게 알아가는 개성 충만 못난이 친구들</h6>
           </div>
         </div>
         <div className='flex flex-wrap justify-evenly my-5'>
@@ -150,19 +164,19 @@ export default function Intro() {
             <img className='max-h-80 m-auto' src={mission3} alt='못난이 농작물 이해하기'/>
           </div>
           <div className='my-auto w-1/3 min-w-min text-center'>
-            <h5 className='text-brand my-5 leading-tight'>농가와 소비자가 함께하는<br/>지속 가능한 농업</h5>
-            <h6 className='leading-tight'>함께하는 환경 보호<br/>농가와 상생하는 프로젝트</h6>
+            <h5 className='text-brand my-5 text-xl leading-tight'>농가와 소비자가 함께하는<br/>지속 가능한 농업</h5>
+            <h6 className='leading-tight font-light text-lg'>함께하는 환경 보호<br/>농가와 상생하는 프로젝트</h6>
           </div>
         </div>
       </div>
       </div>
-      <hr />
+      <div style={{boxSizing:"border-box",width:"1000px", height:"1px", backgroundColor:"#ffe0e0",color:"#ffe0e0", marginTop:"80px"}}/>
       <div>
       <div className='text-center relative' style={{marginLeft: 'auto', marginRight: 'auto', width: '1280px'}}>
         <BlurImg4 top="000px" right="-500px" />
         <BlurImg3 top="300px" right="-700px" />
-        <h3 className='my-10 leading-tight font-bold'>못난이 친구들을 직접 만나볼 수 있는<br/>펀딩 프로젝트</h3>
-        <div>
+        <h3 className='my-10 mt-20 text-2xl leading-tight font-bold'>못난이 친구들을 직접 만나볼 수 있는<br/>펀딩 프로젝트</h3>
+        <div className='text-2xl'>
           마을 섭외 과정 동영상
         <iframe></iframe>
         </div>
@@ -172,7 +186,7 @@ export default function Intro() {
             <img className='h-24 relative top-20 left-40' src={carrot} alt='당근'/>
             <img className='h-20 relative top-6 left-60' src={potato} alt='감자'/>
           </div>
-          <div className='p-10 leading-normal font-bold mx-auto'>
+          <div className='p-10 text-xl leading-normal font-bold mx-auto'>
             <h5>못난이 친구들과 함께!</h5>
             <h5>마을 농장과 함께!</h5>
             <h5>우리의 미션을 함께!</h5>
@@ -182,18 +196,101 @@ export default function Intro() {
             <img className='h-24 relative top-20 right-40' src={pea} alt='완두콩'/>
           </div>
         </div>
-          <div className='mx-auto flex justify-around bg-orange-100 p-12 rounded-2xl font-bold' style={{marginLeft: 'auto', marginRight: 'auto', width: '1000px'}}>
+          <div className='mx-auto flex justify-around bg-orange-100 p-12 pt-8 rounded-2xl font-bold' style={{marginLeft: 'auto', marginRight: 'auto', width: '1000px'}}>
             <div><h2 className='my-5'>합리적인 가격으로</h2><img src={afford} alt='합리적인 가격으로'/></div>
             <div><h2 className='my-5'>친환경적으로</h2><img src={envfriendly} alt='친환경적으로'/></div>
           </div>
         </div>
-        <h4 className='m-10 leading-normal font-semibold'>전국 곳곳에서 우리를 기다리는 못난이 친구들을<br/>마을과 함께하는 펀딩 프로젝트로 함께 해봐요!</h4>
+        <h4 className='m-10 leading-normal text-xl'>전국 곳곳에서 우리를 기다리는 못난이 친구들을<br/>마을과 함께하는 펀딩 프로젝트로 함께 해봐요!</h4>
       </div>
     </div>
     </div>
     </>
   )
 }
+
+const BannerWrap = styled.div`
+  display : flex;
+  position : relative;
+  width: 120rem;
+  height: 551px;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content : center;
+`;
+
+const BannerShadow = styled.div`
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 900px;
+  height: 90%;
+  transform: translate(110%, -110%);
+  // background-color:rgba(0, 0, 0, 0.61);
+  button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:center;
+    width: 21rem;
+    height: 4rem;
+    background-color: #ff6565;
+    color: white;
+    text-align: center;
+    line-height: 65px;
+    text-decoration: none;
+    border: none;
+    border-radius: 17px;
+    font-size: 1.4rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 0.0275rem;
+    margin-top: -4rem;
+  }
+  a {
+    margin-top: 9rem;
+    margin-bottom: 3rem;
+    color: #2a2a2a;
+    text-align: center;
+    font-family: Pretendard;
+    font-size: 2.375rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 0.38px;
+  }
+  button:hover {
+    background-color: #f78181;
+  }
+`;
+
+const Span1 = styled.div`
+  margin-top: 145px;
+  color: #fff;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 2.375rem;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+  letter-spacing: 0.76px;
+`;
+
+const Span2 = styled.div`
+
+  margin-top: 29px;
+  color: #FFF;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0.025rem;
+`;
 
 const BlurImg1 = styled.div`
 position:absolute;
