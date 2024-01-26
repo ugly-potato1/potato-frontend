@@ -35,15 +35,16 @@ export const CityList = styled.ul`
 export const CityItem = styled.li`
   font-weight: 600;
   cursor: pointer;
-  color: ${(props) => (props.isSelected ? '#FF4256' : '#666060')};
+  color: ${(props) => (props.isselected ? '#FF4256' : '#666060')};
   border-bottom: ${(props) =>
-    props.isSelected ? '1px solid #FF4256' : 'none'};
+    props.isselected ? '1px solid #FF4256' : 'none'};
 `;
 export const FruitContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
   height: 70vh;
+  max-height: 600px;
   background-color: #fff4f4;
 `;
 export const SelectedCityTitle = styled.div`
