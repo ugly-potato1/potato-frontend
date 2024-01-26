@@ -1,9 +1,11 @@
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { ReactComponent as IconCheck } from '../../../assets/imgs/Payment/icon_check.svg';
 import { ReactComponent as IconOtherBtn } from '../../../assets/imgs/Payment/icon_searchotherproduct.svg';
 import styled from 'styled-components';
 
 const PaymentSuccess = () => {
+  const { state } = useLocation();
+  console.log(state);
   const navigate = useNavigate();
   const handleSearchOther = () => navigate('/funding');
   return (
