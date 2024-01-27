@@ -7,28 +7,49 @@ import Tomato from '../../assets/imgs/Funding/Tomato.png';
 import Plum from '../../assets/imgs/Funding/Plum.png';
 import Peach from '../../assets/imgs/Funding/Peach.png';
 import Items from './Items';
+import axios from 'axios';
 export default function Buying() {
+  const [productData, setProductData] = useState({
+    image: '',
+    location: '',
+    title: '',
+    description: '',
+  });
+
+  useEffect(() => {
+    axios.get('your-api-endpoint')
+      .then(response => {
+        const data = response.data; 
+        setProductData({
+          image: data.image,
+          location: data.location,
+          title: data.title,
+          description: data.description,
   
+        });
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  }, []); 
   return (
     <>
       <Wrapper>
         <HeadLine></HeadLine>
         <ContentBox>
-          <ImageContainer>
-            <img src={SampleImg} alt="상품" />
-          </ImageContainer>
-          <DescriptionContainer>
-            <Info>
-              마을의 펀딩 &#62;<a>청주</a>
-            </Info>
-            <Title>
-              신품종 킹머스켓 & 샤인머스켓 <br />
-              최초공개 추석 한정판
-            </Title>
-            <Description>
-              농부의 마음으로 정직하고 신선하게프리미엄 & 신상 과일을큐레이션
-              하여 선물드립니다
-            </Description>
+        <ImageContainer>
+        <img src={productData.image || SampleImg} alt="상품" />
+      </ImageContainer>
+      <DescriptionContainer>
+        <Info>
+          마을의 펀딩 &#62;<a>{productData.location}</a>
+        </Info>
+        <Title>
+          {productData.title}
+        </Title>
+        <Description>
+          {productData.description}
+        </Description>
             <ButtonBox>
               <ShareButton>
                 <img src={ShareImg} alt="공유버튼"></img>
@@ -119,7 +140,6 @@ const Title = styled.div`
 const Info = styled.div`
   position: relative;
   width: 200px;
-  top: -4rem;
   height: 30px;
   color: #a2a2a2;
   font-family: Pretendard;
@@ -149,6 +169,7 @@ const Info = styled.div`
 const Description = styled.div`
   width: 419px;
   display: flex;
+  height : 300px;
   position: relative;
   color: #5e5e5e;
   font-family: Pretendard;
