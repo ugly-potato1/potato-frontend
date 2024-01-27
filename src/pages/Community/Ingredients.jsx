@@ -91,10 +91,10 @@ export default function Ingredients() {
 //          <h1>{ingredientInfo?.id}는 json</h1>
 const Wrap = styled.div`
   display: flex;
-  justify-content: center;
   flex-direction: column;
+    min-width: 1300px;
+    max-width: 1920px;
   align-items: center;
-  width: max-content;
 `
 //상단 설명
 const DescriptionWrap = styled.div`

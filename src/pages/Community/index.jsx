@@ -121,7 +121,7 @@ const Wrapper = styled.div`
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    min-width: max-content;
+    width: 1920px;
     margin: 0;
 `
 const Container = styled.div`
