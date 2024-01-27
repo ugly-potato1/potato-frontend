@@ -4,6 +4,9 @@ import axios from 'axios';
 import { useEffect } from 'react';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { UserLoginState } from '../../stores/Login/atom';
+import { axiosInstance } from '../../apis';
+import { useMutation } from '@tanstack/react-query';
+import { handleLogin, handleSilentRefresh } from '../../apis/Login';
 
 const KakaoLogin = () => {
   const navigate = useNavigate();
@@ -11,6 +14,31 @@ const KakaoLogin = () => {
   const client_id = process.env.REACT_APP_KAKAO_REST_API_KEY;
   const redirect_uri = process.env.REACT_APP_KAKAO_REDIRECT_URL;
   const code = useSearchParams()[0].get('code');
+
+  const { mutate: SlientRefresh } = useMutation({
+    mutationFn: handleSilentRefresh,
+    onSuccess: (data) => {
+      try {
+        //LoginSuccess({});
+      } catch {}
+    },
+  });
+  const { mutate: LoginSuccess } = useMutation({
+    mutationFn: handleLogin,
+    onSuccess: (data) => {
+      //const { accessToken } = response.data; // 서버로 부터 받은 로그인 accessToken
+      // axiosInstance.defaults.headers.common[
+      //   'Authorization'
+      // ] = `Bearer ${accessToken}`;
+      // setTimeout(() => {
+      //   try {
+      //     SlientRefresh({});
+      //   } catch (err) {
+      //     console.log('slient refresh 에러', err);
+      //   }
+      // }, JWT_EXPIRRY_TIME - 60000);
+    },
+  });
 
   const getKakaoToken = async () => {
     const baseUrl = 'https://kauth.kakao.com/oauth/token';
@@ -25,7 +53,15 @@ const KakaoLogin = () => {
     const { data: tokenRequest } = await axios.post(finalUrl);
 
     console.log('tokenRequest', tokenRequest);
+
     // 백엔드 연동 필요
+    try {
+      LoginSuccess({});
+    } catch (err) {
+      console.log('카카오 로그인 에러', err);
+    }
+
+    // axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${}`;
     // axiosInstance를 사용할 것 (기본 axios 사용 X)
     setIsLogin(true);
     navigate('/');
