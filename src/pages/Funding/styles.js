@@ -17,7 +17,7 @@ export const PageTitle = styled.div`
   font-weight: 700;
   line-height: normal;
   letter-spacing: 0.56px;
-  margin-bottom: 30px;
+  margin: 30px 0px;
 `;
 export const CityContainer = styled.div`
   width: 70%;
