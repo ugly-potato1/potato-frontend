@@ -3,15 +3,23 @@ import { ReactComponent as Farmely } from '../../assets/imgs/Farmely2.svg';
 import styled from 'styled-components';
 import { HiOutlineShoppingCart, HiOutlineMenu } from 'react-icons/hi';
 import { FiLogOut } from 'react-icons/fi';
-import { NavLink, Link, useNavigate, useMatch } from 'react-router-dom';
+import {
+  NavLink,
+  Link,
+  useNavigate,
+  useMatch,
+  useLocation,
+} from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { UserLoginState } from '../../stores/Login/atom';
 
 export default function Navbar() {
+  const location = useLocation();
+  const paymentStateExists = location.state && location.pathname === '/payment';
   const [isLogin, setIsLogin] = useRecoilState(UserLoginState);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const introMatch = useMatch('/intro');
-  const fundingBuyingMatch = useMatch('/funding/buying');
+  const fundingMatch = useMatch('/funding');
   const communityMatch = useMatch('/community');
   const popupMatch = useMatch('/popup');
   const paymentMatch = useMatch('/payment');
@@ -65,7 +73,7 @@ export default function Navbar() {
           {isMenuOpen && (
             <HambergerMenu>
               <NavLink to="/intro">파밀리 소개</NavLink>
-              <NavLink to="/funding/buying">제철 못난이</NavLink>
+              <NavLink to="/funding">제철 못난이</NavLink>
               <NavLink to="/community">커뮤니티</NavLink>
               <NavLink to="/popup">파밀리 팝업</NavLink>
               <NavLink to="/popup" className="diff">
@@ -90,16 +98,19 @@ export default function Navbar() {
           파밀리 소개
         </NavLink>
         {paymentMatch ? (
-          <NavLink
-            to="/payment"
-            style={{ color: paymentMatch ? '#ff4256' : '' }}
-          >
-            제철과일 구매
-          </NavLink>
+          paymentStateExists ? (
+            <NavLink to="/funding" style={{ color: '#ff4256' }}>
+              제철못난이
+            </NavLink>
+          ) : (
+            <NavLink to="/payment" style={{ color: '#ff4256' }}>
+              제철과일 구매
+            </NavLink>
+          )
         ) : (
           <NavLink
-            to="/funding/buying"
-            style={{ color: fundingBuyingMatch ? '#ff4256' : '' }}
+            to="/funding"
+            style={{ color: fundingMatch ? '#ff4256' : '' }}
           >
             제철못난이
           </NavLink>
