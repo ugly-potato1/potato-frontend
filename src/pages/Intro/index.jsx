@@ -47,7 +47,8 @@ export default function Intro() {
     
   return (
     <>
-    <div className='w-full h-auto box-border flex flex-col items-center justify-between overflow-hidden text-text'>
+    <div className='w-full h-auto box-border flex flex-col items-center justify-between text-text xl:overflow-hidden'>
+      <div className=''>
       <BannerWrap>
           <div>
             <img src={Image1} alt="Banner 2" />
@@ -65,6 +66,7 @@ export default function Intro() {
             </div>
           </div>
       </BannerWrap>
+      </div>
       <div>
       <div className='text-center box-border' style={{marginLeft: 'auto', marginRight: 'auto', width: '1280px'}}>
         <h3 className=' text-2xl mt-20 font-bold'>못난이 농작물이란?</h3>
@@ -171,7 +173,7 @@ export default function Intro() {
       </div>
       </div>
       <div style={{boxSizing:"border-box",width:"1000px", height:"1px", backgroundColor:"#ffe0e0",color:"#ffe0e0", marginTop:"80px"}}/>
-      <div>
+      <div className='overflow-hidden w-full'>
       <div className='text-center relative' style={{marginLeft: 'auto', marginRight: 'auto', width: '1280px'}}>
         <BlurImg4 top="000px" right="-500px" />
         <BlurImg3 top="300px" right="-700px" />
@@ -217,6 +219,7 @@ const BannerWrap = styled.div`
   flex-shrink: 0;
   align-items: center;
   justify-content : center;
+  overflow: hidden;
 `;
 
 const BannerShadow = styled.div`

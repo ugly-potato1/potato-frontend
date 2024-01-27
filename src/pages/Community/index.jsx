@@ -86,10 +86,6 @@ export default function Community() {
                 </InputWrap>
                 <ButtonWrap>
                     <TagWrap>
-                        {/*<TagButton>#가벼운</TagButton>
-                        <TagButton>#여름</TagButton>
-                        <TagButton>#런치</TagButton>
-    <TagButton>#디너</TagButton>*/}
                         {tagButtonList.map((tag) => (
                             <TagButton 
                             key={tag}
@@ -125,6 +121,8 @@ const Wrapper = styled.div`
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    min-width: max-content;
+    margin: 0;
 `
 const Container = styled.div`
     width: 1280px;
