@@ -55,11 +55,11 @@ const KakaoLogin = () => {
     console.log('tokenRequest', tokenRequest);
 
     // 백엔드 연동 필요
-    try {
-      LoginSuccess({});
-    } catch (err) {
-      console.log('카카오 로그인 에러', err);
-    }
+    // try {
+    //   LoginSuccess({});
+    // } catch (err) {
+    //   console.log('카카오 로그인 에러', err);
+    // }
 
     // axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${}`;
     // axiosInstance를 사용할 것 (기본 axios 사용 X)
