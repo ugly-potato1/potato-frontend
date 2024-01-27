@@ -17,39 +17,35 @@ export default function Buying() {
   });
 
   useEffect(() => {
-    axios.get('your-api-endpoint')
-      .then(response => {
-        const data = response.data; 
+    axios
+      .get('your-api-endpoint')
+      .then((response) => {
+        const data = response.data;
         setProductData({
           image: data.image,
           location: data.location,
           title: data.title,
           description: data.description,
-  
         });
       })
-      .catch(error => {
+      .catch((error) => {
         console.error('Error fetching data:', error);
       });
-  }, []); 
+  }, []);
   return (
     <>
       <Wrapper>
         <HeadLine></HeadLine>
         <ContentBox>
-        <ImageContainer>
-        <img src={productData.image || SampleImg} alt="상품" />
-      </ImageContainer>
-      <DescriptionContainer>
-        <Info>
-          마을의 펀딩 &#62;<a>{productData.location}</a>
-        </Info>
-        <Title>
-          {productData.title}
-        </Title>
-        <Description>
-          {productData.description}
-        </Description>
+          <ImageContainer>
+            <img src={productData.image || SampleImg} alt="상품" />
+          </ImageContainer>
+          <DescriptionContainer>
+            <Info>
+              마을의 펀딩 &#62;<a>{productData.location}</a>
+            </Info>
+            <Title>{productData.title}</Title>
+            <Description>{productData.description}</Description>
             <ButtonBox>
               <ShareButton>
                 <img src={ShareImg} alt="공유버튼"></img>
@@ -64,7 +60,7 @@ export default function Buying() {
         <HeadLine></HeadLine>
         <ProductTitle>상품 종류</ProductTitle>
         <ProductContainer>
-          <Items/> 
+          <Items />
           {/* 상품 컴포넌트 */}
         </ProductContainer>
         <HeadLine></HeadLine>
@@ -86,7 +82,6 @@ const Wrapper = styled.div`
 const ContentBox = styled.div`
   height: 650px;
   display: flex;
-  margin-top: -3rem;
   flex-direction: row;
   max-width: 1250px; //너비조정
   width: 100vw;
@@ -169,7 +164,7 @@ const Info = styled.div`
 const Description = styled.div`
   width: 419px;
   display: flex;
-  height : 300px;
+  height: 300px;
   position: relative;
   color: #5e5e5e;
   font-family: Pretendard;
@@ -237,10 +232,9 @@ const ProductTitle = styled.div`
   font-weight: 700;
   line-height: normal;
   letter-spacing: 0.56px;
-  margin-bottom : 3rem;
+  margin-bottom: 3rem;
 `;
 const ProductContainer = styled.div`
- 
   height: 700px;
   display: flex;
   margin-top: 1rem;
