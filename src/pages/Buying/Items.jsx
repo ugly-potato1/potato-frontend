@@ -1,12 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 import Tomato from '../../assets/imgs/Funding/Tomato.png';
 import Plum from '../../assets/imgs/Funding/Plum.png';
 import Peach from '../../assets/imgs/Funding/Peach.png';
 export default function Items() {
     const [products, setProducts] = useState([]);
-
-  useEffect(() => {
+    const [selectedProducts, setSelectedProducts] = useState([]);
+    const [notification, setNotification] = useState('');
+    // useEffect(() => {
+    //     // Fetch product data from the API
+    //     axios.get('your-product-api-endpoint')
+    //       .then(response => {
+    //         const fetchedProducts = response.data; // Modify this based on your API response structure
+    //         setProducts(fetchedProducts);
+    //       })
+    //       .catch(error => {
+    //         console.error('Error fetching product data:', error);
+    //       });
+    //   }, []);
+      useEffect(() => {
     // api추가
 
     const fakeProductData = [
@@ -76,12 +89,11 @@ export default function Items() {
     setProducts(fakeProductData);
   }, []);
 
-  const handleQuantityChange = (product, setProducts) => (change) => {
-    // 수량 변경 이벤트 핸들러
-    const newQuantity = Math.max(0, product.quantity + change); // 최소값은 0으로 설정
+const handleQuantityChange = (product, change) => {
+    const newQuantity = Math.max(0, product.quantity + change); // Ensure the quantity is non-negative
 
-    setProducts((prevProducts) => {
-      const updatedProducts = prevProducts.map((p) => {
+    setProducts(prevProducts => {
+      const updatedProducts = prevProducts.map(p => {
         if (p.id === product.id) {
           return { ...p, quantity: newQuantity };
         }
@@ -92,17 +104,32 @@ export default function Items() {
   };
 
   const handleSelectClick = (product) => {
-    // 담기 버튼 클릭 이벤트 핸들러
-    // 서버로 수량 정보 전송
-    console.log(`Product ${product.name} 수량: ${product.quantity}`);
-    alert(product.name + ' ' + product.quantity + '개를 담았어요.');
+    if (product.quantity === 0) {
+      alert('수량을 선택해주세요.');
+      return;
+    }
+  
+    // Simulate sending data to the server (replace with your actual server logic)
+    try {
+      // Make an API call to send the quantity information to the server
+      const response =  axios.post('your-server-api-endpoint', {
+        productId: product.id,
+        quantity: product.quantity,
+      });
+  
+      console.log(response.data); // Log the server response (optional)
+      setSelectedProducts((prevSelectedProducts) => [...prevSelectedProducts, product]);
+      setNotification('');
+    } catch (error) {
+      console.error('Error sending data to the server:', error);
+    }
   };
     return (
         <>
-        {products.length > 0 && (
-            <ProductList>
-              {products.map((product) => (
-                <Product key={product.id}>
+      {products.length > 0 && (
+        <ProductList>
+          {products.map((product) => (
+            <Product key={product.id}>
                   <img
                     src={product.imageUrl}
                     alt={`상품 이미지 - ${product.name}`}
@@ -121,25 +148,17 @@ export default function Items() {
                       가 격<b>{product.price}원</b>
                     </ProductPrice>
                     <QuantityControl>
-                      <QuantityButton
-                        onClick={() =>
-                          handleQuantityChange(product, setProducts)(-1)
-                        }
-                      >
-                        -
-                      </QuantityButton>
-                      <ProductQuantity>{product.quantity}</ProductQuantity>
-                      <QuantityButton
-                        onClick={() =>
-                          handleQuantityChange(product, setProducts)(1)
-                        }
-                      >
-                        +
-                      </QuantityButton>
-                    </QuantityControl>
-                    <SelectButton onClick={() => handleSelectClick(product)}>
-                      담기
-                    </SelectButton>
+                <QuantityButton onClick={() => handleQuantityChange(product, -1)}>
+                  -
+                </QuantityButton>
+                <ProductQuantity>{product.quantity}</ProductQuantity>
+                <QuantityButton onClick={() => handleQuantityChange(product, 1)}>
+                  +
+                </QuantityButton>
+              </QuantityControl>
+              <SelectButton onClick={() => handleSelectClick(product)}>
+                담기
+              </SelectButton>
                   </OptionContainer>
                 </Product>
               ))}
@@ -149,16 +168,7 @@ export default function Items() {
     );
 }
 
-// const ProductContainer = styled.div`
-//   height: 700px;
-//   display: flex;
-//   margin-top: 1rem;
-//   flex-direction: row;
-//   width: 58%;
-//   overflow-x: auto;
-//   overflow-y: auto; // 세로 스크롤이 생기지 않도록 설정
-//   white-space: nowrap; // 가로 스크롤을 통해 한 줄에 표시
-// `;
+
 
 const Product = styled.div`
   display: flex;
