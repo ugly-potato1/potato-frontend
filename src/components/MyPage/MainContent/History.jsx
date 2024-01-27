@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import OneReviewItem from './Review/OneReviewItem'
 import axios from 'axios'
-import AddReviewModal from './Review/AddReviewModal'
+import HistoryModal from './HisotryModal'
 import Image1 from "../../../assets/imgs/CartApple.png";
 
 
@@ -107,7 +107,7 @@ const [cancelCount, setCancelCount] = useState(0); // 취소/교환/반품 개�
           <hr/>
         </HistoryWrapper>
       )}
-      {modalOpen && <AddReviewModal setModalOpen={setModalOpen} />}
+      {modalOpen && <HistoryModal setModalOpen={setModalOpen} />}
     </Wrapper>
   );
 }
@@ -167,7 +167,7 @@ const InqueryWrapper = styled.div`
 const HistoryWrapper = styled.ul`
   width: 100%;
   display: flex;
-  margin-top: 65px;
+  margin-top: 40px;
   flex-direction: column;
   border-radius: 1rem;
   border: 1px solid #DFDFDF;

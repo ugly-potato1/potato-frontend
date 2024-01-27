@@ -15,24 +15,24 @@
         "theme": "내 맞춤 레시피",
         "Keyword1": {"word": ["#가벼운", "#디저트"],
                     "img": "https://cdn.jjan.kr/data2/content/image/2018/07/26/.cache/512/20180726230351.jpg",
-                    "url": "/ingredients/as"},
+                    "url": "/recipes/recipe1"},
         "Keyword2": {"word": ["#다이어트", "#에피타이저"],
                     "img": "https://recipe1.ezmember.co.kr/cache/recipe/2023/05/04/253512d1a05993e51e8a47a6e3ba54381.jpg",
-                    "url": "/ingredients/df"},
+                    "url": "/recipes/recipe2"},
         "Keyword3": {"word": ["#제철", "#든든한"],
                     "img": "https://recipe1.ezmember.co.kr/cache/recipe/2017/06/21/90efd39f1c5590cc75023fde66789dcc1.jpg",
-                    "url": "/ingredients/zx"}
+                    "url": "/recipes/recipe3"}
     },
     {
         "theme": "베스트 레시피",
         "Keyword1": {"word": ["#디너", "#간단한"],
                     "img": "https://static.wtable.co.kr/image/production/upload/122684733/styles/23260/afc747d8-d929-4ab2-ba39-fd94bfa8f0a4.jpg?size=800x600",
-                    "url": "/ingredients/cv"},
+                    "url": "/recipes/recipe4"},
         "Keyword2": {"word": ["#양식", "#맛있는"],
                     "img": "https://i.pinimg.com/736x/f8/7b/a8/f87ba8eb2e5b84a10447e6fb6fd50dae.jpg",
-                    "url": "/ingredients/xc"},
+                    "url": "/recipes/recipe5"},
         "Keyword3": {"word": ["#여름", "#디저트"],
                     "img": "https://storage1.ilyo.co.kr/contents/article/images/2022/0722/1658486080202796.jpg",
-                    "url": "/ingredients/vb"}
+                    "url": "/recipes/recipe6"}
     }
 ]

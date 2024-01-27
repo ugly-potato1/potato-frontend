@@ -34,9 +34,10 @@ export default function InitMypage() {
 
   return (
     <>
-      <ProfileBanner />
+    <ProfileBanner/>
       <Wrapper>
-        <p>나의 작물</p>
+        <Container>
+                  <p>나의 작물</p>
         <ButtonWrapper>
           {MyCropBtn.map(({ id, text, icon }) => (
             <ButtonItem key={id} onClick={() => handleOnClick(id, text)}>
@@ -61,6 +62,7 @@ export default function InitMypage() {
             </ButtonItem>
           ))}
         </ButtonWrapper>
+        </Container>
       </Wrapper>
     </>
   );
@@ -74,17 +76,21 @@ const ProfileBox = styled.div`
 
 const Wrapper = styled.div`
   width: 100%;
-  max-width: 70rem;
+  max-width: 100%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-items: center;
-
   p {
     font-size: 1.375rem;
     font-weight: 700;
     margin: 5.75rem 0 1.31rem 0;
   }
+`;
+
+const Container = styled.div`
+  width: 1400px;
+  margin : 0px auto;
 `;
 
 const ButtonWrapper = styled.div`

@@ -3,11 +3,19 @@ import { ReactComponent as Farmely } from '../../assets/imgs/Farmely2.svg';
 import styled from 'styled-components';
 import { HiOutlineShoppingCart, HiOutlineMenu } from 'react-icons/hi';
 import { FiLogOut } from 'react-icons/fi';
-import { NavLink, Link, useNavigate, useMatch } from 'react-router-dom';
+import {
+  NavLink,
+  Link,
+  useNavigate,
+  useMatch,
+  useLocation,
+} from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { UserLoginState } from '../../stores/Login/atom';
 
 export default function Navbar() {
+  const location = useLocation();
+  const paymentStateExists = location.state && location.pathname === '/payment';
   const [isLogin, setIsLogin] = useRecoilState(UserLoginState);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const introMatch = useMatch('/intro');
@@ -90,12 +98,15 @@ export default function Navbar() {
           파밀리 소개
         </NavLink>
         {paymentMatch ? (
-          <NavLink
-            to="/payment"
-            style={{ color: paymentMatch ? '#ff4256' : '' }}
-          >
-            제철과일 구매
-          </NavLink>
+          paymentStateExists ? (
+            <NavLink to="/funding" style={{ color: '#ff4256' }}>
+              제철못난이
+            </NavLink>
+          ) : (
+            <NavLink to="/payment" style={{ color: '#ff4256' }}>
+              제철과일 구매
+            </NavLink>
+          )
         ) : (
           <NavLink
             to="/funding"
@@ -123,6 +134,7 @@ const NavbarContainer = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
+  min-width: 1200px;
   height: 10rem;
   justify-content: center;
   gap: 3.2rem;
@@ -133,6 +145,7 @@ const NavbarContainer = styled.div`
     color: #686868;
     text-decoration: none;
   }
+  margin: 0 auto;
 `;
 
 const Header = styled.div`
@@ -163,12 +176,15 @@ const LoginBox = styled.div`
 
 const Menu = styled.nav`
   display: flex;
-  justify-content: space-between;
-  width: 65%;
+  justify-content: space-around;
+  width: 80%;
+  min-width: 1200px;
+  max-width: 1800px;
   a {
     font-size: 1.25rem;
     font-weight: 500;
   }
+  margin: 0 auto;
 `;
 
 const MenuIcon = styled.div`

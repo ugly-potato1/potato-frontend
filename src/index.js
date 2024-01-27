@@ -65,7 +65,6 @@ const router = createBrowserRouter([
       },
       { path: '/auth', element: <Login /> },
       { path: '/grading', element: <Grading /> },
-      { path: '/payment/:m_uid', element: <PaymentSuccess /> },
       { path: '/payment', element: <Payment /> },
     ],
   },
