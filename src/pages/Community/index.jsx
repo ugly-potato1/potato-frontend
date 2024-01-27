@@ -118,11 +118,12 @@ export default function Community() {
 
 const Wrapper = styled.div`
     display: flex;
+    justify-content: center;
     flex-direction: column;
-    min-width: 1300px;
-    max-width: 1920px;
-    margin: 0 auto;
     align-items: center;
+    width: max-content;
+    min-width: 100%;
+    margin: 0;
 `
 const Container = styled.div`
     width: 1280px;
