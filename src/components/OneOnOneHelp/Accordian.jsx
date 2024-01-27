@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-const AccordionMenu = ({ key, title, content, status = "inProgress" }) => {
+const AccordionMenu = ({ key, title, content, status }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleToggle = () => {
@@ -15,7 +15,11 @@ const AccordionMenu = ({ key, title, content, status = "inProgress" }) => {
       <div key={key} className={`que ${isOpen ? 'on' : ''}`} onClick={handleToggle}>
         <span>{title}</span>
         <div className="arrow-wrap">
-          {status !== "inProgress" ? "답변 완료" : "답변 중"}
+          {status !== "inProgress" ? (
+            status === "closed" ?
+            "답변 완료" : ""
+          ) : "답변 중"}
+          
         </div>
       </div>
       <div className={`anw ${isOpen ? 'active' : ''}`}>

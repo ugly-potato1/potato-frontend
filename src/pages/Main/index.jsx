@@ -188,16 +188,20 @@ export default function Main() {
 
 const Wrapper = styled.div`
   box-sizing: border-box;
-  width: 100vw;
-  height: 100vh;
+  width: auto;
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
+   min-width: 1300px;
+   
+  margin: 0 auto;
+
 `;
 const BannerWrap = styled.div`
 display : flex;
 position : relative;
-width: 120rem;
+width: 1920px;
 height: 32.4375rem;
 flex-shrink: 0;
 align-items: center;
@@ -395,7 +399,7 @@ const ButtonWrapper = styled.div`
 
 const SubContainer3 = styled.div`
   margin-top: 100px;
-  width: 100vw;
+  width: 100%;
   height: 1400px;
   display: flex;
   flex-direction: column;

@@ -38,8 +38,12 @@ const Wrap = styled.div`
     background-color: ${(props) => props.color};
     display: flex;
     flex-direction: column;
+    min-width: 1300px;
+    max-width: 1920px;
+    margin: 0 auto;
     justify-content: center;
-    align-items: center; 
+    align-items: center;
+    overflow: hidden;
 `
 
 const ContainerText = styled.div`
