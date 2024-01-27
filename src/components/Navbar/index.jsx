@@ -133,10 +133,10 @@ const NavbarContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   width: 100%;
   min-width: 1200px;
   height: 10rem;
+  justify-content: center;
   gap: 3.2rem;
   overflow: hiddlen;
   margin-bottom: 28px;

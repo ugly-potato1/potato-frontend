@@ -1,12 +1,12 @@
 //프로필 상단 배너
-import React from 'react';
-import styled from 'styled-components';
-import { LuChevronRight } from 'react-icons/lu';
-import ProfileImage from '../../assets/imgs/mypage_profile.png';
-import CarrotImg from '../../assets/imgs/Carrot.png';
-import PlantImg from '../../assets/imgs/growing_plant.png';
-import SettingImg from '../../assets/imgs/setting_icon.png';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import styled from "styled-components";
+import { LuChevronRight } from "react-icons/lu";
+import ProfileImage from "../../assets/imgs/mypage_profile.png";
+import CarrotImg from "../../assets/imgs/Carrot.png";
+import PlantImg from "../../assets/imgs/growing_plant.png";
+import SettingImg from "../../assets/imgs/setting_icon.png";
+import { useNavigate } from "react-router-dom";
 
 export default function ProfileBanner() {
   const navigate = useNavigate();
@@ -18,19 +18,14 @@ export default function ProfileBanner() {
             <img src={ProfileImage}></img>
           </ImageBox>
           <TextBox>
-            <Carrot
-              src={CarrotImg}
-              onClick={() => {
-                navigate(`/grading`);
-              }}
-            ></Carrot>
-            <c
-              onClick={() => {
-                navigate(`/grading`);
-              }}
-            >
-              작물지킴이
-            </c>
+            <Carrot src={CarrotImg}
+            onClick={() => {
+              navigate(`/grading`);
+            }}></Carrot>
+            <c                onClick={() => {
+                  navigate(`/grading`);
+                }}
+            >작물지킴이</c>
             <a>
               홍길동<b>님</b>
               <SetIcon
@@ -59,11 +54,10 @@ const BannerContainer = styled.div`
   box-sizing: border-box;
   margin: 0px auto;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
   height: 294px;
   background-color: #fff5e9;
-  min-width: 1200px;
 `;
 
 const ProfileContainer = styled.div`
@@ -80,7 +74,7 @@ const ProfileContainer = styled.div`
 
 const RightContainer = styled.div`
   position: relative;
-  margin-left: 500px;
+  margin-left: 694px;
   margin-top: -195px;
   display: flex;
   flex-direction: column;
@@ -97,6 +91,7 @@ const RightContainer = styled.div`
     line-height: normal;
     letter-spacing: 0.56px;
     margin-bottom: 30px;
+    
   }
   b {
     color: #000;
