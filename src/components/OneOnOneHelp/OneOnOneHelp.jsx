@@ -208,7 +208,7 @@ const PostContainer = styled.div`
 const PostButton = styled.button`
     margin: 1rem;
     width: 580px;
-    height: 7vh;
+    height: 48.66px;
     border-radius: 15px;
     border: 1px solid #FF4256;
     background-color: #ffffff;

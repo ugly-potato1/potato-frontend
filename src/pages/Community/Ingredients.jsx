@@ -94,6 +94,7 @@ const Wrap = styled.div`
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  width: max-content;
 `
 //상단 설명
 const DescriptionWrap = styled.div`

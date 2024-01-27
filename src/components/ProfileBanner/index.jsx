@@ -1,51 +1,84 @@
 //프로필 상단 배너
-import React from "react";
-import styled from "styled-components";
-import { LuChevronRight } from "react-icons/lu";
-import ProfileImage from "../../assets/imgs/mypage_profile.png";
-import CarrotImg from "../../assets/imgs/Carrot.png";
-import PlantImg from "../../assets/imgs/growing_plant.png";
-import SettingImg from "../../assets/imgs/setting_icon.png";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+
+import styled from 'styled-components';
+import { LuChevronRight } from 'react-icons/lu';
+import ProfileImage from '../../assets/imgs/mypage_profile.png';
+import CarrotImg from '../../assets/imgs/Carrot.png';
+import PlantImg from '../../assets/imgs/growing_plant.png';
+import SettingImg from '../../assets/imgs/setting_icon.png';
+import { useNavigate } from 'react-router-dom';
 
 export default function ProfileBanner() {
   const navigate = useNavigate();
+  const [userData, setUserData] = useState({
+    profileImage: ProfileImage,
+    gradeImage: CarrotImg,
+    gradeName: '작물지킴이',
+    userName: '홍길동',
+    co2Reduced: '0g',
+  });
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        // Replace 'your-api-endpoint' with your actual API endpoint
+        const response = await axios.get('your-api-endpoint');
+        setUserData(response.data); // Assuming the response is an object with the same structure as userData
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchUserData();
+  }, []);
   return (
     <BannerContainer>
+      <Wrapper>
       <ProfileContainer>
         <ProfileWrapper>
           <ImageBox>
-            <img src={ProfileImage}></img>
+            <img src={userData.profileImage} alt="Profile" />
           </ImageBox>
           <TextBox>
-            <Carrot src={CarrotImg}
-            onClick={() => {
-              navigate(`/grading`);
-            }}></Carrot>
-            <c                onClick={() => {
-                  navigate(`/grading`);
-                }}
-            >작물지킴이</c>
+            <GradeImage
+              src={userData.gradeImage}
+              onClick={() => {
+                navigate(`/grading`);
+              }}
+              alt="Grade"
+            />
+            <c onClick={() => navigate(`/grading`)}>{userData.gradeName}</c>
             <a>
-              홍길동<b>님</b>
+              {userData.userName}
+              <b>님</b>
               <SetIcon
                 src={SettingImg}
                 onClick={() => {
                   navigate(`/mypage/profile/userInfo`);
                 }}
+                alt="Settings"
               ></SetIcon>
             </a>
           </TextBox>
         </ProfileWrapper>
+        
         <RightContainer>
-          <Plant src={PlantImg}></Plant>
+          <Plant src={PlantImg} alt="Plant" />
           <a>
-            Co2를 <b>0g</b>만큼 줄였어요!
+            Co2를 <b>{userData.co2Reduced}</b>만큼 줄였어요!
             <LuChevronRight />
           </a>
-          <FundingButton>마을 구출 동참하기</FundingButton>
+          <FundingButton
+            onClick={() => {
+              navigate(`/funding`);
+            }}
+          >
+            마을 구출 동참하기
+          </FundingButton>
         </RightContainer>
       </ProfileContainer>
+      </Wrapper>
     </BannerContainer>
   );
 }
@@ -54,12 +87,22 @@ const BannerContainer = styled.div`
   box-sizing: border-box;
   margin: 0px auto;
   display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: center;
   height: 294px;
+  width : 100vw;
   background-color: #fff5e9;
+  min-width: 1200px;
+  margin: 0 auto;
 `;
 
+const Wrapper = styled.div`
+display: flex;
+align-items: center;
+width : 1920px;
+justify-content: center;
+
+`
 const ProfileContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -67,14 +110,14 @@ const ProfileContainer = styled.div`
   width: 300px;
   position: relative;
   margin-top: 40px;
-  margin-right: 60%;
+  margin-right: 40%;
   border-right: 2px solid #dfdfdf;
   background-color: #fff5e9;
 `;
 
 const RightContainer = styled.div`
   position: relative;
-  margin-left: 694px;
+  margin-left: 500px;
   margin-top: -195px;
   display: flex;
   flex-direction: column;
@@ -91,7 +134,6 @@ const RightContainer = styled.div`
     line-height: normal;
     letter-spacing: 0.56px;
     margin-bottom: 30px;
-    
   }
   b {
     color: #000;
@@ -178,7 +220,7 @@ const TextBox = styled.div`
   }
 `;
 
-const Carrot = styled.img`
+const GradeImage = styled.img`
   display: flex;
   position: relative;
   top: 23%;
