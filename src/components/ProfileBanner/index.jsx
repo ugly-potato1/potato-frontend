@@ -34,6 +34,7 @@ export default function ProfileBanner() {
   }, []);
   return (
     <BannerContainer>
+      <Wrapper>
       <ProfileContainer>
         <ProfileWrapper>
           <ImageBox>
@@ -61,6 +62,7 @@ export default function ProfileBanner() {
             </a>
           </TextBox>
         </ProfileWrapper>
+        
         <RightContainer>
           <Plant src={PlantImg} alt="Plant" />
           <a>
@@ -76,6 +78,7 @@ export default function ProfileBanner() {
           </FundingButton>
         </RightContainer>
       </ProfileContainer>
+      </Wrapper>
     </BannerContainer>
   );
 }
@@ -87,11 +90,19 @@ const BannerContainer = styled.div`
   align-items: center;
   justify-content: center;
   height: 294px;
+  width : 100vw;
   background-color: #fff5e9;
   min-width: 1200px;
   margin: 0 auto;
 `;
 
+const Wrapper = styled.div`
+display: flex;
+align-items: center;
+width : 1920px;
+justify-content: center;
+
+`
 const ProfileContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -99,7 +110,7 @@ const ProfileContainer = styled.div`
   width: 300px;
   position: relative;
   margin-top: 40px;
-  margin-right: 60%;
+  margin-right: 40%;
   border-right: 2px solid #dfdfdf;
   background-color: #fff5e9;
 `;
