@@ -33,14 +33,13 @@ export default function ContentWrap({color = '#FFFFFF', more= true, data, data: 
 }
 
 const Wrap = styled.div`
-    width: 100%;
+    width: 1920px;
     height: 500px;
     background-color: ${(props) => props.color};
     display: flex;
     flex-direction: column;
     min-width: 1300px;
     max-width: 1920px;
-    margin: 0 auto;
     justify-content: center;
     align-items: center;
     
