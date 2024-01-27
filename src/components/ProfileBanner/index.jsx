@@ -1,5 +1,6 @@
 //프로필 상단 배너
 import React, { useEffect, useState } from 'react';
+
 import styled from 'styled-components';
 import { LuChevronRight } from 'react-icons/lu';
 import ProfileImage from '../../assets/imgs/mypage_profile.png';
