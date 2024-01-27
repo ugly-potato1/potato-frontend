@@ -89,7 +89,7 @@ const BannerContainer = styled.div`
   align-items: center;
   justify-content: center;
   height: 294px;
-  width : 100vw;
+  width : auto;
   background-color: #fff5e9;
   min-width: 1200px;
   margin: 0 auto;
@@ -98,7 +98,7 @@ const BannerContainer = styled.div`
 const Wrapper = styled.div`
 display: flex;
 align-items: center;
-width : 1920px;
+width : 1900px;
 justify-content: center;
 
 `
@@ -166,11 +166,10 @@ const ProfileWrapper = styled.div`
 const SetIcon = styled.img`
   display: flex;
   position: relative;
-  float: right;
   width: 19px;
   height: 19px;
-  margin-left: 75%;
-  bottom: 1.7rem;
+  margin-left: 7.5rem;
+  bottom: 2rem;
   cursor: pointer;
 `;
 
@@ -195,14 +194,14 @@ const TextBox = styled.div`
 
   a {
     margin-right: 15px;
-    font-size: 24px;
+    font-size: 1.875rem;
     font-style: normal;
     font-weight: 700;
     line-height: 150%;
     letter-spacing: 0.6px;
   }
   b {
-    font-size: 24px;
+    font-size: 1.875rem;
     font-style: normal;
     font-weight: 400;
     line-height: 150%;
