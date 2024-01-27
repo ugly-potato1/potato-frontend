@@ -134,6 +134,7 @@ const NavbarContainer = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
+  min-width: 1200px;
   height: 10rem;
   justify-content: center;
   gap: 3.2rem;
@@ -144,6 +145,7 @@ const NavbarContainer = styled.div`
     color: #686868;
     text-decoration: none;
   }
+  margin: 0 auto;
 `;
 
 const Header = styled.div`
@@ -174,12 +176,15 @@ const LoginBox = styled.div`
 
 const Menu = styled.nav`
   display: flex;
-  justify-content: space-between;
-  width: 65%;
+  justify-content: space-around;
+  width: 80%;
+  min-width: 1200px;
+  max-width: 1800px;
   a {
     font-size: 1.25rem;
     font-weight: 500;
   }
+  margin: 0 auto;
 `;
 
 const MenuIcon = styled.div`

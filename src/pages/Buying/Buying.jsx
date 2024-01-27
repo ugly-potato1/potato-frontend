@@ -21,9 +21,10 @@ export default function Buying() {
   });
 
   useEffect(() => {
-    axios.get('your-api-endpoint')
-      .then(response => {
-        const data = response.data; 
+    axios
+      .get('your-api-endpoint')
+      .then((response) => {
+        const data = response.data;
         setProductData({
           image: data.image,
           location: data.location,
@@ -33,7 +34,7 @@ export default function Buying() {
           isLiked: data.isLiked, 
         });
       })
-      .catch(error => {
+      .catch((error) => {
         console.error('Error fetching data:', error);
       });
   }, []); 
@@ -78,19 +79,15 @@ export default function Buying() {
       <Wrapper>
         <HeadLine></HeadLine>
         <ContentBox>
-        <ImageContainer>
-        <img src={productData.image || SampleImg} alt="상품" />
-      </ImageContainer>
-      <DescriptionContainer>
-        <Info>
-          마을의 펀딩 &#62;<a>{productData.location}</a>
-        </Info>
-        <Title>
-          {productData.title}
-        </Title>
-        <Description>
-          {productData.description}
-        </Description>
+          <ImageContainer>
+            <img src={productData.image || SampleImg} alt="상품" />
+          </ImageContainer>
+          <DescriptionContainer>
+            <Info>
+              마을의 펀딩 &#62;<a>{productData.location}</a>
+            </Info>
+            <Title>{productData.title}</Title>
+            <Description>{productData.description}</Description>
             <ButtonBox>
               <ShareButton>
                 <img src={ShareImg} alt="공유버튼"></img>
@@ -103,7 +100,7 @@ export default function Buying() {
         <HeadLine></HeadLine>
         <ProductTitle>상품 종류</ProductTitle>
         <ProductContainer>
-          <Items/> 
+          <Items />
           {/* 상품 컴포넌트 */}
         </ProductContainer>
         <HeadLine></HeadLine>
@@ -222,6 +219,7 @@ const Description = styled.div`
   width: 419px;
   display: flex;
   height: 300px;
+  height: 300px;
   position: relative;
   color: #5e5e5e;
   font-family: Pretendard;
@@ -234,6 +232,7 @@ const Description = styled.div`
 const ButtonBox = styled.div`
   display: flex;
   position: relative;
+  width : 40rem;
   top: 5.5rem;
 `;
 const ShareButton = styled.div`
@@ -289,6 +288,7 @@ const ProductTitle = styled.div`
   font-weight: 700;
   line-height: normal;
   letter-spacing: 0.56px;
+  margin-bottom: 3rem;
   margin-bottom: 3rem;
 `;
 const ProductContainer = styled.div`
