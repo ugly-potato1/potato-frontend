@@ -1,6 +1,5 @@
 //프로필 상단 배너
 import React, { useEffect, useState } from 'react';
-<<<<<<< HEAD
 import styled from 'styled-components';
 import { LuChevronRight } from 'react-icons/lu';
 import ProfileImage from '../../assets/imgs/mypage_profile.png';
@@ -8,15 +7,6 @@ import CarrotImg from '../../assets/imgs/Carrot.png';
 import PlantImg from '../../assets/imgs/growing_plant.png';
 import SettingImg from '../../assets/imgs/setting_icon.png';
 import { useNavigate } from 'react-router-dom';
-=======
-import styled from "styled-components";
-import { LuChevronRight } from "react-icons/lu";
-import ProfileImage from "../../assets/imgs/mypage_profile.png";
-import CarrotImg from "../../assets/imgs/Carrot.png";
-import PlantImg from "../../assets/imgs/growing_plant.png";
-import SettingImg from "../../assets/imgs/setting_icon.png";
-import { useNavigate } from "react-router-dom";
->>>>>>> e9e9e9e1897c00460730ff6401418d7be40b4639
 
 export default function ProfileBanner() {
   const navigate = useNavigate();
@@ -43,80 +33,49 @@ export default function ProfileBanner() {
   }, []);
   return (
     <BannerContainer>
-<<<<<<< HEAD
       <ProfileContainer>
         <ProfileWrapper>
           <ImageBox>
-            <img src={ProfileImage}></img>
+            <img src={userData.profileImage} alt="Profile" />
           </ImageBox>
           <TextBox>
-            <Carrot
-              src={CarrotImg}
+            <GradeImage
+              src={userData.gradeImage}
               onClick={() => {
                 navigate(`/grading`);
               }}
-            ></Carrot>
-            <c
-              onClick={() => {
-                navigate(`/grading`);
-              }}
-            >
-              작물지킴이
-            </c>
+              alt="Grade"
+            />
+            <c onClick={() => navigate(`/grading`)}>{userData.gradeName}</c>
             <a>
-              홍길동<b>님</b>
+              {userData.userName}
+              <b>님</b>
               <SetIcon
                 src={SettingImg}
                 onClick={() => {
                   navigate(`/mypage/profile/userInfo`);
                 }}
+                alt="Settings"
               ></SetIcon>
             </a>
           </TextBox>
         </ProfileWrapper>
         <RightContainer>
-          <Plant src={PlantImg}></Plant>
-=======
-    <ProfileContainer>
-      <ProfileWrapper>
-        <ImageBox>
-          <img src={userData.profileImage} alt="Profile" />
-        </ImageBox>
-        <TextBox>
-          <GradeImage
-            src={userData.gradeImage}
-            onClick={() => {
-              navigate(`/grading`);
-            }}
-            alt="Grade"
-          />
-          <c onClick={() => navigate(`/grading`)}>{userData.gradeName}</c>
->>>>>>> e9e9e9e1897c00460730ff6401418d7be40b4639
+          <Plant src={PlantImg} alt="Plant" />
           <a>
-            {userData.userName}
-            <b>님</b>
-            <SetIcon
-              src={SettingImg}
-              onClick={() => {
-                navigate(`/mypage/profile/userInfo`);
-              }}
-              alt="Settings"
-            ></SetIcon>
+            Co2를 <b>{userData.co2Reduced}</b>만큼 줄였어요!
+            <LuChevronRight />
           </a>
-        </TextBox>
-      </ProfileWrapper>
-      <RightContainer>
-        <Plant src={PlantImg} alt="Plant" />
-        <a>
-          Co2를 <b>{userData.co2Reduced}</b>만큼 줄였어요!
-          <LuChevronRight />
-        </a>
-        <FundingButton  onClick={() => {
-                navigate(`/funding`);
-              }}>마을 구출 동참하기</FundingButton>
-      </RightContainer>
-    </ProfileContainer>
-  </BannerContainer>
+          <FundingButton
+            onClick={() => {
+              navigate(`/funding`);
+            }}
+          >
+            마을 구출 동참하기
+          </FundingButton>
+        </RightContainer>
+      </ProfileContainer>
+    </BannerContainer>
   );
 }
 
