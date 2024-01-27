@@ -9,6 +9,7 @@ module.exports = {
         sub2: '#CED14B',
         sub3: '#9C5432',
         point: '#FF9CF2',
+        text: '#2A2A2A',
       },
     },
   },

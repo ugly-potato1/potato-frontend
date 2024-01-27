@@ -20,11 +20,8 @@ export default function ImageContainer({keyword = dummyData, ingredient= null}) 
 
 
 const ImgContainer = styled.div`
+box-sizing: border-box;
 position: relative;
-justify-content: center; 
-align-items: center; 
-align-self: flex-end;
-gap: 10px; 
 width: 350px;
 margin-bottom: 3rem;
 img{
