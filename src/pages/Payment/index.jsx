@@ -10,6 +10,8 @@ import React, { useState } from 'react';
 import { fetchDeleteAddress } from '../../apis/Payment';
 import styled from 'styled-components';
 import * as S from './styles';
+import { useLocation, useNavigate } from 'react-router-dom';
+import PaymentSuccess from './PaymentSuccess';
 
 // 사용자 전체 배송지 목록 (더미데이터)
 const addressList = [
@@ -54,6 +56,8 @@ const Payment = () => {
   // 사용자의 전체 배송지 목록 + 기본 배송지 목록을 가져오는 요청 + (배송지 추가 및 삭제에 대한 요청 고려)
   // 기본 배송지를 currentAddress에 저장하고, DeliverInfo 컴포넌트에 뿌리자!
   // 바로 위에서 만든 배송지 state는 배송지 변경에서 클릭시 해당 배송지를 업데이트하고, 다시 DeliverInfo에 뿌리는 과정 필요하다
+  const { state } = useLocation();
+  const navigate = useNavigate();
 
   const queryClient = useQueryClient();
   const [currentAddress, setCurrentAddress] = useState({
@@ -107,7 +111,11 @@ const Payment = () => {
         // 백엔드 연동 과정 (결제금액이 올바른지 확인하기 위함) + imp_uid, merchant_uid 값을 백으로 보냄
         // (백으로 imp_uid값 전송 필요 + 백에서는 가맹점 식별코드 및 secret key를 통해 accessToken값을 얻어오고, 주문 내역이 올바른지 확인하는 과정 필요)
         // 올바른 결제인 경우 리다이렉션 페이지 구성 필요
-        alert('결제 성공');
+        //alert('결제 성공');
+        navigate('/payment', {
+          state: { paymentSuccessInfo: { mgs: '이거보면 성공' } },
+        });
+        window.scrollTo(0, 0);
       } else {
         alert(`결제 실패: ${error_msg}`);
       }
@@ -220,6 +228,9 @@ const Payment = () => {
     setValue('address', fullAddress);
   };
 
+  if (state) {
+    return <PaymentSuccess />;
+  }
   return (
     <>
       <S.PaymentLayout>

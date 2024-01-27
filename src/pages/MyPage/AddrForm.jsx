@@ -170,13 +170,13 @@ const InputBox = styled.div`
   label {
     font-weight: bold;
     color: #2A2A2A;
-    width: 6vw;
+    width: 100px;
     margin-right: 4rem;
   }
 `
 
 const StyledInput = styled.input`
-  width: 25vw;
+  width: 500px;
   height: 2rem;
   margin: 1.5rem;
   border-style: solid;
@@ -186,7 +186,6 @@ const StyledInput = styled.input`
 `
 
 const ButtonBox = styled.div`
-    display: flexbox;
     margin: 0.5rem;
     margin-top: 1.5rem;
 `
@@ -197,9 +196,8 @@ const SaveButton = styled.button`
     border-style: solid;
     border-width: 1px;
     border-radius: 10rem;
-    padding: 0.2rem;
-    padding-left: 0.9rem;
-    padding-right: 0.9rem;
+    width: 50px;
+    height: 25px;
     margin-right:1rem;
     border-color: transparent;
 `
@@ -211,9 +209,8 @@ const CancelButton = styled.button`
     border-style: solid;
     border-width: 1px;
     border-radius: 10rem;
-    padding: 0.2rem;
-    padding-left: 0.9rem;
-    padding-right: 0.9rem;
+    width: 50px;
+    height: 25px;
     margin-right:1rem;
 `
 

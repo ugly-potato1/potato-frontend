@@ -11,10 +11,10 @@ export default function OneOnOnePosting({
 }
 ) {
     const Category = [{key: "All", value: "전체"},
-                    {key: "Pay", value: "결제 문의"},
-                    {key: "Shipping", value: "배송 문의"},
-                    {key: "Cancel", value: "취소/반품/환불 문의"},
-                    {key: "Other", value: "기타 문의"}];
+                      {key: "Pay", value: "결제 문의"},
+                      {key: "Shipping", value: "배송 문의"},
+                      {key: "Cancel", value: "취소/반품/환불 문의"},
+                      {key: "Other", value: "기타 문의"}];
                     
     
     const navigate = useNavigate();
@@ -25,7 +25,7 @@ export default function OneOnOnePosting({
 
 
     const [title, setTitle] = useState("");
-    const [postContent, setPostContent] = useState("====================\n\n1. 주문번호\n\n\n2. 문의내용");
+    const [postContent, setPostContent] = useState("====================\n\n1. 주문번호\n\n\n2. 문의내용\n");
 
     const handleCancel = (e) => {
         e.preventDefault();
@@ -162,7 +162,7 @@ export default function OneOnOnePosting({
                 </Select>*/
                 }
                 
-                <CustomSelect optionData = {Category} sendValueFunction={receiveSelectValue} isShow={option} width='24.7vw' />
+                <CustomSelect optionData = {Category} sendValueFunction={receiveSelectValue} isShow={option} width='400px' />
                 <Select name='DetailCategory'>
                     <option value="Detail">상세유형</option>
                 </Select>
@@ -220,6 +220,7 @@ export default function OneOnOnePosting({
 
 const HelpContainer = styled.div`
     text-align: center;
+    width: 1000px;
     padding: 5px;
 `
 const CategoryContainer = styled.div`
@@ -259,7 +260,7 @@ const Select = styled.select`
     background: url("data:image/svg+xml,%3Csvg stroke='currentColor' fill='currentColor' stroke-width='0' viewBox='0 0 512 512' height='1em' width='1em' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M256 294.1L383 167c9.4-9.4 24.6-9.4 33.9 0s9.3 24.6 0 34L273 345c-9.1 9.1-23.7 9.3-33.1.7L95 201.1c-4.7-4.7-7-10.9-7-17s2.3-12.3 7-17c9.4-9.4 24.6-9.4 33.9 0l127.1 127z'%3E%3C/path%3E%3C/svg%3E") no-repeat 95% 50%;
     padding: 5px;
     margin: 5px;
-    width: 24.7vw;
+    width: 390px;
     border: solid 2px #DFDFDF;
     border-radius: 10px;
 `
@@ -268,15 +269,15 @@ const Label = styled.label`
 
 const Input = styled.input`
     padding: 5px;
-    margin:5px;
-    width: 50vw;
+    margin: 5px;
+    width: 800px;
     border: solid 2px #DFDFDF;
     border-radius: 10px;
 `
 const PostInput = styled.textarea`
 padding: 5px;
-height:40vh;
-width: 50vw;
+height: 350px;
+width: 800px;
 border: solid 2px #DFDFDF;
 border-radius: 10px;    
 `
@@ -306,7 +307,7 @@ const PostButton = styled.button`
 const SubmitButton = styled.button`
     margin: 20px;
     padding: 20px;
-    width: 20vw;
+    width: 400px;
     padding-left:100px;
     padding-right:100px;
     border-radius: 15px;
@@ -317,7 +318,7 @@ const SubmitButton = styled.button`
 const CancelButton = styled.button`
     margin: 20px;
     padding: 20px;
-    width: 20vw;
+    width: 400px;
     padding-left:100px;
     padding-right:100px;
     border-radius: 15px;

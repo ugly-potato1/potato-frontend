@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import OneReviewItem from './Review/OneReviewItem'
 import axios from 'axios'
-import AddReviewModal from './Review/AddReviewModal'
+import HistoryModal from './HisotryModal'
 import Image1 from "../../../assets/imgs/CartApple.png";
 
 
@@ -107,7 +107,7 @@ const [cancelCount, setCancelCount] = useState(0); // 취소/교환/반품 개�
           <hr/>
         </HistoryWrapper>
       )}
-      {modalOpen && <AddReviewModal setModalOpen={setModalOpen} />}
+      {modalOpen && <HistoryModal setModalOpen={setModalOpen} />}
     </Wrapper>
   );
 }
