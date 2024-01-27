@@ -189,10 +189,11 @@ export default function Main() {
 const Wrapper = styled.div`
   box-sizing: border-box;
   width: 100vw;
-  height: 100vh;
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
+
 `;
 const BannerWrap = styled.div`
 display : flex;

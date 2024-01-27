@@ -1,5 +1,5 @@
 //프로필 상단 배너
-import React from "react";
+import React, { useEffect, useState } from 'react';
 import styled from "styled-components";
 import { LuChevronRight } from "react-icons/lu";
 import ProfileImage from "../../assets/imgs/mypage_profile.png";
@@ -10,43 +10,68 @@ import { useNavigate } from "react-router-dom";
 
 export default function ProfileBanner() {
   const navigate = useNavigate();
+  const [userData, setUserData] = useState({
+    profileImage: ProfileImage,
+    gradeImage: CarrotImg,
+    gradeName: '작물지킴이',
+    userName: '홍길동',
+    co2Reduced: '0g',
+  });
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        // Replace 'your-api-endpoint' with your actual API endpoint
+        const response = await axios.get('your-api-endpoint');
+        setUserData(response.data); // Assuming the response is an object with the same structure as userData
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchUserData();
+  }, []);
   return (
     <BannerContainer>
-      <ProfileContainer>
-        <ProfileWrapper>
-          <ImageBox>
-            <img src={ProfileImage}></img>
-          </ImageBox>
-          <TextBox>
-            <Carrot src={CarrotImg}
+    <ProfileContainer>
+      <ProfileWrapper>
+        <ImageBox>
+          <img src={userData.profileImage} alt="Profile" />
+        </ImageBox>
+        <TextBox>
+          <GradeImage
+            src={userData.gradeImage}
             onClick={() => {
               navigate(`/grading`);
-            }}></Carrot>
-            <c                onClick={() => {
-                  navigate(`/grading`);
-                }}
-            >작물지킴이</c>
-            <a>
-              홍길동<b>님</b>
-              <SetIcon
-                src={SettingImg}
-                onClick={() => {
-                  navigate(`/mypage/profile/userInfo`);
-                }}
-              ></SetIcon>
-            </a>
-          </TextBox>
-        </ProfileWrapper>
-        <RightContainer>
-          <Plant src={PlantImg}></Plant>
+            }}
+            alt="Grade"
+          />
+          <c onClick={() => navigate(`/grading`)}>{userData.gradeName}</c>
           <a>
-            Co2를 <b>0g</b>만큼 줄였어요!
-            <LuChevronRight />
+            {userData.userName}
+            <b>님</b>
+            <SetIcon
+              src={SettingImg}
+              onClick={() => {
+                navigate(`/mypage/profile/userInfo`);
+              }}
+              alt="Settings"
+            ></SetIcon>
           </a>
-          <FundingButton>마을 구출 동참하기</FundingButton>
-        </RightContainer>
-      </ProfileContainer>
-    </BannerContainer>
+        </TextBox>
+      </ProfileWrapper>
+      <RightContainer>
+        <Plant src={PlantImg} alt="Plant" />
+        <a>
+          Co2를 <b>{userData.co2Reduced}</b>만큼 줄였어요!
+          <LuChevronRight />
+        </a>
+        <FundingButton  onClick={() => {
+                navigate(`/funding`);
+              }}>마을 구출 동참하기</FundingButton>
+      </RightContainer>
+    </ProfileContainer>
+  </BannerContainer>
   );
 }
 
@@ -178,7 +203,7 @@ const TextBox = styled.div`
   }
 `;
 
-const Carrot = styled.img`
+const GradeImage = styled.img`
   display: flex;
   position: relative;
   top: 23%;
