@@ -235,6 +235,7 @@ const ButtonBox = styled.div`
   display: flex;
   position: relative;
   top: 5.5rem;
+  weight : 40rem;
 `;
 const ShareButton = styled.div`
   display: flex;
