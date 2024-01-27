@@ -167,7 +167,7 @@ const InqueryWrapper = styled.div`
 const HistoryWrapper = styled.ul`
   width: 100%;
   display: flex;
-  margin-top: 65px;
+  margin-top: 40px;
   flex-direction: column;
   border-radius: 1rem;
   border: 1px solid #DFDFDF;
