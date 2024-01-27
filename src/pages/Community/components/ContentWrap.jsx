@@ -45,7 +45,7 @@ const Wrap = styled.div`
 const ContainerText = styled.div`
     display: flex;
     flex-direction: row;
-    margin-top: 3rem;
+    margin-bottom: 3rem;
     align-items: center;
     position: relative;
     h1{
@@ -63,6 +63,7 @@ const ContainerText = styled.div`
 
 const Container = styled.div`
     width: 1280px;
+    height: 350px;
     display: flex;
     flex-direction: row;
     justify-content: center;
