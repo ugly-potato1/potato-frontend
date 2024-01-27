@@ -1,5 +1,14 @@
 //프로필 상단 배너
 import React, { useEffect, useState } from 'react';
+<<<<<<< HEAD
+import styled from 'styled-components';
+import { LuChevronRight } from 'react-icons/lu';
+import ProfileImage from '../../assets/imgs/mypage_profile.png';
+import CarrotImg from '../../assets/imgs/Carrot.png';
+import PlantImg from '../../assets/imgs/growing_plant.png';
+import SettingImg from '../../assets/imgs/setting_icon.png';
+import { useNavigate } from 'react-router-dom';
+=======
 import styled from "styled-components";
 import { LuChevronRight } from "react-icons/lu";
 import ProfileImage from "../../assets/imgs/mypage_profile.png";
@@ -7,6 +16,7 @@ import CarrotImg from "../../assets/imgs/Carrot.png";
 import PlantImg from "../../assets/imgs/growing_plant.png";
 import SettingImg from "../../assets/imgs/setting_icon.png";
 import { useNavigate } from "react-router-dom";
+>>>>>>> e9e9e9e1897c00460730ff6401418d7be40b4639
 
 export default function ProfileBanner() {
   const navigate = useNavigate();
@@ -33,6 +43,40 @@ export default function ProfileBanner() {
   }, []);
   return (
     <BannerContainer>
+<<<<<<< HEAD
+      <ProfileContainer>
+        <ProfileWrapper>
+          <ImageBox>
+            <img src={ProfileImage}></img>
+          </ImageBox>
+          <TextBox>
+            <Carrot
+              src={CarrotImg}
+              onClick={() => {
+                navigate(`/grading`);
+              }}
+            ></Carrot>
+            <c
+              onClick={() => {
+                navigate(`/grading`);
+              }}
+            >
+              작물지킴이
+            </c>
+            <a>
+              홍길동<b>님</b>
+              <SetIcon
+                src={SettingImg}
+                onClick={() => {
+                  navigate(`/mypage/profile/userInfo`);
+                }}
+              ></SetIcon>
+            </a>
+          </TextBox>
+        </ProfileWrapper>
+        <RightContainer>
+          <Plant src={PlantImg}></Plant>
+=======
     <ProfileContainer>
       <ProfileWrapper>
         <ImageBox>
@@ -47,6 +91,7 @@ export default function ProfileBanner() {
             alt="Grade"
           />
           <c onClick={() => navigate(`/grading`)}>{userData.gradeName}</c>
+>>>>>>> e9e9e9e1897c00460730ff6401418d7be40b4639
           <a>
             {userData.userName}
             <b>님</b>
@@ -79,10 +124,12 @@ const BannerContainer = styled.div`
   box-sizing: border-box;
   margin: 0px auto;
   display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: center;
   height: 294px;
   background-color: #fff5e9;
+  min-width: 1200px;
+  margin: 0 auto;
 `;
 
 const ProfileContainer = styled.div`
@@ -99,7 +146,7 @@ const ProfileContainer = styled.div`
 
 const RightContainer = styled.div`
   position: relative;
-  margin-left: 694px;
+  margin-left: 500px;
   margin-top: -195px;
   display: flex;
   flex-direction: column;
@@ -116,7 +163,6 @@ const RightContainer = styled.div`
     line-height: normal;
     letter-spacing: 0.56px;
     margin-bottom: 30px;
-    
   }
   b {
     color: #000;
