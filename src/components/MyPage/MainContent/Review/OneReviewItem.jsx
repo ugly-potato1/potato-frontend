@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react'
-import TestImage from '../../../../assets/imgs/main_farmer_1.png'
+import React from 'react'
 import styled from 'styled-components'
 
-export default function OneReviewItem({review, review: {id, title, apple, pear, delivery_date, price, completed, image}, setModalOpen}) {    
+export default function OneReviewItem({review, review: {id, title, apple, pear, delivery_date, price, completed, image}, setModalOpen, setTitle}) {    
   return (
     <ItemBox>
       <ImageWrapper>
@@ -19,7 +18,7 @@ export default function OneReviewItem({review, review: {id, title, apple, pear, 
           {completed? 
             <CompleteButton>작성 완료</CompleteButton>
             :
-            <InputButton onClick={() => setModalOpen(true)}>후기 작성</InputButton>
+            <InputButton onClick={() => {setModalOpen(true); setTitle(title)} }>후기 작성</InputButton>
           }
         </ButtonWrapper>
       </Content>
