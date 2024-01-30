@@ -1,13 +1,14 @@
 //프로필 상단 배너
 import React, { useEffect, useState } from 'react';
 
-import styled from 'styled-components';
-import { LuChevronRight } from 'react-icons/lu';
-import ProfileImage from '../../assets/imgs/mypage_profile.png';
-import CarrotImg from '../../assets/imgs/Carrot.png';
-import PlantImg from '../../assets/imgs/growing_plant.png';
-import SettingImg from '../../assets/imgs/setting_icon.png';
-import { useNavigate } from 'react-router-dom';
+import styled from "styled-components";
+import { LuChevronRight } from "react-icons/lu";
+import ProfileImage from "../../assets/imgs/mypage_profile.png";
+import CarrotImg from "../../assets/imgs/Carrot.png";
+import PlantImg from "../../assets/imgs/growing_plant.png";
+import SettingImg from "../../assets/imgs/setting_icon.png";
+import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 export default function ProfileBanner() {
   const navigate = useNavigate();

@@ -103,7 +103,7 @@ export default function Buying() {
         <HeadLine></HeadLine>
         <ProductTitle>상품 종류</ProductTitle>
         <ProductContainer>
-          <Items/> 
+          <Items isDetailPage/> 
           {/* 상품 컴포넌트 */}
         </ProductContainer>
         <HeadLine></HeadLine>
