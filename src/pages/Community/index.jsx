@@ -121,7 +121,7 @@ const Wrapper = styled.div`
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    width: 1920px;
+    width: 100%;
     margin: 0;
 `
 const Container = styled.div`

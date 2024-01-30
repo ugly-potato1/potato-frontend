@@ -130,7 +130,6 @@ const Wrap = styled.div`
   display: flex;
   justify-content: center;
     min-width: 1300px;
-    max-width: 1920px;
   flex-direction: column;
   align-items: center;
 `
