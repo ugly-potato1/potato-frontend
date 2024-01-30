@@ -7,6 +7,7 @@ import AddReviewModal from './AddReviewModal'
 export default function Review() {
   const [reviewList, setReviewList] = useState([])
   const [modalOpen, setModalOpen] = useState(false)
+  const [title, setTitle] = useState('')
 
   const getReviewList = async () => {
     try {
@@ -33,12 +34,14 @@ export default function Review() {
         <Line/>
         <ReviewWrapper>
           {reviewList && reviewList.map((review, i) => (
-            <OneReviewItem key={i} review={review} setModalOpen={setModalOpen}/>
+            <>
+              <OneReviewItem key={i} review={review} setModalOpen={setModalOpen} setTitle={setTitle}/>
+              {i < (reviewList.length-1) && <hr />}
+            </>
           ))}
-          <hr/>
         </ReviewWrapper>
       </Container>
-      {modalOpen && <AddReviewModal setModalOpen={setModalOpen} />}
+      {modalOpen && <AddReviewModal setModalOpen={setModalOpen} title={title}/>}
     </>
   )
 }
