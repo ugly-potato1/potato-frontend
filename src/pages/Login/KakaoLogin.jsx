@@ -22,10 +22,15 @@ const KakaoLogin = () => {
         //LoginSuccess({});
       } catch {}
     },
+    onError: (err) => {
+      console.log('리프레쉬 토큰 요청 실패!', err);
+    },
   });
   const { mutate: LoginSuccess } = useMutation({
     mutationFn: handleLogin,
     onSuccess: (data) => {
+      console.log('카카오 로그인 요청 성공!');
+      console.log('서버로 부터 받은 데이터 값', data);
       //const { accessToken } = response.data; // 서버로 부터 받은 로그인 accessToken
       // axiosInstance.defaults.headers.common[
       //   'Authorization'
@@ -37,6 +42,9 @@ const KakaoLogin = () => {
       //     console.log('slient refresh 에러', err);
       //   }
       // }, JWT_EXPIRRY_TIME - 60000);
+    },
+    onError: (err) => {
+      console.log('카카오 로그인 요청 실패!', err);
     },
   });
 
@@ -51,18 +59,25 @@ const KakaoLogin = () => {
     const params = new URLSearchParams(config).toString();
     const finalUrl = `${baseUrl}?${params}`;
     const { data: tokenRequest } = await axios.post(finalUrl);
-
     console.log('tokenRequest', tokenRequest);
+    //console.log('here', tokenRequest.access_token);
 
-    // 백엔드 연동 필요
+    // axiosInstance.defaults.headers.common[
+    //   'Authorization'
+    // ] = `Bearer ${tokenRequest.access_token}`;
+
     // try {
-    //   LoginSuccess({});
+    //   LoginSuccess({
+    //     providerName: 'kakao',
+    //     serviceUsingAgree: 'Y',
+    //     personalInformationAgree: 'N',
+    //     marketingAgree: 'Y',
+    //     access_token: tokenRequest.access_token,
+    //   });
     // } catch (err) {
     //   console.log('카카오 로그인 에러', err);
     // }
 
-    // axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${}`;
-    // axiosInstance를 사용할 것 (기본 axios 사용 X)
     setIsLogin(true);
     navigate('/');
   };
