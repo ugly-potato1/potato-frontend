@@ -26,6 +26,8 @@ import Recipe from './pages/Community/Recipe';
 import Buying from './pages/Buying/Buying';
 import Payment from './pages/Payment';
 import PaymentSuccess from './pages/Payment/PaymentSuccess';
+import Cart from "./pages/Cart";
+import NaverLogin from './pages/Login/NaverLogin';
 
 const router = createBrowserRouter([
   {
@@ -34,6 +36,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Main /> },
       { path: '/user/oauth/signin/kakao', element: <KakaoLogin /> },
+      { path: '/user/oauth/signin/naver', element: <NaverLogin /> },
       { path: '/login', element: <Login /> },
       { path: '/intro', element: <Intro /> },
       { path: '/funding/buying', element: <Buying /> },
@@ -44,6 +47,7 @@ const router = createBrowserRouter([
       { path: '/community', element: <Community /> },
       { path: '/ingredients/:ingredient', element: <Ingredients /> },
       { path: '/recipes/:recipe', element: <Recipe /> },
+      { path: "/cart", element: <Cart /> },
       {
         path: '/mypage/profile',
         element: <Profile />,
