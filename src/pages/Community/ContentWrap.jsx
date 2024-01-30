@@ -30,7 +30,7 @@ export default function ContentWrap({color = '#FFFFFF', data}) {
 }
 
 const Wrap = styled.div`
-    width: 100vw;
+    width: 1200px;
     height: 500px;
     background-color: ${(props) => props.color};
     display: flex;
