@@ -23,5 +23,5 @@ const RateStarWrapper = styled.div`
   display: flex;
   gap: 0.5rem;
   justify-content: center;
-  margin-top: 1rem;
+  margin-top: 3rem;
 `
