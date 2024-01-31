@@ -13,9 +13,9 @@ import LikedImg from '../../assets/imgs/Funding/LikedImage.svg'
 export default function Buying() {
   const [productData, setProductData] = useState({
     image: '',
-    location: '',
-    title: '',
-    description: '',
+    location: '청주',
+    title: '저렴한 가격! 신선한 과일! 청주 못난이 과일을 맛보세요!' ,
+    description: '농부의 마음으로 정직하고 신선하게프리미엄 & 신상 과일을큐레이션 하여 선물드립니다',
     likeCount: 0,
     isLiked: false, 
   });
@@ -83,7 +83,7 @@ export default function Buying() {
       </ImageContainer>
       <DescriptionContainer>
         <Info>
-          마을의 펀딩 &#62;<a>{productData.location}</a>
+          겨울 제철 못난이 &#62;<a>{productData.location}</a>
         </Info>
         <Title>
           {productData.title}
@@ -103,7 +103,7 @@ export default function Buying() {
         <HeadLine></HeadLine>
         <ProductTitle>상품 종류</ProductTitle>
         <ProductContainer>
-          <Items/> 
+          <Items isDetailPage/> 
           {/* 상품 컴포넌트 */}
         </ProductContainer>
         <HeadLine></HeadLine>
@@ -134,10 +134,11 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  position : relative;
 `;
 
 const ContentBox = styled.div`
-  height: 650px;
+  height: 550px;
   display: flex;
   flex-direction: row;
   max-width: 1250px; //너비조정
@@ -179,20 +180,24 @@ const DescriptionContainer = styled.div`
   }
 `;
 const Title = styled.div`
-  position: relative;
+  position: absolute;
   color: #2a2a2a;
-  top: -3rem;
+  top : 7rem;
   font-family: Pretendard;
   font-size: 28px;
+  width : 20rem;
+  height : auto;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
   letter-spacing: 0.56px;
+  white-space: pre-wrap; /* 여기에 속성 추가 */
 `;
 const Info = styled.div`
-  position: relative;
+  position: absolute;
   width: 200px;
-  height: 30px;
+  top : 5rem;
+  height: 25px;
   color: #a2a2a2;
   font-family: Pretendard;
   font-size: 17px;
@@ -208,7 +213,7 @@ const Info = styled.div`
     border-radius: 12.5px;
     background: #ff9c2f;
     color: #fff;
-    padding: 2px 7px 1px 7px;
+    padding: 2px 12px 2px 12px;
     text-align: center;
     align-items: center;
     font-family: Pretendard;
@@ -221,21 +226,22 @@ const Info = styled.div`
 const Description = styled.div`
   width: 419px;
   display: flex;
-  height: 300px;
-  position: relative;
+  height: auto;
+  position: absolute;
   color: #5e5e5e;
   font-family: Pretendard;
   font-size: 18px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  top : 13rem;
 `;
 
 const ButtonBox = styled.div`
   display: flex;
-  position: relative;
-  top: 5.5rem;
+  position: absolute;
   width : 40rem;
+  top : 24.5rem;
 `;
 const ShareButton = styled.div`
   display: flex;
