@@ -12,6 +12,7 @@ import {
 } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { UserLoginState } from '../../stores/Login/atom';
+import axios from 'axios';
 
 export default function Navbar() {
   const location = useLocation();
@@ -31,7 +32,9 @@ export default function Navbar() {
       navigate('/funding/buying');
     }
   };
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    const idReturn = await axios.post('https://kapi.kakao.com/v1/user/unlink');
+    console.log('id Return', idReturn);
     // 백엔드주소로 logout요청
     setIsLogin(false);
     navigate('/');
