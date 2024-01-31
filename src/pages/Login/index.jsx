@@ -23,8 +23,8 @@ export default function Login() {
 
   const handleNaverLogin = () => {
     const NAVER_CLIENT_ID = process.env.REACT_APP_NAVER_CLIENT_ID;
-    const REDIRECT_URI = process.env.REACT_APP_NAVER_REDIRECT_URL;  
-    const NAVER_AUTH_URL = `https://nid.naver.com/oauth2.0/authorize?client_id=${NAVER_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&state=${'test'}&response_type=code`
+    const REDIRECT_URI = process.env.REACT_APP_NAVER_REDIRECT_URL;
+    const NAVER_AUTH_URL = `https://nid.naver.com/oauth2.0/authorize?client_id=${NAVER_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&state=${'test'}&response_type=code`;
 
     window.location.href = NAVER_AUTH_URL;
   };

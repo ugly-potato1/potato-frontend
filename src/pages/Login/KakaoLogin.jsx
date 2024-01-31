@@ -59,7 +59,32 @@ const KakaoLogin = () => {
     const params = new URLSearchParams(config).toString();
     const finalUrl = `${baseUrl}?${params}`;
     const { data: tokenRequest } = await axios.post(finalUrl);
+
     console.log('tokenRequest', tokenRequest);
+
+    axios.defaults.headers.common[
+      'Authorization'
+    ] = `Bearer ${tokenRequest.access_token}`;
+
+    const { data: userInfo } = await axios.get(
+      `https://kapi.kakao.com/v2/user/me`,
+      {
+        headers: {
+          Authorization: `Bearer ${tokenRequest.access_token}`,
+          'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
+        },
+      }
+    );
+
+    console.log('userInfo', userInfo);
+
+    const user_email =
+      userInfo.kakao_account.is_email_valid &&
+      userInfo.kakao_account.is_email_verified
+        ? userInfo.kakao_account.email
+        : '';
+
+    console.log('check this', userInfo.kakao_account.is_email_valid);
     //console.log('here', tokenRequest.access_token);
 
     // axiosInstance.defaults.headers.common[
