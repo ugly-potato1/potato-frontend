@@ -75,7 +75,7 @@ export default function ProfileBanner() {
               navigate(`/funding`);
             }}
           >
-            마을 구출 동참하기
+            못난이 친구들 보러가기
           </FundingButton>
         </RightContainer>
       </ProfileContainer>
