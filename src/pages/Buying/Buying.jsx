@@ -3,14 +3,18 @@ import styled from 'styled-components';
 import SampleImg from '../../assets/imgs/Funding/Buying1.png';
 import ShareImg from '../../assets/imgs/Funding/ShareImage.svg';
 import LikeImg from '../../assets/imgs/Funding/LikeImage.svg';
+import CartImg from '../../assets/imgs/Funding/CartImage.svg'
 import Tomato from '../../assets/imgs/Funding/Tomato.png';
 import Plum from '../../assets/imgs/Funding/Plum.png';
 import Peach from '../../assets/imgs/Funding/Peach.png';
 import Items from './Items';
 import axios from 'axios';
 import LikedImg from '../../assets/imgs/Funding/LikedImage.svg'
+import { useNavigate } from "react-router-dom";
 
 export default function Buying() {
+  const navigate = useNavigate();
+
   const [productData, setProductData] = useState({
     image: '',
     location: '청주',
@@ -19,6 +23,8 @@ export default function Buying() {
     likeCount: 0,
     isLiked: false, 
   });
+
+  const [isScrollContentVisible, setIsScrollContentVisible] = useState(false);
 
   useEffect(() => {
     axios.get('your-api-endpoint')
@@ -37,6 +43,26 @@ export default function Buying() {
         console.error('Error fetching data:', error);
       });
   }, []); 
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const contentBoxHeight = 700; // ContentBox의 높이 (수정 필요)
+
+      if (scrollY > contentBoxHeight) {
+        setIsScrollContentVisible(true);
+      } else {
+        setIsScrollContentVisible(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    // 컴포넌트가 언마운트될 때 이벤트 리스너 제거
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   const handleLikeClick = () => {
     setProductData(prevData => ({
@@ -73,10 +99,39 @@ export default function Buying() {
     </div>
   );
   
+  //스크롤 시 상단 고정 컨테이너
+  const ScrollContent = () => (
+    <FixedContainer isVisible={isScrollContentVisible}>
+      <ScrollContentBox>
+      <ScrollImage>
+        <img src={productData.image || SampleImg} alt="상품" />
+      </ScrollImage>
+      <ScrollInfo>
+        겨울 제철 못난이 &#62;<a>{productData.location}</a>
+      </ScrollInfo>
+      <ScrollTitle>
+        {productData.title}
+      </ScrollTitle>
+      <ScrollButtonBox>
+      <ShareButton>
+        <img src={ShareImg} alt="공유버튼" />
+      </ShareButton>
+      <LikeButton onClick={handleLikeClick}>
+        <img src={productData.isLiked ? LikedImg : LikeImg} alt="찜하기버튼" />
+      </LikeButton>
+      <ScrollCart onClick={() => navigate(`/cart`)}>
+        <img src={CartImg} alt="장바구니" />
+      </ScrollCart>
+      </ScrollButtonBox>
+      </ScrollContentBox>
+    </FixedContainer>
+  );
+
   return (
     <>
       <Wrapper>
         <HeadLine></HeadLine>
+        <ScrollContent/>
         <ContentBox>
         <ImageContainer>
         <img src={productData.image || SampleImg} alt="상품" />
@@ -96,7 +151,7 @@ export default function Buying() {
                 <img src={ShareImg} alt="공유버튼"></img>
               </ShareButton>
               <LikeButton/>
-              <CartButton>담은 목록 보러가기</CartButton>
+              <CartButton onClick={() => navigate(`/cart`)}>담은 목록 보러가기</CartButton>
             </ButtonBox>
           </DescriptionContainer>
         </ContentBox>
@@ -114,8 +169,111 @@ export default function Buying() {
   );
 }
 
+const FixedContainer = styled.div`
+position: fixed;
+top: ${({ isVisible }) => (isVisible ? '0px' : '-400px')};
+width: 100%;
+height : 12rem;
+background-color: white;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content : center;
+border-bottom : 0.0625rem solid #DFDFDF;
+z-index: 2000;
+transition: top 0.3s ease-in-out;
+`;
+
+const ScrollContentBox = styled.div`
+  display: flex;
+  position: relative;
+  width: 1200px;
+  height : 12rem;
+
+`;
+const ScrollImage = styled.div`
+  display: flex;
+  position: relative;
+  margin-left : 2rem;
+  top : 2rem;
+  width: 10.0625rem;
+  height: 7.5rem;
+  flex-shrink: 0;
+  overflow: hidden;
+  flex-shrink: 0; /* 이미지가 축소되지 않도록 합니다. */
+  border-radius: 0.375rem;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+`;
+
+const ScrollInfo = styled.div`
+  display : flex;
+  position: relative;
+  width: 200px;
+  top : 3.5rem;
+  margin-left : 2rem;
+  height: 25px;
+  color: #a2a2a2;
+  font-family: Pretendard;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.34px;
+  white-space: nowrap; /* 줄바꿈 없이 한 줄로 표현합니다. */
+  a {
+    top: -0.1rem;
+    margin-left: 0.3rem;
+    flex-shrink: 0;
+    border-radius: 12.5px;
+    background: #ff9c2f;
+    color: #fff;
+    padding: 2px 12px 2px 12px;
+    text-align: center;
+    align-items: center;
+    font-family: Pretendard;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+  }
+`;
+const ScrollTitle = styled.div`
+  display : flex;
+  position: relative;
+  color: #2a2a2a;
+  margin-top : 6rem;
+  margin-left : -12rem;
+  font-family: Pretendard;
+  font-size: 1.75rem;
+  width : 60rem;
+  height : 4.5rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0.56px;
+  white-space: pre-wrap; /* 여기에 속성 추가 */
+`;
+
+const ScrollButtonBox = styled.div`
+  display: flex;
+  position: absolute;
+  width : 16rem;
+  height : 4.4rem;
+  top: 4rem;
+  right : 1rem;
 
 
+`;
+
+const ScrollCart = styled.div`
+  display: flex;
+  position: relative;
+  margin-left: 10px;
+  cursor: pointer;
+`;
 const LikeCount = styled.span`
   position: absolute;
   bottom: 0.5rem;
