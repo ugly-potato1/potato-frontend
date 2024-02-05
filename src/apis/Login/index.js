@@ -1,11 +1,13 @@
 import { axiosInstance } from '..';
 
 export const handleLogin = async (data) => {
-  console.log('서버로 보내는 값', data);
-  console.log('서버로 보내는 토큰11', data.access_token);
+  const { access_token, ...restOfTheObject } = data;
 
-  return axiosInstance.post(`/api/v1/auth/register`, data, {
-    headers: { Authorization: `Bearer ${data.access_token}` },
+  console.log('서버로 보내는 값', restOfTheObject);
+  console.log('서버로 보내는 토큰11', access_token);
+
+  return axiosInstance.post(`/api/v1/auth/register`, restOfTheObject, {
+    headers: { Authorization: `Bearer ${access_token}` },
     withCredentials: true,
   });
 };
