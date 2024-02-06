@@ -60,10 +60,13 @@ const KakaoLogin = () => {
     const finalUrl = `${baseUrl}?${params}`;
     const { data: tokenRequest } = await axios.post(finalUrl);
 
+    console.log('인가코드로 받은 카카오 토큰', tokenRequest);
+
     axios.defaults.headers.common[
       'Authorization'
     ] = `Bearer ${tokenRequest.access_token}`;
 
+    return tokenRequest;
     // const { data: userInfo } = await axios.get(
     //   `https://kapi.kakao.com/v2/user/me`,
     //   {
@@ -101,26 +104,28 @@ const KakaoLogin = () => {
     // axiosInstance.defaults.headers.common[
     //   'Authorization'
     // ] = `Bearer ${tokenRequest.access_token}`;
-
-    // try {
-    //   LoginSuccess({
-    //     providerName: 'kakao',
-    //     serviceUsingAgree: 'Y',
-    //     personalInformationAgree: 'N',
-    //     marketingAgree: 'Y',
-    //     access_token: tokenRequest.access_token,
-    //   });
-    // } catch (err) {
-    //   console.log('카카오 로그인 에러!!', err);
-    // }
-
-    setIsLogin(true);
-    navigate('/');
   };
 
   useEffect(() => {
-    getKakaoToken();
-  });
+    const fetchTokenAndLogin = async () => {
+      try {
+        const tokenRequest = await getKakaoToken();
+        LoginSuccess({
+          providerName: 'kakao',
+          serviceUsingAgree: 'Y',
+          personalInformationAgree: 'N',
+          marketingAgree: 'Y',
+          access_token: tokenRequest.access_token,
+        });
+        setIsLogin(true);
+        navigate('/');
+      } catch (err) {
+        console.log('카카오 로그인 에러!!', err);
+      }
+    };
+
+    fetchTokenAndLogin();
+  }, [navigate, LoginSuccess, setIsLogin]);
 
   return (
     <CenteredContainer>
