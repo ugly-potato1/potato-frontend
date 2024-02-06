@@ -5,7 +5,6 @@ export const handleLogin = async (data) => {
 
   console.log('서버로 보내는 값', restOfTheObject);
   console.log('서버로 보내는 토큰11', access_token);
-  console.log('로그');
 
   return axiosInstance.post(`/api/v1/auth/register`, restOfTheObject, {
     headers: { Authorization: `Bearer ${access_token}` },
