@@ -111,11 +111,12 @@ const handleQuantityChange = (product, change) => {
     }
   
     try {
-      const response =  axios.post('http://ec2-13-125-35-175.ap-northeast-2.compute.amazonaws.com/api/v1/products/{productId}', {
-        productId: product.id,
-        quantity: product.quantity,
-      });
-  
+      // const response =  axios.post('http://ec2-13-125-35-175.ap-northeast-2.compute.amazonaws.com/api/v1/products/{productId}', {
+      //   productId: product.id,
+      //   quantity: product.quantity,
+      // }
+      // );
+      alert(product.quantity + '개를 장바구니에 담았습니다.');
       console.log(response.data); // Log the server response (optional)
       setSelectedProducts((prevSelectedProducts) => [...prevSelectedProducts, product]);
       setNotification('');
