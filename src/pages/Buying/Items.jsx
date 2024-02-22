@@ -91,7 +91,7 @@ export default function Items({isDetailPage}) {
   }, []);
 
 const handleQuantityChange = (product, change) => {
-    const newQuantity = Math.max(0, product.quantity + change); // Ensure the quantity is non-negative
+    const newQuantity = Math.max(0, product.quantity + change);
 
     setProducts(prevProducts => {
       const updatedProducts = prevProducts.map(p => {
@@ -110,14 +110,13 @@ const handleQuantityChange = (product, change) => {
       return;
     }
   
-    // Simulate sending data to the server (replace with your actual server logic)
     try {
-      // Make an API call to send the quantity information to the server
-      const response =  axios.post('your-server-api-endpoint', {
-        productId: product.id,
-        quantity: product.quantity,
-      });
-  
+      // const response =  axios.post('http://ec2-13-125-35-175.ap-northeast-2.compute.amazonaws.com/api/v1/products/{productId}', {
+      //   productId: product.id,
+      //   quantity: product.quantity,
+      // }
+      // );
+      alert(product.quantity + '개를 장바구니에 담았습니다.');
       console.log(response.data); // Log the server response (optional)
       setSelectedProducts((prevSelectedProducts) => [...prevSelectedProducts, product]);
       setNotification('');
@@ -151,21 +150,17 @@ const handleQuantityChange = (product, change) => {
                     {isDetailPage &&
                       <>
                       <QuantityControl>
-                        <QuantityButton
-                          onClick={() =>
-                            handleQuantityChange(product, setProducts)(-1)
-                          }
-                        >
-                          -
-                        </QuantityButton>
-                        <ProductQuantity>{product.quantity}</ProductQuantity>
-                        <QuantityButton
-                          onClick={() =>
-                            handleQuantityChange(product, setProducts)(1)
-                          }
-                        >
-                          +
-                        </QuantityButton>
+                    <QuantityButton
+                      onClick={() => handleQuantityChange(product, -1)}
+                    >
+                      -
+                    </QuantityButton>
+                    <ProductQuantity>{product.quantity}</ProductQuantity>
+                    <QuantityButton
+                      onClick={() => handleQuantityChange(product, 1)}
+                    >
+                      +
+                    </QuantityButton>
                       </QuantityControl>
                       <SelectButton onClick={() => handleSelectClick(product)}>
                         담기
