@@ -60,7 +60,7 @@ const KakaoLogin = () => {
   });
   const { mutate: LoginUser } = useMutation({
     mutationFn: handleLogin,
-    onSuccess: (data, variables) => {
+    onSuccess: (data) => {
       console.log('로그인 성공!');
       console.log('백엔드로 부터 받은 data', data);
 
@@ -113,10 +113,10 @@ const KakaoLogin = () => {
         : '';
 
     return {
-      providerName: userInfo.kakao_account.name,
-      serviceUsingAgree: serviceInfo.service_terms[0].agreed,
-      personalInformationAgree: serviceInfo.service_terms[2].agreed,
-      marketingAgree: serviceInfo.service_terms[1].agreed,
+      providerName: 'kakao',
+      serviceUsingAgree: serviceInfo.service_terms[0].agreed ? 'Y' : 'N',
+      personalInformationAgree: serviceInfo.service_terms[2].agreed ? 'Y' : 'N',
+      marketingAgree: serviceInfo.service_terms[1].agreed ? 'Y' : 'N',
       access_token: tokenRequest.access_token,
     };
   };
@@ -131,6 +131,7 @@ const KakaoLogin = () => {
           marketingAgree,
           access_token,
         } = await getUserTotalInfo();
+
         LoginUser({
           providerName,
           serviceUsingAgree,
@@ -138,6 +139,7 @@ const KakaoLogin = () => {
           marketingAgree,
           access_token,
         });
+
         setIsLogin(true);
         navigate('/');
       } catch (err) {
@@ -146,7 +148,7 @@ const KakaoLogin = () => {
     };
 
     fetchUserInfoAndLogin();
-  }, [navigate, LoginUser, setIsLogin]);
+  }, []);
 
   return (
     <CenteredContainer>

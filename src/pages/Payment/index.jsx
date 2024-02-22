@@ -202,6 +202,7 @@ const Payment = () => {
     handleAddAddress(sendAddress); // 배송지 추가 요청하는 부분
     cancleNewAddress();
   };
+
   const open = useDaumPostcodePopup();
   const handleClick = () => {
     open({ onComplete: onCompleteHandler });
