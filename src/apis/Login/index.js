@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { axiosInstance } from '..';
 
 export const handleLogin = async (data) => {
@@ -18,4 +19,8 @@ export const handleSilentRefresh = async (refreshToken) => {
       withCredentials: true,
     }
   );
+};
+
+export const checkAccessToken = () => {
+  return axiosInstance.post(`/api/v1/auth/login/accessToken`);
 };

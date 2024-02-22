@@ -12,6 +12,7 @@ import styled from 'styled-components';
 import * as S from './styles';
 import { useLocation, useNavigate } from 'react-router-dom';
 import PaymentSuccess from './PaymentSuccess';
+import Cart from '../Cart';
 
 // 사용자 전체 배송지 목록 (더미데이터)
 const addressList = [
@@ -57,6 +58,7 @@ const Payment = () => {
   // 기본 배송지를 currentAddress에 저장하고, DeliverInfo 컴포넌트에 뿌리자!
   // 바로 위에서 만든 배송지 state는 배송지 변경에서 클릭시 해당 배송지를 업데이트하고, 다시 DeliverInfo에 뿌리는 과정 필요하다
   const { state } = useLocation();
+
   const navigate = useNavigate();
 
   const queryClient = useQueryClient();
@@ -230,7 +232,11 @@ const Payment = () => {
   };
 
   if (state) {
-    return <PaymentSuccess />;
+    if (state.paymentSuccessInfo) {
+      return <PaymentSuccess />;
+    } else {
+      <Cart />;
+    }
   }
   return (
     <>

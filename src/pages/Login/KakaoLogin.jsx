@@ -7,6 +7,7 @@ import { UserLoginState } from '../../stores/Login/atom';
 import { axiosInstance } from '../../apis';
 import { useMutation } from '@tanstack/react-query';
 import { handleLogin, handleSilentRefresh } from '../../apis/Login';
+import { checkAccessToken } from '../../apis/Login/index';
 
 const getKakaoToken = async (client_id, redirect_uri, code) => {
   const baseUrl = 'https://kauth.kakao.com/oauth/token';
@@ -129,6 +130,11 @@ const KakaoLogin = () => {
     };
   };
 
+  const checkAccessToken = async () => {
+    const { data } = await axiosInstance.post('/api/v1/auth/login/accesstoken');
+    console.log('accessToken 유효한지 확인', data);
+  };
+
   useEffect(() => {
     const fetchUserInfoAndLogin = async () => {
       try {
@@ -147,7 +153,6 @@ const KakaoLogin = () => {
           marketingAgree,
           access_token,
         });
-
         setIsLogin(true);
         navigate('/');
       } catch (err) {
