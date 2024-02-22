@@ -106,17 +106,25 @@ const KakaoLogin = () => {
       { headers: { Authorization: `Bearer ${tokenRequest.access_token}` } }
     );
 
-    const user_email =
-      userInfo.kakao_account.is_email_valid &&
-      userInfo.kakao_account.is_email_verified
-        ? userInfo.kakao_account.email
-        : '';
+    console.log('사용자 서비스 정보', serviceInfo);
 
     return {
       providerName: 'kakao',
-      serviceUsingAgree: serviceInfo.service_terms[0].agreed ? 'Y' : 'N',
-      personalInformationAgree: serviceInfo.service_terms[2].agreed ? 'Y' : 'N',
-      marketingAgree: serviceInfo.service_terms[1].agreed ? 'Y' : 'N',
+      serviceUsingAgree: serviceInfo.service_terms
+        ? serviceInfo.service_terms[0].agreed
+          ? 'Y'
+          : 'N'
+        : 'N',
+      personalInformationAgree: serviceInfo.service_terms
+        ? serviceInfo.service_terms[2].agreed
+          ? 'Y'
+          : 'N'
+        : 'N',
+      marketingAgree: serviceInfo.service_terms
+        ? serviceInfo.service_terms[1].agreed
+          ? 'Y'
+          : 'N'
+        : 'N',
       access_token: tokenRequest.access_token,
     };
   };
