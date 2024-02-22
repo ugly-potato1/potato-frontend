@@ -2,11 +2,31 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 import axios from 'axios';
 import { useEffect } from 'react';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 import { UserLoginState } from '../../stores/Login/atom';
 import { axiosInstance } from '../../apis';
 import { useMutation } from '@tanstack/react-query';
 import { handleLogin, handleSilentRefresh } from '../../apis/Login';
+
+const getKakaoToken = async (client_id, redirect_uri, code) => {
+  const baseUrl = 'https://kauth.kakao.com/oauth/token';
+  const config = {
+    grant_type: 'authorization_code',
+    client_id,
+    redirect_uri,
+    code,
+  };
+  const params = new URLSearchParams(config).toString();
+  const finalUrl = `${baseUrl}?${params}`;
+  const { data: tokenRequest } = await axios.post(finalUrl); // 카카오 토큰 발급
+
+  /* (로그아웃시) 카카오 연결끊기 로직을 위한 임시 코드*/
+  axios.defaults.headers.common[
+    'Authorization'
+  ] = `Bearer ${tokenRequest.access_token}`;
+
+  return tokenRequest;
+};
 
 const KakaoLogin = () => {
   const navigate = useNavigate();
@@ -15,66 +35,122 @@ const KakaoLogin = () => {
   const redirect_uri = process.env.REACT_APP_KAKAO_REDIRECT_URL;
   const code = useSearchParams()[0].get('code');
 
+  const onLoginSuccess = ({
+    accessToken,
+    refreshToken,
+    accessTokenExpiration,
+  }) => {
+    axiosInstance.defaults.headers.common['Authorization'] = accessToken;
+    setTimeout(() => {
+      SlientRefresh(refreshToken);
+    }, accessTokenExpiration - 60000);
+  };
   const { mutate: SlientRefresh } = useMutation({
     mutationFn: handleSilentRefresh,
     onSuccess: (data) => {
       try {
-        //LoginSuccess({});
-      } catch {}
+        onLoginSuccess(data);
+      } catch (err) {
+        console.log('리프레쉬 토큰 -> 로그인 요청 실패');
+      }
+    },
+    onError: (err) => {
+      console.log('리프레쉬 토큰 요청 실패!', err);
     },
   });
-  const { mutate: LoginSuccess } = useMutation({
+  const { mutate: LoginUser } = useMutation({
     mutationFn: handleLogin,
-    onSuccess: (data) => {
-      //const { accessToken } = response.data; // 서버로 부터 받은 로그인 accessToken
-      // axiosInstance.defaults.headers.common[
-      //   'Authorization'
-      // ] = `Bearer ${accessToken}`;
-      // setTimeout(() => {
-      //   try {
-      //     SlientRefresh({});
-      //   } catch (err) {
-      //     console.log('slient refresh 에러', err);
-      //   }
-      // }, JWT_EXPIRRY_TIME - 60000);
+    onSuccess: (data, variables) => {
+      console.log('로그인 성공!');
+      console.log('백엔드로 부터 받은 data', data);
+
+      const {
+        accessToken,
+        refreshToken,
+        accessTokenExpiration,
+        refreshTokenExpiration,
+      } = data;
+
+      axiosInstance.defaults.headers.common[
+        'Authorization'
+      ] = `Bearer ${accessToken}`;
+
+      setTimeout(() => {
+        try {
+          SlientRefresh(refreshToken);
+        } catch (err) {
+          console.log('slient refresh 에러', err);
+        }
+      }, accessTokenExpiration - 60000);
+    },
+    onError: (err) => {
+      console.log('로그인 요청 실패!', err);
     },
   });
 
-  const getKakaoToken = async () => {
-    const baseUrl = 'https://kauth.kakao.com/oauth/token';
-    const config = {
-      grant_type: 'authorization_code',
-      client_id,
-      redirect_uri,
-      code,
+  const getUserTotalInfo = async () => {
+    const tokenRequest = await getKakaoToken(client_id, redirect_uri, code);
+
+    const { data: userInfo } = await axios.get(
+      `https://kapi.kakao.com/v2/user/me`,
+      {
+        headers: {
+          Authorization: `Bearer ${tokenRequest.access_token}`,
+          'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
+        },
+      }
+    );
+
+    const { data: serviceInfo } = await axios.get(
+      `https://kapi.kakao.com/v2/user/service_terms`,
+      { headers: { Authorization: `Bearer ${tokenRequest.access_token}` } }
+    );
+
+    const user_email =
+      userInfo.kakao_account.is_email_valid &&
+      userInfo.kakao_account.is_email_verified
+        ? userInfo.kakao_account.email
+        : '';
+
+    return {
+      providerName: userInfo.kakao_account.name,
+      serviceUsingAgree: serviceInfo.service_terms[0].agreed,
+      personalInformationAgree: serviceInfo.service_terms[2].agreed,
+      marketingAgree: serviceInfo.service_terms[1].agreed,
+      access_token: tokenRequest.access_token,
     };
-    const params = new URLSearchParams(config).toString();
-    const finalUrl = `${baseUrl}?${params}`;
-    const { data: tokenRequest } = await axios.post(finalUrl);
-
-    console.log('tokenRequest', tokenRequest);
-
-    // 백엔드 연동 필요
-    // try {
-    //   LoginSuccess({});
-    // } catch (err) {
-    //   console.log('카카오 로그인 에러', err);
-    // }
-
-    // axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${}`;
-    // axiosInstance를 사용할 것 (기본 axios 사용 X)
-    setIsLogin(true);
-    navigate('/');
   };
 
   useEffect(() => {
-    getKakaoToken();
-  });
+    const fetchUserInfoAndLogin = async () => {
+      try {
+        const {
+          providerName,
+          serviceUsingAgree,
+          personalInformationAgree,
+          marketingAgree,
+          access_token,
+        } = await getUserTotalInfo();
+        LoginUser({
+          providerName,
+          serviceUsingAgree,
+          personalInformationAgree,
+          marketingAgree,
+          access_token,
+        });
+        setIsLogin(true);
+        navigate('/');
+      } catch (err) {
+        console.log('카카오 로그인 에러!!', err);
+      }
+    };
+
+    fetchUserInfoAndLogin();
+  }, [navigate, LoginUser, setIsLogin]);
 
   return (
     <CenteredContainer>
       <Loader />
-      <Message>Please Wait...</Message>
     </CenteredContainer>
   );
 };
@@ -87,13 +163,6 @@ const CenteredContainer = styled.div`
   align-items: center;
   justify-content: center;
   height: 100vh;
-`;
-const Message = styled.div`
-  font-size: 36px;
-  color: #333; // 텍스트 색상
-  position: absolute;
-  bottom: 30%;
-  font-weight: bold;
 `;
 const Jump = keyframes`
   15% {

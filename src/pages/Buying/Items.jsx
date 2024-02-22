@@ -4,7 +4,8 @@ import axios from 'axios';
 import Tomato from '../../assets/imgs/Funding/Tomato.png';
 import Plum from '../../assets/imgs/Funding/Plum.png';
 import Peach from '../../assets/imgs/Funding/Peach.png';
-export default function Items() {
+
+export default function Items({isDetailPage}) {
     const [products, setProducts] = useState([]);
     const [selectedProducts, setSelectedProducts] = useState([]);
     const [notification, setNotification] = useState('');
@@ -147,18 +148,31 @@ const handleQuantityChange = (product, change) => {
                     <ProductPrice>
                       가 격<b>{product.price}원</b>
                     </ProductPrice>
-                    <QuantityControl>
-                <QuantityButton onClick={() => handleQuantityChange(product, -1)}>
-                  -
-                </QuantityButton>
-                <ProductQuantity>{product.quantity}</ProductQuantity>
-                <QuantityButton onClick={() => handleQuantityChange(product, 1)}>
-                  +
-                </QuantityButton>
-              </QuantityControl>
-              <SelectButton onClick={() => handleSelectClick(product)}>
-                담기
-              </SelectButton>
+                    {isDetailPage &&
+                      <>
+                      <QuantityControl>
+                        <QuantityButton
+                          onClick={() =>
+                            handleQuantityChange(product, setProducts)(-1)
+                          }
+                        >
+                          -
+                        </QuantityButton>
+                        <ProductQuantity>{product.quantity}</ProductQuantity>
+                        <QuantityButton
+                          onClick={() =>
+                            handleQuantityChange(product, setProducts)(1)
+                          }
+                        >
+                          +
+                        </QuantityButton>
+                      </QuantityControl>
+                      <SelectButton onClick={() => handleSelectClick(product)}>
+                        담기
+                      </SelectButton>
+                      </>
+                    }
+
                   </OptionContainer>
                 </Product>
               ))}
@@ -180,6 +194,7 @@ const Product = styled.div`
   background: #fff;
   border-radius: 10px;
   filter: drop-shadow(0px 1px 15px rgba(0, 0, 0, 0.2));
+  
   img {
     width: 100%;
     height: 50%;
@@ -190,6 +205,7 @@ const Product = styled.div`
 const ProductList = styled.div`
   display: flex;
   flex-wrap: nowrap; // 줄 바꿈 방지
+  overflow: auto;
 `;
 
 const OptionContainer = styled.div`

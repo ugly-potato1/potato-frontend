@@ -93,7 +93,6 @@ const Wrap = styled.div`
   display: flex;
   flex-direction: column;
     min-width: 1300px;
-    max-width: 1920px;
   align-items: center;
 `
 //상단 설명
